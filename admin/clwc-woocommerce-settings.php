@@ -56,7 +56,7 @@ function clwc_payment_complete( $order_id ) {
              * Create a coupon programatically
              */
             $coupon_code   = clwc_get_random_string(); // Code.
-            $amount        = '5'; // Amount.
+            $amount        = clwc_rewards_card_coupon_amount(); // Amount.
             $discount_type = 'fixed_cart'; // Type: fixed_cart, percent, fixed_product, percent_product.
 
             $coupon = array(
