@@ -50,7 +50,7 @@ function clwc_payment_complete( $order_id ) {
         }
 
         // Check if user needs new coupon.
-        if ( 9 == $card_punches ) {
+        if ( ( clwc_rewards_card_required_punches() - 1 ) == $card_punches ) {
 
             /**
              * Create a coupon programatically
