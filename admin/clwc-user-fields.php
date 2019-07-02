@@ -30,9 +30,9 @@ function clwc_add_customer_loyalty_profile_options( $profileuser ) {
             </td>
         </tr>
         <tr>
-            <th scope="row"><?php _e( 'Gift card punches', 'clwc' ); ?></th>
+            <th scope="row"><?php _e( 'Rewards card punches', 'clwc' ); ?></th>
             <td>
-                <input class="regular-text" type="number" name="clwc_gift_card_punches" value="<?php echo esc_html( get_user_meta( $profileuser->ID, 'clwc_gift_card_punches', true ) ); ?>" />
+                <input class="regular-text" type="number" name="clwc_rewards_card_punches" value="<?php echo esc_html( get_user_meta( $profileuser->ID, 'clwc_rewards_card_punches', true ) ); ?>" />
             </td>
         </tr>
         <tr>
@@ -63,9 +63,9 @@ function clwc_save_custom_profile_fields( $user_id ) {
         update_user_meta( $user_id, 'clwc_loyalty_points', esc_html( $_POST['clwc_loyalty_points'] ) );
     }
 
-    // Update customer gift card punches.
-    if ( isset( $_POST['clwc_gift_card_punches'] ) ) {
-        update_user_meta( $user_id, 'clwc_gift_card_punches', esc_html( $_POST['clwc_gift_card_punches'] ) );
+    // Update customer rewards card punches.
+    if ( isset( $_POST['clwc_rewards_card_punches'] ) ) {
+        update_user_meta( $user_id, 'clwc_rewards_card_punches', esc_html( $_POST['clwc_rewards_card_punches'] ) );
     }
 
     // Update customer card punches.
