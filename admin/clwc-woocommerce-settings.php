@@ -129,22 +129,23 @@ function clwc_order_customer_coupon_code( $order ) {
      * @return string
      */
     if ( $coupon_code ) {
-        /**
-         * @todo if an image is uploaded through the settings, add it here through
-         * the filter instead of the default one.
-         */
+        // Set rewards card image.
+        if ( FALSE == clwc_rewards_card_image() ) {
+            // Default rewards card image.
+            $rewards_card_image = site_url() . '/wp-content/plugins/customer-loyalty-for-woocomerce/rewards-card-image.jpeg';
+        } else {
+            // Get rewards card image.
+            $rewards_card_image = clwc_rewards_card_image();
+        }
 
-        // Get the gift card image.
-        $gift_card_image = site_url() . '/wp-content/plugins/customer-loyalty-for-woocomerce/gift-card-image.jpeg';
-
-        // Set the gift card image.
-        $gift_card_img   = apply_filters( 'clwc_gift_card_image', $gift_card_image );
+        // Set the rewards card image.
+        $rewards_card_img = apply_filters( 'clwc_rewards_card_image', $rewards_card_image );
 
         // Display coupon to customer.
         echo '<div class="clwc-reward">';
-        echo '<p><img src="' . $gift_card_img . '" alt="' . __( 'Gift Card', 'clwc' ) . '" class="clwc-reward-image" /></p>';
         echo '<h2 class="clwc-reward-title">' . apply_filters( 'clwc_gift_card_reward_title', __( 'You earned a reward', 'clwc' ) ) . '</h2>';
         echo '<p class="clwc-reward-text">' . apply_filters( 'clwc_gift_card_reward_text', __( 'This order was your 10th punch on your Punch Card. Save $5.00 on your next order!', 'clwc' ) ) . '</p>';
+        echo '<p><img src="' . $rewards_card_img . '" alt="' . __( 'Rewards Card', 'clwc' ) . '" class="clwc-rewards-card-image" /></p>';
         echo '<p class="clwc-coupon-code"><strong>' . __( 'Coupon', 'clwc' ) . ': ' . $coupon_code . '</strong></p>';
         echo '</div>';
     }
