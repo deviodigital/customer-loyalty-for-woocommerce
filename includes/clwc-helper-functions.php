@@ -61,7 +61,7 @@ function clwc_rewards_card_title() {
     if ( isset( $rewards_card['clwc_rewards_card_title'] ) && '' !== $rewards_card['clwc_rewards_card_title'] ) {
         $title = $rewards_card['clwc_rewards_card_title'];
     } else {
-        $title = FALSE;
+        $title = __( 'You earned a reward', 'clwc' );
     }
 
 	return apply_filters( 'clwc_rewards_card_title', $title );
