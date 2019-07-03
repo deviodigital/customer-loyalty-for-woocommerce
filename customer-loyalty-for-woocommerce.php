@@ -73,3 +73,21 @@ function run_clwc() {
 
 }
 run_clwc();
+
+/**
+ * Add settings link on plugin page
+ *
+ * @since 1.0
+ * @param array $links an array of links related to the plugin.
+ * @return array updatead array of links related to the plugin.
+ */
+function clwc_settings_link( $links ) {
+	$settings_link = '<a href="admin.php?page=clwc_admin_settings">' . __( 'Settings', 'clwc' ) . '</a>';
+	array_unshift( $links, $settings_link );
+	return $links;
+}
+
+$pluginname = plugin_basename( __FILE__ );
+
+add_filter( "plugin_action_links_$pluginname", 'clwc_settings_link' );
+
