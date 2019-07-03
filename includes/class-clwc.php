@@ -142,6 +142,11 @@ class CLWC {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/clwc-woocommerce-settings.php';
 
 		/**
+		 * The file responsible for defining all new earning loyalty points functions.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/clwc-earning-loyalty-points.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
