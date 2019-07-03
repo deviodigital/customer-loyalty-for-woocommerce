@@ -37,8 +37,8 @@ function clwc_payment_complete( $order_id ) {
     if ( $user ) {
 
         // Card punches.
-        $card_punches   = get_user_meta( $user->ID, 'clwc_punches', TRUE );
-        $old_punches    = get_user_meta( $user->ID, 'clwc_punches', TRUE );
+        $card_punches   = get_user_meta( $user->ID, 'clwc_rewards_card_punches', TRUE );
+        $old_punches    = get_user_meta( $user->ID, 'clwc_rewards_card_punches', TRUE );
 
         // Set a default of zero.
         if ( '' == $card_punches ) {
@@ -106,7 +106,7 @@ function clwc_payment_complete( $order_id ) {
         }
 
         // Update user meta - punch card number.
-        update_user_meta( $user->ID, 'clwc_punches', $card_punches, $old_punches );
+        update_user_meta( $user->ID, 'clwc_rewards_card_punches', $card_punches, $old_punches );
 
     }
 }
