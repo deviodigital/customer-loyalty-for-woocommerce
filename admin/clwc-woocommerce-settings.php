@@ -28,6 +28,11 @@ function clwc_payment_complete( $order_id ) {
     // Get user from order.
     $user  = $order->get_user();
 
+    // Bail if the rewards card is not activated.
+    if ( 'on' !== clwc_rewards_card_activate() ) {
+        return false;
+    }
+
     // Run code if user is attached to the order.
     if ( $user ) {
 
