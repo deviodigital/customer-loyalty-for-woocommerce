@@ -10,7 +10,7 @@
  * @wordpress-plugin
  * Plugin Name:       Customer Loyalty for WooCommerce
  * Plugin URI:        https://www.deviodigital.com/customer-loyalty-for-woocommerce
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Increase customer loyalty by rewarding your customers for their repeat purchase behavior.
  * Version:           1.0
  * Author:            Devio Digital
  * Author URI:        https://www.deviodigital.com
