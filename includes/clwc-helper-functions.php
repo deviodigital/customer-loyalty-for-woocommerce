@@ -27,6 +27,8 @@ function clwc_get_random_string( $length = 6 ) {
         $string .= $characters[mt_rand( 0, strlen( $characters ) - 1 )];
     }
 
+    $string = clwc_rewards_card_coupon_prefix() . $string;
+
     // Filter string.
     $string = apply_filters( 'clwc_get_random_string', $string );
 
