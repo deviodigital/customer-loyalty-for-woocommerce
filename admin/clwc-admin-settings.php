@@ -166,6 +166,18 @@ if ( class_exists( 'CLWC_OSA' ) ) {
 		)
 	);
 
+    // Field: Rewards Card - Coupon prefix.
+	$clwc_obj->add_field(
+		'clwc_rewards_card',
+		array(
+			'id'      => 'clwc_rewards_card_coupon_prefix',
+			'type'    => 'text',
+			'name'    => __( 'Coupon prefix', 'clwc' ),
+			'desc'    => __( 'Add the text you would like included before the randomize coupon code', 'clwc' ),
+			'default' => 'CLWC',
+		)
+	);
+
 
 
 
