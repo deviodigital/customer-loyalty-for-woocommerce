@@ -153,6 +153,23 @@ function clwc_rewards_card_coupon_type() {
 }
 
 /**
+ * Get the rewards card coupon prefix
+ *
+ * @return string|bool
+ */
+function clwc_rewards_card_coupon_prefix() {
+    $rewards_card = get_option( 'clwc_rewards_card' );
+
+    if ( isset( $rewards_card['clwc_rewards_card_coupon_prefix'] ) && '' !== $rewards_card['clwc_rewards_card_coupon_prefix'] ) {
+        $prefix = $rewards_card['clwc_rewards_card_coupon_prefix'];
+    } else {
+        $prefix = FALSE;
+    }
+
+	return apply_filters( 'clwc_rewards_card_coupon_prefix', $prefix );
+}
+
+/**
  * Check to see if Loyalty Points is activated.
  *
  * @return string|bool
