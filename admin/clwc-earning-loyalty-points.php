@@ -66,3 +66,38 @@ function clwc_customer_first_order() {
 
 }
 add_action( 'woocommerce_thankyou', 'clwc_customer_first_order', 10 );
+
+/**
+ * Add loyalty points for every dollar spent
+ *
+ * @since 1.0
+ */
+function clwc_customer_money_spent( $order_id ) {
+    // Check settings before adding any points.
+    if ( 'on' == clwc_loyalty_points_activate() && 0 != clwc_earning_points_money_spent() ) {
+        // Get order data.
+        $order = wc_get_order( $order_id );
+
+        // Get order total.
+        $order_total = $order->get_total();
+    
+        // Get user's loyalty points.
+        $old_points = get_user_meta( get_current_user_id(), 'clwc_loyalty_points', TRUE );
+
+        // Set empty variable to zero.
+        if ( '' == $old_points ) {
+            $old_points = 0;
+        }
+
+        // Get money spent loyalty points.
+        $money_spent = $order_total * clwc_earning_points_money_spent();
+
+        // Get new loyalty points total.
+        $new_points = $old_points + round( $money_spent );
+
+        // Update customer loyalty points.
+        update_user_meta( get_current_user_id(), 'clwc_loyalty_points', $new_points, $old_points );
+    }
+
+}
+add_action( 'woocommerce_thankyou', 'clwc_customer_money_spent', 10 );
