@@ -91,3 +91,27 @@ $pluginname = plugin_basename( __FILE__ );
 
 add_filter( "plugin_action_links_$pluginname", 'clwc_settings_link' );
 
+/**
+ * Add a check for our plugin before redirecting
+ * 
+ * @since 1.0
+ */
+function clwc_activate() {
+    add_option( 'clwc_do_activation_redirect', true );
+}
+register_activation_hook( __FILE__, 'clwc_activate' );
+
+/**
+ * Redirect to the Customer Loyalty for WooCommerce Settings page on single plugin activation
+ * 
+ * @since 1.0
+ */
+function clwc_redirect() {
+    if ( get_option( 'clwc_do_activation_redirect', false ) ) {
+        delete_option( 'clwc_do_activation_redirect' );
+        if ( ! isset( $_GET['activate-multi'] ) ) {
+            wp_redirect( 'admin.php?page=clwc_admin_settings' );
+        }
+    }
+}
+add_action( 'admin_init', 'clwc_redirect' );
