@@ -21,11 +21,16 @@ function clwc_dashboard_shortcode() {
         // Get loyalty points.
         $loyalty_points = get_user_meta( $user_id, 'clwc_loyalty_points', TRUE );
 
+        // Set to zero if customer has no points.
+        if ( ! $loyalty_points ) {
+            $loyalty_points = 0;
+        }
+
         // Redeemable points minimum.
         $redeem_points_min = clwc_loyalty_points_redeem_points_minimum();
 
         // Set redeem points variable if availabe.
-        if ( $loyalty_points >= $redeem_points_min ) {
+        if ( $redeem_points_min && $loyalty_points >= $redeem_points_min ) {
             // Redeem loyalty points.
             $redeem_button = '<a href="#" class="button clwc-button">' . __( 'Redeem', 'clwc' ) . '</a>';
             // Redeem loyalty points.
@@ -34,14 +39,17 @@ function clwc_dashboard_shortcode() {
             $redeem_points = '';
         }
 
-        // Table loyalty points.
-        echo '<h4 class="clwc-loyalty-points">' . __( 'My Loyalty Points', 'clwc' ) . '</h4>';
-        echo '<table class="clwc-dashboard">';
-        echo '<tbody>';
-        echo '<tr><td><strong>' . __( 'Loyalty Points', 'ddwc' ) . '</strong></td><td>' . $loyalty_points . '</td></tr>';
-        echo $redeem_points;
-        echo '</tbody>';
-        echo '</table>';
+        // Display lotalty points if activated in the admin settings.
+        if ( 'on' == clwc_loyalty_points_activate() ) {
+            // Table loyalty points.
+            echo '<h4 class="clwc-loyalty-points">' . __( 'My Loyalty Points', 'clwc' ) . '</h4>';
+            echo '<table class="clwc-dashboard">';
+            echo '<tbody>';
+            echo '<tr><td><strong>' . __( 'Loyalty Points', 'ddwc' ) . '</strong></td><td>' . $loyalty_points . '</td></tr>';
+            echo $redeem_points;
+            echo '</tbody>';
+            echo '</table>';
+        }
 
         // Get all customer orders.
         $customer_orders = get_posts( array(
@@ -51,12 +59,6 @@ function clwc_dashboard_shortcode() {
             'post_type'   => wc_get_order_types(),
             'post_status' => array_keys( wc_get_order_statuses() ),
         ) );
-
-        /*
-        echo '<pre>';
-        var_dump( $customer_orders );
-        echo '</pre>';
-        */
 
         // Set empty vars.
         $clwc_order_ids = '';
@@ -91,38 +93,59 @@ function clwc_dashboard_shortcode() {
 
                 // Set is_coupon_active var.
                 if ( $usage_left > 0 ) {
-                    $is_coupon_active = '<i>Active</i>';
+                    $is_coupon_active = '<i>Available</i>';
                 } 
                 else {
-                    $is_coupon_active = '<i>Inactive</i>';
+                    $is_coupon_active = '<i>Used</i>';
                 }
 
                 $coupon_codes .= '<tr><td><strong>' . $coupon_added . '</strong> - ' . wc_price( $coupon_data['amount'] ) . '</td><td>' . $is_coupon_active . '</td></tr>';
             }
         }
 
+        // Set message when no coupons are available.
+        if ( '' == $coupon_codes ) {
+            $coupon_codes .= '<tr><td class="clwc-no-coupons">' . apply_filters( 'clwc_no_coupons_message', __( 'You do not have any coupons available', 'clwc' ) ) . '</td></tr>';
+        }
+
         // Get rewards card punches.
         $rewards_card_punches = get_user_meta( $user_id, 'clwc_rewards_card_punches', TRUE );
+
+        // Set to zero if customer has no punches.
+        if ( ! $rewards_card_punches ) {
+            $rewards_card_punches = 0;
+        }
 
         // Get rewards earned.
         $rewards_earned = get_user_meta( $user_id, 'clwc_rewards_earned', TRUE );
 
-        // Table rewards card.
-        echo '<h4 class="clwc-loyalty-points">' . __( 'My Rewards Card', 'clwc' ) . '</h4>';
-        echo '<table class="clwc-dashboard">';
-        echo '<tbody>';
-        echo '<tr><td><strong>' . __( 'Rewards Card Punches', 'ddwc' ) . '</strong></td><td>' . $rewards_card_punches . '</td></tr>';
-        echo '<tr><td><strong>' . __( 'Rewards Earned', 'ddwc' ) . '</strong></td><td>' . $rewards_earned . '</td></tr>';
-        echo '</tbody>';
-        echo '</table>';
+        // Set to zero if customer has no earned rewards.
+        if ( ! $rewards_earned ) {
+            $rewards_earned = 0;
+        }
 
-        // Rewards earned coupons.
-        echo '<h4 class="clwc-loyalty-points">' . __( 'Rewards Coupons', 'clwc' ) . '</h4>';
-        echo '<table class="clwc-dashboard">';
-        echo '<tbody>';
-        echo $coupon_codes;
-        echo '</tbody>';
-        echo '</table>';
+        // Display rewards card if it's activated in admin settings.
+        if ( 'on' == clwc_rewards_card_activate() ) {
+            // Table rewards card.
+            echo '<h4 class="clwc-rewards-card">' . __( 'My Rewards Card', 'clwc' ) . '</h4>';
+            echo '<table class="clwc-dashboard rewards-card">';
+            echo '<tbody>';
+            echo '<tr><td><strong>' . __( 'Rewards Card Punches', 'ddwc' ) . '</strong></td><td>' . $rewards_card_punches . '</td></tr>';
+            echo '<tr><td><strong>' . __( 'Rewards Earned', 'ddwc' ) . '</strong></td><td>' . $rewards_earned . '</td></tr>';
+            echo '</tbody>';
+            echo '</table>';
+        }
+
+        // Display coupons if rewards card or loyalty points are active.
+        if ( 'on' == clwc_rewards_card_activate() || 'on' == clwc_loyalty_points_activate() ) {
+            // My coupons.
+            echo '<h4 class="clwc-rewards-coupons">' . __( 'My Coupons', 'clwc' ) . '</h4>';
+            echo '<table class="clwc-dashboard rewards-coupons">';
+            echo '<tbody>';
+            echo $coupon_codes;
+            echo '</tbody>';
+            echo '</table>';
+        }
 
     } else {
         // Display login form.
