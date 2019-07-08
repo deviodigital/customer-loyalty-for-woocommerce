@@ -147,6 +147,16 @@ class CLWC {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/clwc-earning-loyalty-points.php';
 
 		/**
+		 * The file responsible for defining the WooCommerce dashboard shortcode.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/clwc-woocommerce-endpoint-shortcode.php';
+
+		/**
+		 * The file responsible for defining the custom WooCommerce my account endpoint.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/clwc-woocommerce-account-tab.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */

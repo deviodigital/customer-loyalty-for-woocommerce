@@ -3,6 +3,39 @@
  * included in this file.
  */
 
+/** Display rewards notice on customer order */
+
 div.clwc-rewards-card {
     text-align: center;
+}
+
+/** My Account - Customer Loyalty */
+
+table.clwc-dashboard {
+    border: 1px solid #DDD;
+}
+
+table.clwc-dashboard thead {
+    background: #f1f1f1;
+    font-weight: 700;
+}
+
+table.clwc-dashboard tbody {
+    font-size: 14px;
+}
+
+table.clwc-dashboard tr {
+    border-bottom: 1px solid #f1f1f1;
+}
+
+table.clwc-dashboard tr:last-child {
+    border-bottom: 0;
+}
+
+table.clwc-dashboard td {
+    padding: 10px;
+}
+
+table.clwc-dashboard tbody td:last-child {
+    text-align: right;
 }
