@@ -76,7 +76,7 @@ function clwc_dashboard_shortcode() {
                 }
 
                 // Redirect to cart when discount applied.
-                wp_redirect( $woocommerce->cart->get_cart_url() );
+                wp_redirect( apply_filters( 'clwc_redeem_points_redirect_url', $woocommerce->cart->get_cart_url() ) );
                 exit;
             }
 
