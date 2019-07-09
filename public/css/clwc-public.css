@@ -13,6 +13,7 @@ div.clwc-rewards-card {
 
 table.clwc-dashboard {
     border: 1px solid #DDD;
+    margin-bottom: 24px;
 }
 
 table.clwc-dashboard thead {
@@ -55,4 +56,3 @@ h4.clwc-loyalty-points,
 h4.clwc-rewards-card {
     margin-top: 0;
 }
-
