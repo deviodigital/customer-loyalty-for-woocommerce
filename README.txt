@@ -49,7 +49,8 @@ Using a plugin like Customer Loyalty for WooCommerce increases the likelihood of
 1. CLWC admin settings - Rewards Card
 2. CLWC admin settings - Loyalty Points
 3. CLWC Rewards Card - customer reward notice order details
-4. CLWC customer settings - 
+4. CLWC customer dashboard - what the customer sees when viewing the Customer Loyalty page
+5. CLWC user settings - Edit a user's rewards card and loyalty points
 
 == Changelog ==
 
