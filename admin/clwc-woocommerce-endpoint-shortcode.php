@@ -279,7 +279,7 @@ function clwc_dashboard_shortcode() {
 
     } else {
         // Display login form.
-        wp_login_form();
+        apply_filters( 'clwc_customer_dashboard_login_form', wp_login_form() );
     }
 }
 add_shortcode( 'clwc_dashboard', 'clwc_dashboard_shortcode' );
