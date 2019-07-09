@@ -140,12 +140,24 @@ function clwc_dashboard_shortcode() {
         if ( 'on' == clwc_loyalty_points_activate() ) {
             // Table loyalty points.
             echo '<h4 class="clwc-loyalty-points">' . __( 'My Loyalty Points', 'clwc' ) . '</h4>';
+
+            do_action( 'clwc_customer_dashboard_loyalty_points_table_before' );
+
             echo '<table class="clwc-dashboard">';
             echo '<tbody>';
+
+            do_action( 'clwc_customer_dashboard_loyalty_points_table_tbody_top' );
+
             echo '<tr><td><strong>' . __( 'Loyalty Points', 'ddwc' ) . '</strong></td><td>' . $loyalty_points . '</td></tr>';
             echo $redeem_points;
+
+            do_action( 'clwc_customer_dashboard_loyalty_points_table_tbody_bottom' );
+
             echo '</tbody>';
             echo '</table>';
+
+            do_action( 'clwc_customer_dashboard_loyalty_points_table_after' );
+
         }
 
         // Get all customer orders.
@@ -222,23 +234,47 @@ function clwc_dashboard_shortcode() {
         if ( 'on' == clwc_rewards_card_activate() ) {
             // Table rewards card.
             echo '<h4 class="clwc-rewards-card">' . __( 'My Rewards Card', 'clwc' ) . '</h4>';
+
+            do_action( 'clwc_customer_dashboard_rewards_card_table_before' );
+
             echo '<table class="clwc-dashboard rewards-card">';
             echo '<tbody>';
+
+            do_action( 'clwc_customer_dashboard_rewards_card_table_tbody_top' );
+
             echo '<tr><td><strong>' . __( 'Rewards Card Punches', 'ddwc' ) . '</strong></td><td>' . $rewards_card_punches . '</td></tr>';
             echo '<tr><td><strong>' . __( 'Rewards Earned', 'ddwc' ) . '</strong></td><td>' . $rewards_earned . '</td></tr>';
+
+            do_action( 'clwc_customer_dashboard_rewards_card_table_tbody_bottom' );
+
             echo '</tbody>';
             echo '</table>';
+
+            do_action( 'clwc_customer_dashboard_rewards_card_table_after' );
+
         }
 
         // Display coupons if rewards card or loyalty points are active.
         if ( 'on' == clwc_rewards_card_activate() || 'on' == clwc_loyalty_points_activate() ) {
             // My coupons.
             echo '<h4 class="clwc-rewards-coupons">' . __( 'My Coupons', 'clwc' ) . '</h4>';
+
+            do_action( 'clwc_customer_dashboard_coupons_table_before' );
+
             echo '<table class="clwc-dashboard rewards-coupons">';
             echo '<tbody>';
+
+            do_action( 'clwc_customer_dashboard_coupons_table_tbody_top' );
+
             echo $coupon_codes;
+
+            do_action( 'clwc_customer_dashboard_coupons_table_tbody_bottom' );
+
             echo '</tbody>';
             echo '</table>';
+
+            do_action( 'clwc_customer_dashboard_coupons_table_after' );
+
         }
 
     } else {
