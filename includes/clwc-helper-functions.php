@@ -253,7 +253,7 @@ function clwc_earning_points_order_complete() {
         $points = 0;
     }
 
-	return apply_filters( 'clwc_earning_points_customer_registration', $points );
+	return apply_filters( 'clwc_earning_points_order_complete', $points );
 }
 
 /**
