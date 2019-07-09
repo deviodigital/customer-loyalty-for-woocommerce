@@ -66,7 +66,7 @@ function clwc_rewards_card_title() {
         $title = __( 'You earned a reward', 'clwc' );
     }
 
-	return apply_filters( 'clwc_rewards_card_title', $title );
+	return apply_filters( 'clwc_helper_rewards_card_title', $title );
 }
 
 /**
@@ -83,7 +83,7 @@ function clwc_rewards_card_text() {
         $text = FALSE;
     }
 
-	return apply_filters( 'clwc_rewards_card_text', $text );
+	return apply_filters( 'clwc_helper_rewards_card_text', $text );
 }
 
 /**
@@ -100,7 +100,7 @@ function clwc_rewards_card_image() {
         $image = FALSE;
     }
 
-	return apply_filters( 'clwc_rewards_card_image', $image );
+	return apply_filters( 'clwc_helper_rewards_card_image', $image );
 }
 
 /**
