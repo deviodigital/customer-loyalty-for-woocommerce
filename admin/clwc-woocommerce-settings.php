@@ -76,7 +76,7 @@ function clwc_payment_complete( $order_id ) {
 
             // Get newly create coupon's ID #
             $new_coupon_id = wp_insert_post( $coupon );
-                                
+
             // Add custom meta data to the newly created coupon.
             update_post_meta( $new_coupon_id, 'discount_type', $discount_type );
             update_post_meta( $new_coupon_id, 'coupon_amount', $amount );

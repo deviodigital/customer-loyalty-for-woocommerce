@@ -158,10 +158,8 @@ if ( class_exists( 'CLWC_OSA' ) ) {
 			'name'    => __( 'Coupon type', 'clwc' ),
 			'desc'    => __( 'Select the type of coupon that you would like created for the customer', 'clwc' ),
 			'options' => array(
-				'fixed_cart'      => 'Fixed cart',
-				'percent'         => 'Percentage',
-				'fixed_product'   => 'Fixed product',
-				'percent_product' => 'Percentage product',
+				'fixed_cart' => 'Fixed cart',
+				'percent'    => 'Percentage',
 			),
 		)
 	);

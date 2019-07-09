@@ -10,6 +10,12 @@
  */
 function clwc_dashboard_shortcode() {
 
+    global $woocommerce;
+
+    // Set empty vars.
+    $clwc_order_ids = '';
+    $coupon_codes   = '';
+
 	// Check if user is logged in.
 	if ( is_user_logged_in() ) {
 		// Get the user ID.
@@ -31,12 +37,103 @@ function clwc_dashboard_shortcode() {
 
         // Set redeem points variable if availabe.
         if ( $redeem_points_min && $loyalty_points >= $redeem_points_min ) {
+            // Create new coupon when user redeem's loyalty points.
+            if ( isset( $_POST['clwc_redeem_points'] ) ) {
+                $coupon_code   = clwc_get_random_string(); // Code.
+                $amount        = clwc_loyalty_points_redeem_points_value(); // Amount.
+
+                $coupon = array(
+                    'post_title'   => $coupon_code,
+                    'post_content' => '',
+                    'post_status'  => 'publish',
+                    'post_author'  => $user_id,
+                    'post_type'    => 'shop_coupon'
+                );
+
+                // Get newly create coupon's ID #
+                $new_coupon_id = wp_insert_post( $coupon );
+
+                // Add custom meta data to the newly created coupon.
+                update_post_meta( $new_coupon_id, 'discount_type', 'fixed_cart' );
+                update_post_meta( $new_coupon_id, 'coupon_amount', $amount );
+                update_post_meta( $new_coupon_id, 'individual_use', 'yes' );
+                update_post_meta( $new_coupon_id, 'product_ids', '' );
+                update_post_meta( $new_coupon_id, 'exclude_product_ids', '' );
+                update_post_meta( $new_coupon_id, 'usage_limit', '1' );
+                update_post_meta( $new_coupon_id, 'expiry_date', '' );
+                update_post_meta( $new_coupon_id, 'apply_before_tax', 'yes' );
+                update_post_meta( $new_coupon_id, 'free_shipping', 'no' );
+
+                // Reduce required points from user's loyalty points.
+                $new_loyalty_points = $loyalty_points - $redeem_points_min;
+
+                // Update user meta with the updated loyalty points amount.
+                update_user_meta( $user_id, 'clwc_loyalty_points', $new_loyalty_points, $loyalty_points );
+
+                // Apply new coupon to the cart automatically.
+                if ( ! $woocommerce->cart->add_discount( sanitize_text_field( $coupon_code ) ) ) {
+                    $woocommerce->show_messages();
+                }
+
+                // Redirect to cart when discount applied.
+                wp_redirect( $woocommerce->cart->get_cart_url() );
+                exit;
+            }
+
             // Redeem loyalty points.
-            $redeem_button = '<a href="#" class="button clwc-button">' . __( 'Redeem', 'clwc' ) . '</a>';
+            $redeem_button = '<form class="clwc-redeem-points" name="clwc_redeem_loyalty_points" method="post">
+			<input type="submit" class="button clwc-button" name="clwc_redeem_points" value="Redeem" />'
+			. wp_nonce_field( 'clwc-redeem-points' ) . 
+			'</form>';
+
             // Redeem loyalty points.
             $redeem_points = '<tr><td><strong>' . __( 'Redeem Points', 'ddwc' ) . '</strong></td><td>' . $redeem_button . '</td></tr>';
         } else {
             $redeem_points = '';
+        }
+
+        // Coupons args.
+        $args = array(
+            'posts_per_page'   => -1,
+            'orderby'          => 'title',
+            'order'            => 'asc',
+            'post_type'        => 'shop_coupon',
+            'post_status'      => 'publish',
+        );
+
+        // Get all coupons.
+        $customer_coupons = get_posts( $args );
+
+        // Loop through coupons.
+        foreach ( $customer_coupons as $customer_coupon ) {
+            if ( $user_id == $customer_coupon->post_author ) {
+
+                // Get coupon object.
+                $coupon = new WC_Coupon( $customer_coupon->post_name );
+
+                // Get coupon data.
+                $coupon_data = array(
+                    'id'          => $customer_coupon->ID,
+                    'usage_limit' => ( ! empty( $customer_coupon->usage_limit ) ) ? $customer_coupon->usage_limit : null,
+                    'usage_count' => (int) $customer_coupon->usage_count,
+                    'amount'      => wc_format_decimal( $coupon->get_amount(), 2 ),
+                );
+
+                // How many uses are left for this coupon?
+                $usage_left = $coupon_data['usage_limit'] - $coupon_data['usage_count'];
+
+                // Set is_coupon_active var.
+                if ( $usage_left > 0 ) {
+                    $is_coupon_active = '<span class="clwc-available-coupon">' . __( 'Available', 'clwc' ) . '</span>';
+                    $coupon_class     = '';
+                } 
+                else {
+                    $is_coupon_active = '';
+                    $coupon_class     = ' class="clwc-inactive-coupon" ';
+                }
+
+                $coupon_codes .= '<tr><td ' . $coupon_class . '><strong>' . $customer_coupon->post_title . '</strong> - ' . wc_price( $coupon_data['amount'] ) . '</td><td>' . $is_coupon_active . '</td></tr>';
+            }
         }
 
         // Display lotalty points if activated in the admin settings.
@@ -59,10 +156,6 @@ function clwc_dashboard_shortcode() {
             'post_type'   => wc_get_order_types(),
             'post_status' => array_keys( wc_get_order_statuses() ),
         ) );
-
-        // Set empty vars.
-        $clwc_order_ids = '';
-        $coupon_codes   = '';
 
         /**
          * Add coupon codes to CLWC Dashboard
@@ -93,13 +186,14 @@ function clwc_dashboard_shortcode() {
 
                 // Set is_coupon_active var.
                 if ( $usage_left > 0 ) {
-                    $is_coupon_active = '<i>Available</i>';
-                } 
-                else {
-                    $is_coupon_active = '<i>Used</i>';
+                    $is_coupon_active = '<span class="clwc-available-coupon">' . __( 'Available', 'clwc' ) . '</span>';
+                    $coupon_class     = '';
+                } else {
+                    $is_coupon_active = '';
+                    $coupon_class     = ' class="clwc-inactive-coupon" ';
                 }
 
-                $coupon_codes .= '<tr><td><strong>' . $coupon_added . '</strong> - ' . wc_price( $coupon_data['amount'] ) . '</td><td>' . $is_coupon_active . '</td></tr>';
+                $coupon_codes .= '<tr><td ' . $coupon_class . '><strong>' . $coupon_added . '</strong> - ' . wc_price( $coupon_data['amount'] ) . '</td><td>' . $is_coupon_active . '</td></tr>';
             }
         }
 

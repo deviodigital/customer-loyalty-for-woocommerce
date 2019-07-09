@@ -39,3 +39,20 @@ table.clwc-dashboard td {
 table.clwc-dashboard tbody td:last-child {
     text-align: right;
 }
+
+table.clwc-dashboard tbody td.clwc-no-coupons:last-child {
+    text-align: left;
+}
+
+table.clwc-dashboard tbody td.clwc-inactive-coupon {
+    color: #DDD;
+    text-decoration: line-through;
+}
+
+/** My Account - Customer Loyalty - Titles */
+
+h4.clwc-loyalty-points,
+h4.clwc-rewards-card {
+    margin-top: 0;
+}
+
