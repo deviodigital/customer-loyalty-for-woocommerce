@@ -30,6 +30,8 @@ CLWC also has settings for a Loyalty Points system, giving your customers points
 
 ### Loyalty Points Features
 
+* Minimum points required to redeem
+* Set the coupon amount when points are redeemed
 * Set points for registration
 * Set points for order completion
 * Set points per dollar spent
@@ -42,7 +44,8 @@ Using a plugin like Customer Loyalty for WooCommerce increases the likelihood of
 
 1. In your dashboard, go to `Plugins -> Add New`
 2. Search for `Customer Loyalty for WooCommerce` and install this plugin
-3. Pat yourself on the back for a job well done :)
+3. Go to `Settings -> Permalinks` and re-save the page
+4. Pat yourself on the back for a job well done :)
 
 == Screenshots ==
 
