@@ -139,7 +139,7 @@ function clwc_order_customer_coupon_code( $order ) {
         // Set rewards card image.
         if ( FALSE == clwc_rewards_card_image() ) {
             // Default rewards card image.
-            $rewards_card_image = apply_filters( 'clwc_rewards_card_image_default', site_url() . '/wp-content/plugins/customer-loyalty-for-woocommerce/public/images/rewards-card-image-default.jpg' );
+            $rewards_card_image = apply_filters( 'clwc_rewards_card_image_default', plugins_url( '/public/images/rewards-card-image-default.jpg', dirname(__FILE__) ) );
         } else {
             // Get rewards card image.
             $rewards_card_image = clwc_rewards_card_image();
