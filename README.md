@@ -4,7 +4,7 @@
 
 Brought to you by [Devio Digital](https://deviodigital.com)
 
-Use the Customer Loyalty for WooCommerce plugin to retain customers by rewarding them for their repeat purchase behavior.
+Use the [Customer Loyalty for WooCommerce](https://www.wordpress.org/plugins/customer-loyalty-for-woocommerce) plugin to retain customers by rewarding them for their repeat purchase behavior.
 
 ## Rewards Card
 
