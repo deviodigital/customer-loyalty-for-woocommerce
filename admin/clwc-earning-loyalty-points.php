@@ -80,7 +80,12 @@ function clwc_customer_money_spent( $order_id ) {
 
         // Get order total.
         $order_total = $order->get_total();
-    
+
+        // Get order subtotal.
+        if ( 'subtotal' === clwc_loyalty_points_redeem_points_calculation_type() ) {
+            $order_total = $order->get_subtotal();
+        }
+
         // Get user's loyalty points.
         $old_points = get_user_meta( get_current_user_id(), 'clwc_loyalty_points', TRUE );
 
