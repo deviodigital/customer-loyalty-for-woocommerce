@@ -202,6 +202,21 @@ if ( class_exists( 'CLWC_OSA' ) ) {
 		)
 	);
 
+    // Field: Loyalty Points - Calculation type.
+	$clwc_obj->add_field(
+		'clwc_loyalty_points',
+		array(
+			'id'      => 'clwc_loyalty_points_redeem_points_calculation_type',
+			'type'    => 'select',
+			'name'    => __( 'Calculation type', 'clwc' ),
+			'desc'    => __( 'Should the points be calculated from the order total or subtotal?', 'clwc' ),
+			'options' => array(
+				'total'   => __( 'Order total', 'clwc' ),
+				'subotal' => __( 'Order subtotal', 'clwc' ),
+			),
+		)
+	);
+
     // Field: Title.
 	$clwc_obj->add_field(
 		'clwc_loyalty_points',
@@ -212,7 +227,7 @@ if ( class_exists( 'CLWC_OSA' ) ) {
 		)
 	);
 
-    // Field: Rewards Card - Redeem points.
+    // Field: Loyalty Points - Redeem points.
 	$clwc_obj->add_field(
 		'clwc_loyalty_points',
 		array(
@@ -225,7 +240,7 @@ if ( class_exists( 'CLWC_OSA' ) ) {
 		)
 	);
 
-    // Field: Rewards Card - Redeem points value.
+    // Field: Loyalty Points - Redeem points value.
 	$clwc_obj->add_field(
 		'clwc_loyalty_points',
 		array(
