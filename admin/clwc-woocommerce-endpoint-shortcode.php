@@ -72,7 +72,7 @@ function clwc_dashboard_shortcode() {
 
                 // Apply new coupon to the cart automatically.
                 if ( ! $woocommerce->cart->add_discount( sanitize_text_field( $coupon_code ) ) ) {
-                    $woocommerce->show_messages();
+                    wc_print_notices();
                 }
 
                 // Redirect to cart when discount applied.
