@@ -189,6 +189,23 @@ function clwc_loyalty_points_activate() {
 }
 
 /**
+ * Get the loyalty points redeem points calculation type.
+ *
+ * @return string|bool
+ */
+function clwc_loyalty_points_redeem_points_calculation_type() {
+    $loyalty_points = get_option( 'clwc_loyalty_points' );
+
+    if ( isset( $loyalty_points['clwc_loyalty_points_redeem_points_calculation_type'] ) && '' !== $loyalty_points['clwc_loyalty_points_redeem_points_calculation_type'] ) {
+        $type = $loyalty_points['clwc_loyalty_points_redeem_points_calculation_type'];
+    } else {
+        $type = FALSE;
+    }
+
+	return apply_filters( 'clwc_loyalty_points_redeem_points_calculation_type', $type );
+}
+
+/**
  * Get the loyalty points redeem points minimum.
  *
  * @return string|bool
