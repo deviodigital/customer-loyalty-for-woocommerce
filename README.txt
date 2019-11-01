@@ -2,8 +2,8 @@
 Contributors: deviodigital
 Tags: loyalty, rewards, customer, woocommerce, gift
 Requires at least: 3.0.1
-Tested up to: 5.2.2
-Stable tag: 1.0.0
+Tested up to: 5.2.4
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,11 +30,11 @@ CLWC also has settings for a Loyalty Points system, giving your customers points
 
 ### Loyalty Points Features
 
-* Minimum points required to redeem
-* Set the coupon amount when points are redeemed
-* Set points for registration
-* Set points for order completion
-* Set points per dollar spent
+*   Minimum points required to redeem
+*   Set the coupon amount when points are redeemed
+*   Set points for registration
+*   Set points for order completion
+*   Set points per dollar spent
 
 ## Customer retention
 
@@ -57,5 +57,13 @@ Using a plugin like Customer Loyalty for WooCommerce increases the likelihood of
 
 == Changelog ==
 
+= 1.1 =
+*   Added calculation type setting for loyalty points in `admin/clwc-admin-settings.php`
+*   Added calculation type helper function in `includes/clwc-helper-functions.php`
+*   Updated money spent calculation to include the admin calculation type setting in `admin/clwc-earning-loyalty-points.php`
+*   Updated `$woocommerce->show_messages` to `wc_print_notices` in `admin/clwc-woocommerce-endpoint-shortcode.php`
+*   Updated text strings for localization in `languages/clwc.pot`
+*   General code cleanup throughout multiple files in the plugin
+
 = 1.0 =
-* Initial release
+*   Initial release

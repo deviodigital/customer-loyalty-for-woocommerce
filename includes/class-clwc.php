@@ -67,12 +67,12 @@ class CLWC {
 	 * @since    1.0
 	 */
 	public function __construct() {
+		$this->plugin_name = 'clwc';
+		$this->version     = '1.1';
+
 		if ( defined( 'CLWC_VERSION' ) ) {
 			$this->version = CLWC_VERSION;
-		} else {
-			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'clwc';
 
 		$this->load_dependencies();
 		$this->set_locale();
