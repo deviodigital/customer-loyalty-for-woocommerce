@@ -20,23 +20,23 @@ function clwc_add_customer_loyalty_profile_options( $profileuser ) {
     // Get user data.
     $user = get_userdata( $profileuser->ID );
     ?>
-        <h2><?php _e( 'Customer Loyalty for WooCommerce', 'clwc' ); ?></h2>
+        <h2><?php esc_attr_e( 'Customer Loyalty for WooCommerce', 'clwc' ); ?></h2>
 
         <table class="form-table">
         <tr>
-            <th scope="row"><?php _e( 'Loyalty points', 'clwc' ); ?></th>
+            <th scope="row"><?php esc_attr_e( 'Loyalty points', 'clwc' ); ?></th>
             <td>
                 <input class="regular-text" type="number" name="clwc_loyalty_points" value="<?php echo esc_html( get_user_meta( $profileuser->ID, 'clwc_loyalty_points', true ) ); ?>" />
             </td>
         </tr>
         <tr>
-            <th scope="row"><?php _e( 'Rewards card punches', 'clwc' ); ?></th>
+            <th scope="row"><?php esc_attr_e( 'Rewards card punches', 'clwc' ); ?></th>
             <td>
                 <input class="regular-text" type="number" name="clwc_rewards_card_punches" value="<?php echo esc_html( get_user_meta( $profileuser->ID, 'clwc_rewards_card_punches', true ) ); ?>" />
             </td>
         </tr>
         <tr>
-            <th scope="row"><?php _e( 'Rewards earned', 'clwc' ); ?></th>
+            <th scope="row"><?php esc_attr_e( 'Rewards earned', 'clwc' ); ?></th>
             <td>
                 <input class="regular-text" type="number" name="clwc_rewards_earned" value="<?php echo esc_html( get_user_meta( $profileuser->ID, 'clwc_rewards_earned', true ) ); ?>" />
             </td>

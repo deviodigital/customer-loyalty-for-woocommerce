@@ -726,8 +726,8 @@ if ( ! class_exists( 'CLWC_OSA' ) ) :
 
 		public function plugin_page() {
 			echo '<div class="wrap">';
-			echo '<h1>Customer Loyalty for WooComerce <span style="font-size:50%;">v' . CLWC_VERSION . '</span></h1>';
-			echo '<p>' . __( 'Brought to you by', 'clwc' ) . ' <a href="https://deviodigital.com/" target="_blank">Devio Digital</a></p>';
+			echo '<h1>Customer Loyalty for WooComerce <span style="font-size:50%;">v' . esc_attr( CLWC_VERSION ) . '</span></h1>';
+			echo '<p>' . esc_attr__( 'Brought to you by', 'clwc' ) . ' <a href="https://deviodigital.com/" target="_blank">Devio Digital</a></p>';
 			$this->show_navigation();
 			$this->show_forms();
 			echo '</div>';
