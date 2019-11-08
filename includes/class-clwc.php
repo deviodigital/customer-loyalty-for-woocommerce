@@ -68,7 +68,7 @@ class CLWC {
 	 */
 	public function __construct() {
 		$this->plugin_name = 'clwc';
-		$this->version     = '1.1';
+		$this->version     = '1.2';
 
 		if ( defined( 'CLWC_VERSION' ) ) {
 			$this->version = CLWC_VERSION;

@@ -3,7 +3,7 @@ Contributors: deviodigital
 Tags: loyalty, rewards, customer, woocommerce, gift
 Requires at least: 3.0.1
 Tested up to: 5.2.4
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,12 @@ Using a plugin like Customer Loyalty for WooCommerce increases the likelihood of
 5. CLWC user settings - Edit a user's rewards card and loyalty points
 
 == Changelog ==
+
+= 1.2 =
+*   Added `clwc_customer_coupons_args` filter in `admin/clwc-woocommerce-endpoint-shortcode.php`
+*   Updated cart redirect URL to use `wc_get_cart_url` in `admin/clwc-woocommerce-endpoint-shortcode.php`
+*   Updated cart redirect to not use `exit` which was causing `headers already sent` messages in `admin/clwc-woocommerce-endpoint-shortcode.php`
+*   General code cleanup throughout multiple files in the plugin
 
 = 1.1 =
 *   Added calculation type setting for loyalty points in `admin/clwc-admin-settings.php`
