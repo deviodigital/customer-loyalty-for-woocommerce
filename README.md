@@ -12,10 +12,10 @@ CLWC has a Rewards Card setting that *"punches"* your customers virtual **Reward
 
 ### Rewards Card Features
 
-* Title, Text & Image customization
-* Coupon amount
-* Coupon type (flat rate, percentage)
-* Coupon prefix
+*   Title, Text & Image customization
+*   Coupon amount
+*   Coupon type (flat rate, percentage)
+*   Coupon prefix
 
 ## Loyalty Points
 
@@ -23,11 +23,11 @@ CLWC also has settings for a Loyalty Points system, giving your customers points
 
 ### Loyalty Points Features
 
-* Minimum points required to redeem
-* Set the coupon amount when points are redeemed
-* Set points for registration
-* Set points for order completion
-* Set points per dollar spent
+*   Minimum points required to redeem
+*   Set the coupon amount when points are redeemed
+*   Set points for registration
+*   Set points for order completion
+*   Set points per dollar spent
 
 ## Customer retention
 
