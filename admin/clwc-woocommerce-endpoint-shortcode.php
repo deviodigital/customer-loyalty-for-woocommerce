@@ -82,7 +82,7 @@ function clwc_dashboard_shortcode() {
 
             // Redeem loyalty points.
             $redeem_button = '<form class="clwc-redeem-points" name="clwc_redeem_loyalty_points" method="post">
-			<input type="submit" class="button clwc-button" name="clwc_redeem_points" value="' . __ ( 'Redeem', 'clwc' ) . '" />'
+			<input type="submit" class="button clwc-button" name="clwc_redeem_points" value="' . __( 'Redeem', 'clwc' ) . '" />'
 			. wp_nonce_field( 'clwc-redeem-points' ) . 
 			'</form>';
 
