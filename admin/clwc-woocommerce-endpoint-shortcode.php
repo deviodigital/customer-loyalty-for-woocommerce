@@ -101,6 +101,9 @@ function clwc_dashboard_shortcode() {
             'post_status'      => 'publish',
         );
 
+        // Filter the coupons args.
+        $args = apply_filters( 'clwc_customer_coupons_args', $args );
+
         // Get all coupons.
         $customer_coupons = get_posts( $args );
 
