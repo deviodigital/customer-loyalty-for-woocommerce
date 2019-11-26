@@ -42,7 +42,8 @@ function clwc_dashboard_shortcode() {
                 $coupon_code   = clwc_get_random_string(); // Code.
                 $amount        = clwc_loyalty_points_redeem_points_value(); // Amount.
 
-                $coupon = array(
+                // Coupon args.
+                $coupon_args = array(
                     'post_title'   => $coupon_code,
                     'post_content' => '',
                     'post_status'  => 'publish',
@@ -50,8 +51,11 @@ function clwc_dashboard_shortcode() {
                     'post_type'    => 'shop_coupon'
                 );
 
+                // Filter args.
+                $coupon_args = apply_filters( 'clwc_redeem_points_coupon_args', $coupon_args, $coupon_code, $user_id );
+
                 // Get newly create coupon's ID #
-                $new_coupon_id = wp_insert_post( $coupon );
+                $new_coupon_id = wp_insert_post( $coupon_args );
 
                 // Add custom meta data to the newly created coupon.
                 update_post_meta( $new_coupon_id, 'discount_type', 'fixed_cart' );
