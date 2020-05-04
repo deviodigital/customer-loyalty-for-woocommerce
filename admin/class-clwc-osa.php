@@ -716,8 +716,8 @@ if ( ! class_exists( 'CLWC_OSA' ) ) :
 			// add_options_page( $page_title, $menu_title, $capability, $menu_slug, array( $this, $callable ) );
 			add_submenu_page(
 				'woocommerce',
-				'Customer Loyalty for WooCommerce',
-				'Customer Loyalty',
+				__( 'Customer Loyalty for WooCommerce', 'clwc' ),
+				__( 'Customer Loyalty', 'clwc' ),
 				'manage_options',
 				'clwc_admin_settings',
 				array( $this, 'plugin_page' )
@@ -726,8 +726,8 @@ if ( ! class_exists( 'CLWC_OSA' ) ) :
 
 		public function plugin_page() {
 			echo '<div class="wrap">';
-			echo '<h1>Customer Loyalty for WooComerce <span style="font-size:50%;">v' . esc_attr( CLWC_VERSION ) . '</span></h1>';
-			echo '<p>' . esc_attr__( 'Brought to you by', 'clwc' ) . ' <a href="https://deviodigital.com/" target="_blank">Devio Digital</a></p>';
+			echo '<h1>' . __( 'Customer Loyalty for WooComerce', 'clwc' ) . ' <span style="font-size:50%;">v' . esc_attr( CLWC_VERSION ) . '</span></h1>';
+			echo '<p>' . esc_attr__( 'Brought to you by', 'clwc' ) . ' <a href="https://deviodigital.com/" target="_blank">Devio Digital</a> | <a href="https://deviodigital.com/documentation/" target="_blank">' . __( 'Documentation', 'clwc' ). '</a></p>';
 			$this->show_navigation();
 			$this->show_forms();
 			echo '</div>';
