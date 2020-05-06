@@ -22,7 +22,7 @@
  * @since      1.0
  * @package    CLWC
  * @subpackage CLWC/includes
- * @author     Devio Digital <deviodigital@gmail.com>
+ * @author     Devio Digital <contact@deviodigital.com>
  */
 class CLWC_i18n {
 

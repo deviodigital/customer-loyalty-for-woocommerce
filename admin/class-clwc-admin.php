@@ -18,7 +18,7 @@
  *
  * @package    CLWC
  * @subpackage CLWC/admin
- * @author     Devio Digital <deviodigital@gmail.com>
+ * @author     Devio Digital <contact@deviodigital.com>
  */
 class CLWC_Admin {
 
