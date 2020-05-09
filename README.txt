@@ -11,7 +11,7 @@ Increase your customer loyalty by rewarding them for their repeat purchase behav
 
 == Description ==
 
-Use the Customer Loyalty for WooCommerce plugin to retain customers by rewarding them for their repeat purchase behavior.
+Use the [Customer Loyalty for WooCommerce](https://www.deviodigital.com/customer-loyalty-for-woocommerce-release-notes/) plugin to retain customers by rewarding them for their repeat purchase behavior.
 
 ## Rewards Card
 
