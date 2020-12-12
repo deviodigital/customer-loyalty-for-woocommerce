@@ -18,7 +18,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Add loyalty points on successful customer registration
  *
- * @param number $user_id
+ * @param int $user_id
  * @since 1.0
  */
 function clwc_customer_registration( $user_id ) {

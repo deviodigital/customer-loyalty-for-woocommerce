@@ -39,8 +39,8 @@ function clwc_dashboard_shortcode() {
         if ( $redeem_points_min && $loyalty_points >= $redeem_points_min ) {
             // Create new coupon when user redeem's loyalty points.
             if ( isset( $_POST['clwc_redeem_points'] ) ) {
-                $coupon_code   = clwc_get_random_string(); // Code.
-                $amount        = clwc_loyalty_points_redeem_points_value(); // Amount.
+                $coupon_code = clwc_get_random_string(); // Code.
+                $amount      = clwc_loyalty_points_redeem_points_value(); // Amount.
 
                 // Coupon args.
                 $coupon_args = array(
@@ -191,7 +191,7 @@ function clwc_dashboard_shortcode() {
             if ( $coupon_added ) {
 
                 // Get coupon data.
-                $coupon = new WC_Coupon( $coupon_added );
+                $coupon      = new WC_Coupon( $coupon_added );
                 $coupon_post = get_post( $coupon->get_id() );
                 $coupon_data = array(
                     'id'          => $coupon->get_id(),

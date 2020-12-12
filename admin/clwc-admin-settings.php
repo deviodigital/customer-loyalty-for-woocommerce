@@ -108,7 +108,7 @@ if ( class_exists( 'CLWC_OSA' ) ) {
 			'name'    => __( 'Rewards Card Image', 'clwc' ),
 			'desc'    => __( 'Display an image in the customer\'s order when a new reward is earned.', 'clwc' ),
 			'options' => array(
-				'button_label' => 'Choose Image',
+				'button_label' => __( 'Choose Image', 'clwc' ),
 			),
 		)
 	);
@@ -158,8 +158,8 @@ if ( class_exists( 'CLWC_OSA' ) ) {
 			'name'    => __( 'Coupon type', 'clwc' ),
 			'desc'    => __( 'Select the type of coupon that you would like created for the customer', 'clwc' ),
 			'options' => array(
-				'fixed_cart' => 'Fixed cart',
-				'percent'    => 'Percentage',
+				'fixed_cart' => __( 'Fixed cart', 'clwc' ),
+				'percent'    => __( 'Percentage', 'clwc' ),
 			),
 		)
 	);
@@ -175,11 +175,6 @@ if ( class_exists( 'CLWC_OSA' ) ) {
 			'default' => 'CLWC',
 		)
 	);
-
-
-
-
-
 
     // Field: Title - Loyalty Points.
 	$clwc_obj->add_field(

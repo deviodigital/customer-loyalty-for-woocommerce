@@ -23,14 +23,12 @@
 class CLWC_Activator {
 
 	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
+	 * Functions to run during activation.
 	 *
 	 * @since    1.0
 	 */
 	public static function activate() {
-
+		clwc_flush_rewrite_rules();
 	}
 
 }

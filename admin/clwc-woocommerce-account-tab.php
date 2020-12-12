@@ -40,7 +40,6 @@ function clwc_flush_rewrite_rules() {
 	add_rewrite_endpoint( 'customer-loyalty', EP_ROOT | EP_PAGES );
 	flush_rewrite_rules();
 }
-register_activation_hook( __FILE__, 'clwc_flush_rewrite_rules' );
 
 /**
  * Insert the new endpoint into the My Account menu.
@@ -77,7 +76,7 @@ add_action( 'woocommerce_account_customer-loyalty_endpoint', 'clwc_endpoint_cont
  * @return string
  */
 function clwc_endpoint_page_title( $title, $id ) {
-
+	// Update 'Customer Loyalty' page title.
 	if ( is_wc_endpoint_url( 'customer-loyalty' ) && in_the_loop() ) {
 		$title = apply_filters( 'clwc_my_account_endpoint_page_title', __( 'Customer Loyalty', 'clwc' ) );
 	}
