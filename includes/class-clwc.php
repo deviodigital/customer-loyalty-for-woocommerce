@@ -35,7 +35,7 @@ class CLWC {
 	 *
 	 * @since    1.0
 	 * @access   protected
-	 * @var      CLWC_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Customer_Loyalty_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -70,8 +70,8 @@ class CLWC {
 		$this->plugin_name = 'clwc';
 		$this->version     = '1.2.1';
 
-		if ( defined( 'CLWC_VERSION' ) ) {
-			$this->version = CLWC_VERSION;
+		if ( defined( 'CUSTOMER_LOYALTY_VERSION' ) ) {
+			$this->version = CUSTOMER_LOYALTY_VERSION;
 		}
 
 		$this->load_dependencies();
@@ -86,10 +86,10 @@ class CLWC {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - CLWC_Loader. Orchestrates the hooks of the plugin.
-	 * - CLWC_i18n. Defines internationalization functionality.
-	 * - CLWC_Admin. Defines all hooks for the admin area.
-	 * - CLWC_Public. Defines all hooks for the public side of the site.
+	 * - Customer_Loyalty_Loader. Orchestrates the hooks of the plugin.
+	 * - Customer_Loyalty_i18n. Defines internationalization functionality.
+	 * - Customer_Loyalty_Admin. Defines all hooks for the admin area.
+	 * - Customer_Loyalty_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -162,14 +162,14 @@ class CLWC {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-clwc-public.php';
 
-		$this->loader = new CLWC_Loader();
+		$this->loader = new Customer_Loyalty_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the CLWC_i18n class in order to set the domain and to register the hook
+	 * Uses the Customer_Loyalty_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0
@@ -177,7 +177,7 @@ class CLWC {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new CLWC_i18n();
+		$plugin_i18n = new Customer_Loyalty_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -192,7 +192,7 @@ class CLWC {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new CLWC_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Customer_Loyalty_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -208,7 +208,7 @@ class CLWC {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new CLWC_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Customer_Loyalty_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -239,7 +239,7 @@ class CLWC {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0
-	 * @return    CLWC_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Customer_Loyalty_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

@@ -24,7 +24,7 @@
  * @subpackage CLWC/includes
  * @author     Devio Digital <contact@deviodigital.com>
  */
-class CLWC_i18n {
+class Customer_Loyalty_i18n {
 
 	/**
 	 * Load the plugin text domain for translation.

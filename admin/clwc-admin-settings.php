@@ -11,16 +11,16 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 
  // Plugin version.
-if ( ! defined( 'CLWC_NAME' ) ) {
-	define( 'CLWC_NAME', trim( dirname( plugin_basename( __FILE__ ) ), '/' ) );
+if ( ! defined( 'CUSTOMER_LOYALTY_NAME' ) ) {
+	define( 'CUSTOMER_LOYALTY_NAME', trim( dirname( plugin_basename( __FILE__ ) ), '/' ) );
 }
 
-if ( ! defined( 'CLWC_DIR' ) ) {
-	define( 'CLWC_DIR', WP_PLUGIN_DIR . '/' . CLWC_NAME );
+if ( ! defined( 'CUSTOMER_LOYALTY_DIR' ) ) {
+	define( 'CUSTOMER_LOYALTY_DIR', WP_PLUGIN_DIR . '/' . CUSTOMER_LOYALTY_NAME );
 }
 
-if ( ! defined( 'CLWC_URL' ) ) {
-	define( 'CLWC_URL', WP_PLUGIN_URL . '/' . CLWC_NAME );
+if ( ! defined( 'CUSTOMER_LOYALTY_URL' ) ) {
+	define( 'CUSTOMER_LOYALTY_URL', WP_PLUGIN_URL . '/' . CUSTOMER_LOYALTY_NAME );
 }
 
 /**
@@ -30,13 +30,13 @@ if ( ! defined( 'CLWC_URL' ) ) {
  *
  * @since  1.0.0
  */
-if ( class_exists( 'CLWC_OSA' ) ) {
+if ( class_exists( 'Customer_Loyalty_OSA' ) ) {
 	/**
 	 * Object Instantiation.
 	 *
-	 * Object for the class `CLWC_OSA`.
+	 * Object for the class `Customer_Loyalty_OSA`.
 	 */
-	$clwc_obj = new CLWC_OSA();
+	$clwc_obj = new Customer_Loyalty_OSA();
 
     // Section: Rewards Card.
 	$clwc_obj->add_section(

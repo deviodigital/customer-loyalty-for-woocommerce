@@ -20,7 +20,7 @@
  * @subpackage CLWC/public
  * @author     Devio Digital <contact@deviodigital.com>
  */
-class CLWC_Public {
+class Customer_Loyalty_Public {
 
 	/**
 	 * The ID of this plugin.

@@ -20,7 +20,7 @@
  * @subpackage CLWC/includes
  * @author     Devio Digital <contact@deviodigital.com>
  */
-class CLWC_Activator {
+class Customer_Loyalty_Activator {
 
 	/**
 	 * Functions to run during activation.

@@ -21,7 +21,7 @@
  * @subpackage CLWC/includes
  * @author     Devio Digital <contact@deviodigital.com>
  */
-class CLWC_Loader {
+class Customer_Loyalty_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

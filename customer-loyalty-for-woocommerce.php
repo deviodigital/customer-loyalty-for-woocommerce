@@ -36,7 +36,7 @@ define( 'CLWC_VERSION', '1.2.1' );
  */
 function activate_clwc() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-clwc-activator.php';
-	CLWC_Activator::activate();
+	Customer_Loyalty_Activator::activate();
 }
 
 /**
@@ -45,7 +45,7 @@ function activate_clwc() {
  */
 function deactivate_clwc() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-clwc-deactivator.php';
-	CLWC_Deactivator::deactivate();
+	Customer_Loyalty_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_clwc' );

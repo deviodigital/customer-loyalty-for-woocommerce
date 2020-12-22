@@ -20,7 +20,7 @@
  * @subpackage CLWC/includes
  * @author     Devio Digital <contact@deviodigital.com>
  */
-class CLWC_Deactivator {
+class Customer_Loyalty_Deactivator {
 
 	/**
 	 * Short Description. (use period)

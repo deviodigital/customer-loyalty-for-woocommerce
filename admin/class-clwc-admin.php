@@ -20,7 +20,7 @@
  * @subpackage CLWC/admin
  * @author     Devio Digital <contact@deviodigital.com>
  */
-class CLWC_Admin {
+class Customer_Loyalty_Admin {
 
 	/**
 	 * The ID of this plugin.

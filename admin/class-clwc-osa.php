@@ -1,6 +1,6 @@
 <?php
 /**
- * Main Class file for `CLWC_OSA`
+ * Main Class file for `Customer_Loyalty_OSA`
  *
  * Main class that deals with all other classes.
  *
@@ -14,16 +14,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * CLWC_OSA.
+ * Customer_Loyalty_OSA.
  *
  * WP Settings API Class.
  *
  * @since 1.0.0
  */
 
-if ( ! class_exists( 'CLWC_OSA' ) ) :
+if ( ! class_exists( 'Customer_Loyalty_OSA' ) ) :
 
-	class CLWC_OSA {
+	class Customer_Loyalty_OSA {
 
 		/**
 		 * Sections array.
@@ -726,7 +726,7 @@ if ( ! class_exists( 'CLWC_OSA' ) ) :
 
 		public function plugin_page() {
 			echo '<div class="wrap">';
-			echo '<h1>' . __( 'Customer Loyalty for WooComerce', 'clwc' ) . ' <span style="font-size:50%;">v' . esc_attr( CLWC_VERSION ) . '</span></h1>';
+			echo '<h1>' . __( 'Customer Loyalty for WooComerce', 'clwc' ) . ' <span style="font-size:50%;">v' . esc_attr( CUSTOMER_LOYALTY_VERSION ) . '</span></h1>';
 			echo '<p>' . esc_attr__( 'Brought to you by', 'clwc' ) . ' <a href="https://deviodigital.com/" target="_blank">Devio Digital</a> | <a href="https://deviodigital.com/documentation/" target="_blank">' . __( 'Documentation', 'clwc' ). '</a></p>';
 			$this->show_navigation();
 			$this->show_forms();
@@ -916,6 +916,6 @@ if ( ! class_exists( 'CLWC_OSA' ) ) :
 			</style>
 			<?php
 		}
-	} // CLWC_OSA ended.
+	} // Customer_Loyalty_OSA ended.
 
 endif;
