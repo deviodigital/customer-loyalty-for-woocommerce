@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Customer Loyalty for WooCommerce\n"
-"POT-Creation-Date: 2020-12-23 00:21-0500\n"
-"PO-Revision-Date: 2020-12-23 00:21-0500\n"
+"POT-Creation-Date: 2020-12-23 07:53-0500\n"
+"PO-Revision-Date: 2020-12-23 07:56-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -33,7 +33,7 @@ msgstr "Elegir imagen"
 #: admin/class-clwc-osa.php:719 admin/class-clwc-osa.php:729
 #: admin/clwc-user-fields.php:23
 msgid "Customer Loyalty for WooCommerce"
-msgstr "Fidelización del cliente para WooCommerce"
+msgstr "Customer Loyalty for WooCommerce"
 
 #: admin/class-clwc-osa.php:720 admin/clwc-woocommerce-account-tab.php:56
 #: admin/clwc-woocommerce-account-tab.php:81
@@ -63,10 +63,10 @@ msgid "Activate Rewards Card"
 msgstr "Activar tarjeta de recompensas"
 
 #: admin/clwc-admin-settings.php:74
-msgid "Check to active the included customer rewards card features."
+msgid "Check to activate the included customer rewards card features."
 msgstr ""
 "Marque para activar las funciones incluidas en la tarjeta de recompensas "
-"para clientes."
+"para clientes"
 
 #: admin/clwc-admin-settings.php:84
 msgid "Rewards Card Title"
@@ -150,10 +150,10 @@ msgid "Activate Loyalty Points"
 msgstr "Activar puntos de fidelidad"
 
 #: admin/clwc-admin-settings.php:196
-msgid "Check to active the included customer loyalty points features."
+msgid "Check to activate the included customer loyalty points features."
 msgstr ""
 "Marque para activar las funciones de puntos de fidelidad de clientes "
-"incluidas."
+"incluidas"
 
 #: admin/clwc-admin-settings.php:206
 msgid "Calculation type"
@@ -266,7 +266,7 @@ msgstr "Recompensas ganadas"
 
 #: admin/clwc-woocommerce-endpoint-shortcode.php:267
 msgid "My Coupons"
-msgstr "Mis cupones:"
+msgstr "Mis cupones"
 
 #: admin/clwc-woocommerce-settings.php:156
 msgid "Coupon"

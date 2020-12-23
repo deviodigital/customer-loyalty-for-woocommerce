@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Customer Loyalty for WooCommerce\n"
-"POT-Creation-Date: 2020-12-23 00:06-0500\n"
-"PO-Revision-Date: 2020-12-23 00:05-0500\n"
+"POT-Creation-Date: 2020-12-23 07:52-0500\n"
+"PO-Revision-Date: 2020-12-23 07:48-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,17 +30,14 @@ msgid "Choose Image"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-#: admin/class-clwc-osa.php:719 admin/clwc-user-fields.php:23
+#: admin/class-clwc-osa.php:719 admin/class-clwc-osa.php:729
+#: admin/clwc-user-fields.php:23
 msgid "Customer Loyalty for WooCommerce"
 msgstr ""
 
 #: admin/class-clwc-osa.php:720 admin/clwc-woocommerce-account-tab.php:56
 #: admin/clwc-woocommerce-account-tab.php:81
 msgid "Customer Loyalty"
-msgstr ""
-
-#: admin/class-clwc-osa.php:729
-msgid "Customer Loyalty for WooCommerce"
 msgstr ""
 
 #: admin/class-clwc-osa.php:730
