@@ -28,7 +28,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Current plugin version.
  */
-define( 'CLWC_VERSION', '1.2.1' );
+define( 'CUSTOMER_LOYALTY_VERSION', '1.2.1' );
 
 /**
  * The code that runs during plugin activation.

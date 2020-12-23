@@ -71,7 +71,7 @@ if ( class_exists( 'Customer_Loyalty_OSA' ) ) {
 			'id'   => 'clwc_rewards_card_activate',
 			'type' => 'checkbox',
 			'name' => __( 'Activate Rewards Card', 'clwc' ),
-			'desc' => __( 'Check to active the included customer rewards card features.', 'clwc' ),
+			'desc' => __( 'Check to activate the included customer rewards card features.', 'clwc' ),
 		)
 	);
 
@@ -193,7 +193,7 @@ if ( class_exists( 'Customer_Loyalty_OSA' ) ) {
 			'id'   => 'clwc_loyalty_points_activate',
 			'type' => 'checkbox',
 			'name' => __( 'Activate Loyalty Points', 'clwc' ),
-			'desc' => __( 'Check to active the included customer loyalty points features.', 'clwc' ),
+			'desc' => __( 'Check to activate the included customer loyalty points features.', 'clwc' ),
 		)
 	);
 
