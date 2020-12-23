@@ -726,7 +726,7 @@ if ( ! class_exists( 'Customer_Loyalty_OSA' ) ) :
 
 		public function plugin_page() {
 			echo '<div class="wrap">';
-			echo '<h1>' . __( 'Customer Loyalty for WooComerce', 'clwc' ) . ' <span style="font-size:50%;">v' . esc_attr( CUSTOMER_LOYALTY_VERSION ) . '</span></h1>';
+			echo '<h1>' . __( 'Customer Loyalty for WooCommerce', 'clwc' ) . ' <span style="font-size:50%;">v' . esc_attr( CUSTOMER_LOYALTY_VERSION ) . '</span></h1>';
 			echo '<p>' . esc_attr__( 'Brought to you by', 'clwc' ) . ' <a href="https://deviodigital.com/" target="_blank">Devio Digital</a> | <a href="https://deviodigital.com/documentation/" target="_blank">' . __( 'Documentation', 'clwc' ). '</a></p>';
 			$this->show_navigation();
 			$this->show_forms();
