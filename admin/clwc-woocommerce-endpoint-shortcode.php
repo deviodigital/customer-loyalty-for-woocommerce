@@ -86,7 +86,7 @@ function clwc_dashboard_shortcode() {
 
             // Redeem loyalty points.
             $redeem_button = '<form class="clwc-redeem-points" name="clwc_redeem_loyalty_points" method="post">
-			<input type="submit" class="button clwc-button" name="clwc_redeem_points" value="' . __( 'Redeem', 'clwc' ) . '" />'
+			<input type="submit" class="button clwc-button" name="clwc_redeem_points" value="' . __( 'Redeem', 'customer-loyalty-for-woocommerce' ) . '" />'
 			. wp_nonce_field( 'clwc-redeem-points' ) . 
 			'</form>';
 
@@ -131,7 +131,7 @@ function clwc_dashboard_shortcode() {
 
                 // Set is_coupon_active var.
                 if ( $usage_left > 0 ) {
-                    $is_coupon_active = '<span class="clwc-available-coupon">' . __( 'Available', 'clwc' ) . '</span>';
+                    $is_coupon_active = '<span class="clwc-available-coupon">' . __( 'Available', 'customer-loyalty-for-woocommerce' ) . '</span>';
                     $coupon_class     = '';
                 } 
                 else {
@@ -146,7 +146,7 @@ function clwc_dashboard_shortcode() {
         // Display lotalty points if activated in the admin settings.
         if ( 'on' == clwc_loyalty_points_activate() ) {
             // Table loyalty points.
-            echo '<h4 class="clwc-loyalty-points">' . __( 'My Loyalty Points', 'clwc' ) . '</h4>';
+            echo '<h4 class="clwc-loyalty-points">' . __( 'My Loyalty Points', 'customer-loyalty-for-woocommerce' ) . '</h4>';
 
             do_action( 'clwc_customer_dashboard_loyalty_points_table_before' );
 
@@ -205,7 +205,7 @@ function clwc_dashboard_shortcode() {
 
                 // Set is_coupon_active var.
                 if ( $usage_left > 0 ) {
-                    $is_coupon_active = '<span class="clwc-available-coupon">' . __( 'Available', 'clwc' ) . '</span>';
+                    $is_coupon_active = '<span class="clwc-available-coupon">' . __( 'Available', 'customer-loyalty-for-woocommerce' ) . '</span>';
                     $coupon_class     = '';
                 } else {
                     $is_coupon_active = '';
@@ -218,7 +218,7 @@ function clwc_dashboard_shortcode() {
 
         // Set message when no coupons are available.
         if ( '' == $coupon_codes ) {
-            $coupon_codes .= '<tr><td class="clwc-no-coupons">' . apply_filters( 'clwc_no_coupons_message', __( 'You do not have any coupons available', 'clwc' ) ) . '</td></tr>';
+            $coupon_codes .= '<tr><td class="clwc-no-coupons">' . apply_filters( 'clwc_no_coupons_message', __( 'You do not have any coupons available', 'customer-loyalty-for-woocommerce' ) ) . '</td></tr>';
         }
 
         // Get rewards card punches.
@@ -240,7 +240,7 @@ function clwc_dashboard_shortcode() {
         // Display rewards card if it's activated in admin settings.
         if ( 'on' == clwc_rewards_card_activate() ) {
             // Table rewards card.
-            echo '<h4 class="clwc-rewards-card">' . __( 'My Rewards Card', 'clwc' ) . '</h4>';
+            echo '<h4 class="clwc-rewards-card">' . __( 'My Rewards Card', 'customer-loyalty-for-woocommerce' ) . '</h4>';
 
             do_action( 'clwc_customer_dashboard_rewards_card_table_before' );
 
@@ -264,7 +264,7 @@ function clwc_dashboard_shortcode() {
         // Display coupons if rewards card or loyalty points are active.
         if ( 'on' == clwc_rewards_card_activate() || 'on' == clwc_loyalty_points_activate() ) {
             // My coupons.
-            echo '<h4 class="clwc-rewards-coupons">' . __( 'My Coupons', 'clwc' ) . '</h4>';
+            echo '<h4 class="clwc-rewards-coupons">' . __( 'My Coupons', 'customer-loyalty-for-woocommerce' ) . '</h4>';
 
             do_action( 'clwc_customer_dashboard_coupons_table_before' );
 

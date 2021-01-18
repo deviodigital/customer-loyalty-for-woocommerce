@@ -82,7 +82,7 @@ run_clwc();
  * @return array updatead array of links related to the plugin.
  */
 function clwc_settings_link( $links ) {
-	$settings_link = '<a href="admin.php?page=clwc_admin_settings">' . esc_attr__( 'Settings', 'clwc' ) . '</a>';
+	$settings_link = '<a href="admin.php?page=clwc_admin_settings">' . esc_attr__( 'Settings', 'customer-loyalty-for-woocommerce' ) . '</a>';
 	array_unshift( $links, $settings_link );
 	return $links;
 }

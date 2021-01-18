@@ -59,7 +59,7 @@ function clwc_rewards_card_activate() {
  */
 function clwc_rewards_card_title() {
     $rewards_card = get_option( 'clwc_rewards_card' );
-    $title        = __( 'You earned a reward', 'clwc' );
+    $title        = __( 'You earned a reward', 'customer-loyalty-for-woocommerce' );
 
     if ( isset( $rewards_card['clwc_rewards_card_title'] ) && '' !== $rewards_card['clwc_rewards_card_title'] ) {
         $title = $rewards_card['clwc_rewards_card_title'];

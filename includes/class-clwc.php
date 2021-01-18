@@ -67,7 +67,7 @@ class CLWC {
 	 * @since    1.0
 	 */
 	public function __construct() {
-		$this->plugin_name = 'clwc';
+		$this->plugin_name = 'customer-loyalty-for-woocommerce';
 		$this->version     = '1.2.1';
 
 		if ( defined( 'CUSTOMER_LOYALTY_VERSION' ) ) {
