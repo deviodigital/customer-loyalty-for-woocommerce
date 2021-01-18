@@ -91,7 +91,7 @@ function clwc_dashboard_shortcode() {
 			'</form>';
 
             // Redeem loyalty points.
-            $redeem_points = '<tr><td><strong>' . __( 'Redeem Points', 'ddwc' ) . '</strong></td><td>' . $redeem_button . '</td></tr>';
+            $redeem_points = '<tr><td><strong>' . __( 'Redeem Points', 'customer-loyalty-for-woocommerce' ) . '</strong></td><td>' . $redeem_button . '</td></tr>';
         } else {
             $redeem_points = '';
         }
@@ -155,7 +155,7 @@ function clwc_dashboard_shortcode() {
 
             do_action( 'clwc_customer_dashboard_loyalty_points_table_tbody_top' );
 
-            echo '<tr><td><strong>' . __( 'Loyalty Points', 'ddwc' ) . '</strong></td><td>' . $loyalty_points . '</td></tr>';
+            echo '<tr><td><strong>' . __( 'Loyalty Points', 'customer-loyalty-for-woocommerce' ) . '</strong></td><td>' . $loyalty_points . '</td></tr>';
             echo $redeem_points;
 
             do_action( 'clwc_customer_dashboard_loyalty_points_table_tbody_bottom' );
@@ -249,8 +249,8 @@ function clwc_dashboard_shortcode() {
 
             do_action( 'clwc_customer_dashboard_rewards_card_table_tbody_top' );
 
-            echo '<tr><td><strong>' . __( 'Rewards Card Punches', 'ddwc' ) . '</strong></td><td>' . $rewards_card_punches . '</td></tr>';
-            echo '<tr><td><strong>' . __( 'Rewards Earned', 'ddwc' ) . '</strong></td><td>' . $rewards_earned . '</td></tr>';
+            echo '<tr><td><strong>' . __( 'Rewards Card Punches', 'customer-loyalty-for-woocommerce' ) . '</strong></td><td>' . $rewards_card_punches . '</td></tr>';
+            echo '<tr><td><strong>' . __( 'Rewards Earned', 'customer-loyalty-for-woocommerce' ) . '</strong></td><td>' . $rewards_earned . '</td></tr>';
 
             do_action( 'clwc_customer_dashboard_rewards_card_table_tbody_bottom' );
 
