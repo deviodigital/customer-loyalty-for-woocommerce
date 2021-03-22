@@ -66,6 +66,7 @@ function clwc_payment_complete( $order_id ) {
             $amount        = clwc_rewards_card_coupon_amount(); // Amount.
             $discount_type = clwc_rewards_card_coupon_type(); // Type: fixed_cart, percent, fixed_product, percent_product.
 
+            // Coupon args.
             $coupon = array(
                 'post_title'   => $coupon_code,
                 'post_content' => '',
@@ -73,6 +74,9 @@ function clwc_payment_complete( $order_id ) {
                 'post_author'  => 1,
                 'post_type'    => 'shop_coupon'
             );
+
+            // Filter the args.
+            $coupon = apply_filters( 'clwc_create_coupon_args', $coupon );
 
             // Get newly create coupon's ID #
             $new_coupon_id = wp_insert_post( $coupon );
