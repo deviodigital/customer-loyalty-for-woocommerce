@@ -35,6 +35,7 @@ function clwc_customer_registration( $user_id ) {
         // Add loyalty points for customer registration.
         $new_points = $old_points + clwc_earning_points_customer_registration();
 
+        // Update customer loyalty points.
         update_user_meta( $user_id, 'clwc_loyalty_points', $new_points, $old_points );
     }
 
