@@ -11,12 +11,12 @@
  * Plugin Name:       Customer Loyalty for WooCommerce
  * Plugin URI:        https://www.deviodigital.com/customer-loyalty-for-woocommerce
  * Description:       Increase customer loyalty by rewarding your customers for their repeat purchase behavior.
- * Version:           1.2.1
+ * Version:           1.2.2
  * Author:            Devio Digital
  * Author URI:        https://www.deviodigital.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       clwc
+ * Text Domain:       customer-loyalty-for-woocommerce
  * Domain Path:       /languages
  */
 
@@ -28,7 +28,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Current plugin version.
  */
-define( 'CUSTOMER_LOYALTY_VERSION', '1.2.1' );
+define( 'CUSTOMER_LOYALTY_VERSION', '1.2.2' );
 
 /**
  * The code that runs during plugin activation.
