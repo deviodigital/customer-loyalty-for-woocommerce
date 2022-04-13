@@ -110,7 +110,7 @@ function clwc_redirect() {
     if ( get_option( 'clwc_do_activation_redirect', false ) ) {
         delete_option( 'clwc_do_activation_redirect' );
         if ( ! isset( $_GET['activate-multi'] ) ) {
-            wp_redirect( 'admin.php?page=clwc_admin_settings' );
+            wp_safe_redirect( 'admin.php?page=clwc_admin_settings' );
         }
     }
 }

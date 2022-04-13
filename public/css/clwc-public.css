@@ -1,53 +1,53 @@
 /** Display rewards notice on customer order */
 
 div.clwc-rewards-card {
-    text-align: center;
+  text-align: center;
 }
 
 /** My Account - Customer Loyalty */
 
 table.clwc-dashboard {
-    border: 1px solid #DDD;
-    margin-bottom: 24px;
+  border: 1px solid #ddd;
+  margin-bottom: 24px;
 }
 
 table.clwc-dashboard thead {
-    background: #f1f1f1;
-    font-weight: 700;
+  background: #f1f1f1;
+  font-weight: 700;
 }
 
 table.clwc-dashboard tbody {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 table.clwc-dashboard tr {
-    border-bottom: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
 }
 
 table.clwc-dashboard tr:last-child {
-    border-bottom: 0;
+  border-bottom: 0;
 }
 
 table.clwc-dashboard td {
-    padding: 10px;
+  padding: 10px;
 }
 
 table.clwc-dashboard tbody td:last-child {
-    text-align: right;
+  text-align: right;
 }
 
 table.clwc-dashboard tbody td.clwc-no-coupons:last-child {
-    text-align: left;
+  text-align: left;
 }
 
 table.clwc-dashboard tbody td.clwc-inactive-coupon {
-    color: #DDD;
-    text-decoration: line-through;
+  color: #ddd;
+  text-decoration: line-through;
 }
 
 /** My Account - Customer Loyalty - Titles */
 
 h4.clwc-loyalty-points,
 h4.clwc-rewards-card {
-    margin-top: 0;
+  margin-top: 0;
 }

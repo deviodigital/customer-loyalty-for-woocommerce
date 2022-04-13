@@ -10,7 +10,7 @@
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	wp_die();
 }
 
 /**
@@ -572,13 +572,14 @@ if ( ! class_exists( 'Customer_Loyalty_OSA' ) ) :
 			$value = $this->get_option( $args['id'], $args['section'], $args['std'] );
 			$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : '500px';
 
-			echo '<div style="max-width: ' . $size . ';">';
+			echo '<div style="max-width: ' . esc_attr( $size ) . ';">';
 
 			$editor_settings = array(
 				'teeny'         => true,
 				'textarea_name' => $args['section'] . '[' . $args['id'] . ']',
 				'textarea_rows' => 10,
 			);
+
 			if ( isset( $args['options'] ) && is_array( $args['options'] ) ) {
 				$editor_settings = array_merge( $editor_settings, $args['options'] );
 			}
@@ -760,7 +761,7 @@ if ( ! class_exists( 'Customer_Loyalty_OSA' ) ) :
 			<div class="metabox-holder">
 				<?php foreach ( $this->sections_array as $form ) { ?>
 					<!-- style="display: none;" -->
-					<div id="<?php echo $form['id']; ?>" class="group" >
+					<div id="<?php echo esc_attr( $form['id'] ); ?>" class="group" >
 						<form method="post" action="options.php">
 							<?php
 							do_action( 'clwc_form_top_' . $form['id'], $form );

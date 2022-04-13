@@ -13,8 +13,8 @@ function clwc_dashboard_shortcode() {
     global $woocommerce;
 
     // Set empty vars.
-    $clwc_order_ids = '';
     $coupon_codes   = '';
+    //$clwc_order_ids = '';
 
 	// Check if user is logged in.
 	if ( is_user_logged_in() ) {
@@ -22,7 +22,7 @@ function clwc_dashboard_shortcode() {
 		$user_id = get_current_user_id();
 
 		// Get the user object.
-        $user_meta = get_userdata( $user_id );
+        //$user_meta = get_userdata( $user_id );
 
         // Get loyalty points.
         $loyalty_points = get_user_meta( $user_id, 'clwc_loyalty_points', TRUE );
@@ -34,6 +34,8 @@ function clwc_dashboard_shortcode() {
 
         // Redeemable points minimum.
         $redeem_points_min = clwc_loyalty_points_redeem_points_minimum();
+        // Set empty variable.
+        $redeem_points = '';
 
         // Set redeem points variable if availabe.
         if ( $redeem_points_min && $loyalty_points >= $redeem_points_min ) {
@@ -80,7 +82,7 @@ function clwc_dashboard_shortcode() {
                 }
 
                 // Redirect to cart when discount applied.
-                wp_redirect( apply_filters( 'clwc_redeem_points_redirect_url', wc_get_cart_url() ) );
+                wp_safe_redirect( apply_filters( 'clwc_redeem_points_redirect_url', wc_get_cart_url() ) );
                 //exit;
             }
 
@@ -92,8 +94,6 @@ function clwc_dashboard_shortcode() {
 
             // Redeem loyalty points.
             $redeem_points = '<tr><td><strong>' . esc_attr__( 'Redeem Points', 'customer-loyalty-for-woocommerce' ) . '</strong></td><td>' . $redeem_button . '</td></tr>';
-        } else {
-            $redeem_points = '';
         }
 
         // Coupons args.
@@ -155,7 +155,7 @@ function clwc_dashboard_shortcode() {
 
             do_action( 'clwc_customer_dashboard_loyalty_points_table_tbody_top' );
 
-            echo '<tr><td><strong>' . esc_attr__( 'Loyalty Points', 'customer-loyalty-for-woocommerce' ) . '</strong></td><td>' . $loyalty_points . '</td></tr>';
+            echo '<tr><td><strong>' . esc_attr__( 'Loyalty Points', 'customer-loyalty-for-woocommerce' ) . '</strong></td><td>' . esc_attr( $loyalty_points ) . '</td></tr>';
             echo $redeem_points;
 
             do_action( 'clwc_customer_dashboard_loyalty_points_table_tbody_bottom' );
@@ -192,7 +192,7 @@ function clwc_dashboard_shortcode() {
 
                 // Get coupon data.
                 $coupon      = new WC_Coupon( $coupon_added );
-                $coupon_post = get_post( $coupon->get_id() );
+                //$coupon_post = get_post( $coupon->get_id() );
                 $coupon_data = array(
                     'id'          => $coupon->get_id(),
                     'usage_limit' => ( ! empty( $coupon->get_usage_limit() ) ) ? $coupon->get_usage_limit() : null,
@@ -249,8 +249,8 @@ function clwc_dashboard_shortcode() {
 
             do_action( 'clwc_customer_dashboard_rewards_card_table_tbody_top' );
 
-            echo '<tr><td><strong>' . esc_attr__( 'Rewards Card Punches', 'customer-loyalty-for-woocommerce' ) . '</strong></td><td>' . $rewards_card_punches . '</td></tr>';
-            echo '<tr><td><strong>' . esc_attr__( 'Rewards Earned', 'customer-loyalty-for-woocommerce' ) . '</strong></td><td>' . $rewards_earned . '</td></tr>';
+            echo '<tr><td><strong>' . esc_attr__( 'Rewards Card Punches', 'customer-loyalty-for-woocommerce' ) . '</strong></td><td>' . esc_attr( $rewards_card_punches ) . '</td></tr>';
+            echo '<tr><td><strong>' . esc_attr__( 'Rewards Earned', 'customer-loyalty-for-woocommerce' ) . '</strong></td><td>' . esc_attr( $rewards_earned ) . '</td></tr>';
 
             do_action( 'clwc_customer_dashboard_rewards_card_table_tbody_bottom' );
 
