@@ -18,7 +18,7 @@
 function clwc_add_customer_loyalty_profile_options( $profileuser ) {
 
     // Get user data.
-    $user = get_userdata( $profileuser->ID );
+    //$user = get_userdata( $profileuser->ID );
     ?>
         <h2><?php esc_attr_e( 'Customer Loyalty for WooCommerce', 'customer-loyalty-for-woocommerce' ); ?></h2>
 
@@ -56,21 +56,21 @@ add_action( 'edit_user_profile', 'clwc_add_customer_loyalty_profile_options' );
 function clwc_save_custom_profile_fields( $user_id ) {
 
     // Get user.
-    $user = get_userdata( $user_id );
+    //$user = get_userdata( $user_id );
 
     // Update customer loyalty points.
-    if ( isset( $_POST['clwc_loyalty_points'] ) ) {
-        update_user_meta( $user_id, 'clwc_loyalty_points', sanitize_text_field( $_POST['clwc_loyalty_points'] ) );
+    if ( isset( $_POST ) && isset( $_POST['clwc_loyalty_points'] ) ) {
+        update_user_meta( $user_id, 'clwc_loyalty_points', sanitize_text_field( filter_input( INPUT_POST, 'clwc_loyalty_points' ) ) );
     }
 
     // Update customer rewards card punches.
-    if ( isset( $_POST['clwc_rewards_card_punches'] ) ) {
-        update_user_meta( $user_id, 'clwc_rewards_card_punches', sanitize_text_field( $_POST['clwc_rewards_card_punches'] ) );
+    if ( isset( $_POST ) && isset( $_POST['clwc_rewards_card_punches'] ) ) {
+        update_user_meta( $user_id, 'clwc_rewards_card_punches', sanitize_text_field( filter_input( INPUT_POST, 'clwc_rewards_card_punches' ) ) );
     }
 
     // Update customer card punches.
-    if ( isset( $_POST['clwc_rewards_earned'] ) ) {
-        update_user_meta( $user_id, 'clwc_rewards_earned', sanitize_text_field( $_POST['clwc_rewards_earned'] ) );
+    if ( isset( $_POST ) && isset( $_POST['clwc_rewards_earned'] ) ) {
+        update_user_meta( $user_id, 'clwc_rewards_earned', sanitize_text_field( filter_input( INPUT_POST, 'clwc_rewards_earned' ) ) );
     }
 
 }
