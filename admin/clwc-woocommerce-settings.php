@@ -154,10 +154,10 @@ function clwc_order_customer_coupon_code( $order ) {
 
         // Display coupon to customer.
         echo '<div class="clwc-rewards-card">';
-        echo '<p><img src="' . esc_url( $rewards_card_img ) . '" alt="' . __( 'Rewards Card', 'customer-loyalty-for-woocommerce' ) . '" class="clwc-rewards-card-image" /></p>';
+        echo '<p><img src="' . esc_url( $rewards_card_img ) . '" alt="' . esc_attr__( 'Rewards Card', 'customer-loyalty-for-woocommerce' ) . '" class="clwc-rewards-card-image" /></p>';
         echo '<h2 class="clwc-rewards-card-title">' . apply_filters( 'clwc_rewards_card_title', clwc_rewards_card_title() ) . '</h2>';
         echo '<p class="clwc-rewards-card-text">' . apply_filters( 'clwc_rewards_card_text', clwc_rewards_card_text() ) . '</p>';
-        echo '<p class="clwc-rewards-card-coupon-code"><strong>' . __( 'Coupon', 'customer-loyalty-for-woocommerce' ) . ': ' . esc_attr__( $coupon_code ) . '</strong></p>';
+        echo '<p class="clwc-rewards-card-coupon-code"><strong>' . esc_attr__( 'Coupon', 'customer-loyalty-for-woocommerce' ) . ': ' . esc_attr__( $coupon_code ) . '</strong></p>';
         echo '</div>';
     }
 }
