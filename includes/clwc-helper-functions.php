@@ -42,11 +42,11 @@ function clwc_get_random_string( $length = 6 ) {
  * @return string|bool
  */
 function clwc_rewards_card_activate() {
-    $rewards_card = get_option( 'clwc_rewards_card' );
-    $active       = FALSE;
+    $card   = get_option( 'clwc_rewards_card' );
+    $active = FALSE;
 
-    if ( isset( $rewards_card['clwc_rewards_card_activate'] ) && '' !== $rewards_card['clwc_rewards_card_activate'] ) {
-        $active = $rewards_card['clwc_rewards_card_activate'];
+    if ( isset( $card['clwc_rewards_card_activate'] ) && '' !== $card['clwc_rewards_card_activate'] ) {
+        $active = $card['clwc_rewards_card_activate'];
     }
 
 	return apply_filters( 'clwc_rewards_card_activate', $active );
@@ -58,11 +58,11 @@ function clwc_rewards_card_activate() {
  * @return string|bool
  */
 function clwc_rewards_card_title() {
-    $rewards_card = get_option( 'clwc_rewards_card' );
-    $title        = __( 'You earned a reward', 'customer-loyalty-for-woocommerce' );
+    $card  = get_option( 'clwc_rewards_card' );
+    $title = esc_attr__( 'You earned a reward', 'customer-loyalty-for-woocommerce' );
 
-    if ( isset( $rewards_card['clwc_rewards_card_title'] ) && '' !== $rewards_card['clwc_rewards_card_title'] ) {
-        $title = $rewards_card['clwc_rewards_card_title'];
+    if ( isset( $card['clwc_rewards_card_title'] ) && '' !== $card['clwc_rewards_card_title'] ) {
+        $title = $card['clwc_rewards_card_title'];
     }
 
 	return apply_filters( 'clwc_helper_rewards_card_title', $title );
@@ -74,11 +74,11 @@ function clwc_rewards_card_title() {
  * @return string|bool
  */
 function clwc_rewards_card_text() {
-    $rewards_card = get_option( 'clwc_rewards_card' );
-    $text         = FALSE;
+    $card = get_option( 'clwc_rewards_card' );
+    $text = FALSE;
 
-    if ( isset( $rewards_card['clwc_rewards_card_text'] ) && '' !== $rewards_card['clwc_rewards_card_text'] ) {
-        $text = $rewards_card['clwc_rewards_card_text'];
+    if ( isset( $card['clwc_rewards_card_text'] ) && '' !== $card['clwc_rewards_card_text'] ) {
+        $text = $card['clwc_rewards_card_text'];
     }
 
 	return apply_filters( 'clwc_helper_rewards_card_text', $text );
@@ -90,11 +90,11 @@ function clwc_rewards_card_text() {
  * @return string|bool
  */
 function clwc_rewards_card_image() {
-    $rewards_card = get_option( 'clwc_rewards_card' );
-    $image        = FALSE;
+    $card  = get_option( 'clwc_rewards_card' );
+    $image = FALSE;
 
-    if ( isset( $rewards_card['clwc_rewards_card_image'] ) && '' !== $rewards_card['clwc_rewards_card_image'] ) {
-        $image = $rewards_card['clwc_rewards_card_image'];
+    if ( isset( $card['clwc_rewards_card_image'] ) && '' !== $card['clwc_rewards_card_image'] ) {
+        $image = $card['clwc_rewards_card_image'];
     }
 
 	return apply_filters( 'clwc_helper_rewards_card_image', $image );
@@ -106,11 +106,11 @@ function clwc_rewards_card_image() {
  * @return string|bool
  */
 function clwc_rewards_card_required_punches() {
-    $rewards_card = get_option( 'clwc_rewards_card' );
-    $punches      = FALSE;
+    $card    = get_option( 'clwc_rewards_card' );
+    $punches = FALSE;
 
-    if ( isset( $rewards_card['clwc_rewards_card_required_punches'] ) && '' !== $rewards_card['clwc_rewards_card_required_punches'] ) {
-        $punches = $rewards_card['clwc_rewards_card_required_punches'];
+    if ( isset( $card['clwc_rewards_card_required_punches'] ) && '' !== $card['clwc_rewards_card_required_punches'] ) {
+        $punches = $card['clwc_rewards_card_required_punches'];
     }
 
 	return apply_filters( 'clwc_rewards_card_required_punches', $punches );
@@ -122,11 +122,11 @@ function clwc_rewards_card_required_punches() {
  * @return string|bool
  */
 function clwc_rewards_card_coupon_amount() {
-    $rewards_card = get_option( 'clwc_rewards_card' );
-    $amount       = FALSE;
+    $card   = get_option( 'clwc_rewards_card' );
+    $amount = FALSE;
 
-    if ( isset( $rewards_card['clwc_rewards_card_coupon_amount'] ) && '' !== $rewards_card['clwc_rewards_card_coupon_amount'] ) {
-        $amount = $rewards_card['clwc_rewards_card_coupon_amount'];
+    if ( isset( $card['clwc_rewards_card_coupon_amount'] ) && '' !== $card['clwc_rewards_card_coupon_amount'] ) {
+        $amount = $card['clwc_rewards_card_coupon_amount'];
     }
 
 	return apply_filters( 'clwc_rewards_card_coupon_amount', $amount );
@@ -138,11 +138,11 @@ function clwc_rewards_card_coupon_amount() {
  * @return string|bool
  */
 function clwc_rewards_card_coupon_type() {
-    $rewards_card = get_option( 'clwc_rewards_card' );
-    $coupon_type  = FALSE;
+    $card        = get_option( 'clwc_rewards_card' );
+    $coupon_type = FALSE;
 
-    if ( isset( $rewards_card['clwc_rewards_card_coupon_type'] ) && '' !== $rewards_card['clwc_rewards_card_coupon_type'] ) {
-        $coupon_type = $rewards_card['clwc_rewards_card_coupon_type'];
+    if ( isset( $card['clwc_rewards_card_coupon_type'] ) && '' !== $card['clwc_rewards_card_coupon_type'] ) {
+        $coupon_type = $card['clwc_rewards_card_coupon_type'];
     }
 
 	return apply_filters( 'clwc_rewards_card_coupon_type', $coupon_type );
@@ -154,11 +154,11 @@ function clwc_rewards_card_coupon_type() {
  * @return string|bool
  */
 function clwc_rewards_card_coupon_prefix() {
-    $rewards_card = get_option( 'clwc_rewards_card' );
-    $prefix       = FALSE;
+    $card   = get_option( 'clwc_rewards_card' );
+    $prefix = FALSE;
 
-    if ( isset( $rewards_card['clwc_rewards_card_coupon_prefix'] ) && '' !== $rewards_card['clwc_rewards_card_coupon_prefix'] ) {
-        $prefix = $rewards_card['clwc_rewards_card_coupon_prefix'];
+    if ( isset( $card['clwc_rewards_card_coupon_prefix'] ) && '' !== $card['clwc_rewards_card_coupon_prefix'] ) {
+        $prefix = $card['clwc_rewards_card_coupon_prefix'];
     }
 
 	return apply_filters( 'clwc_rewards_card_coupon_prefix', $prefix );
@@ -170,11 +170,11 @@ function clwc_rewards_card_coupon_prefix() {
  * @return string|bool
  */
 function clwc_loyalty_points_activate() {
-    $loyalty_points = get_option( 'clwc_loyalty_points' );
-    $active         = FALSE;
+    $points = get_option( 'clwc_loyalty_points' );
+    $active = FALSE;
 
-    if ( isset( $loyalty_points['clwc_loyalty_points_activate'] ) && '' !== $loyalty_points['clwc_loyalty_points_activate'] ) {
-        $active = $loyalty_points['clwc_loyalty_points_activate'];
+    if ( isset( $points['clwc_loyalty_points_activate'] ) && '' !== $points['clwc_loyalty_points_activate'] ) {
+        $active = $points['clwc_loyalty_points_activate'];
     }
 
 	return apply_filters( 'clwc_loyalty_points_activate', $active );
@@ -186,11 +186,11 @@ function clwc_loyalty_points_activate() {
  * @return string|bool
  */
 function clwc_loyalty_points_redeem_points_calculation_type() {
-    $loyalty_points = get_option( 'clwc_loyalty_points' );
-    $type           = FALSE;
+    $points = get_option( 'clwc_loyalty_points' );
+    $type   = FALSE;
 
-    if ( isset( $loyalty_points['clwc_loyalty_points_redeem_points_calculation_type'] ) && '' !== $loyalty_points['clwc_loyalty_points_redeem_points_calculation_type'] ) {
-        $type = $loyalty_points['clwc_loyalty_points_redeem_points_calculation_type'];
+    if ( isset( $points['clwc_loyalty_points_redeem_points_calculation_type'] ) && '' !== $points['clwc_loyalty_points_redeem_points_calculation_type'] ) {
+        $type = $points['clwc_loyalty_points_redeem_points_calculation_type'];
     }
 
 	return apply_filters( 'clwc_loyalty_points_redeem_points_calculation_type', $type );
@@ -202,11 +202,11 @@ function clwc_loyalty_points_redeem_points_calculation_type() {
  * @return string|bool
  */
 function clwc_loyalty_points_redeem_points_minimum() {
-    $loyalty_points = get_option( 'clwc_loyalty_points' );
-    $minimum        = FALSE;
+    $points  = get_option( 'clwc_loyalty_points' );
+    $minimum = FALSE;
 
-    if ( isset( $loyalty_points['clwc_loyalty_points_redeem_points_minimum'] ) && '' !== $loyalty_points['clwc_loyalty_points_redeem_points_minimum'] ) {
-        $minimum = $loyalty_points['clwc_loyalty_points_redeem_points_minimum'];
+    if ( isset( $points['clwc_loyalty_points_redeem_points_minimum'] ) && '' !== $points['clwc_loyalty_points_redeem_points_minimum'] ) {
+        $minimum = $points['clwc_loyalty_points_redeem_points_minimum'];
     }
 
 	return apply_filters( 'clwc_loyalty_points_redeem_points_minimum', $minimum );
@@ -218,11 +218,11 @@ function clwc_loyalty_points_redeem_points_minimum() {
  * @return string|bool
  */
 function clwc_loyalty_points_redeem_points_value() {
-    $loyalty_points = get_option( 'clwc_loyalty_points' );
-    $value          = FALSE;
+    $points = get_option( 'clwc_loyalty_points' );
+    $value  = FALSE;
 
-    if ( isset( $loyalty_points['clwc_loyalty_points_redeem_points_value'] ) && '' !== $loyalty_points['clwc_loyalty_points_redeem_points_value'] ) {
-        $value = $loyalty_points['clwc_loyalty_points_redeem_points_value'];
+    if ( isset( $points['clwc_loyalty_points_redeem_points_value'] ) && '' !== $points['clwc_loyalty_points_redeem_points_value'] ) {
+        $value = $points['clwc_loyalty_points_redeem_points_value'];
     }
 
 	return apply_filters( 'clwc_loyalty_points_redeem_points_value', $value );
@@ -234,14 +234,14 @@ function clwc_loyalty_points_redeem_points_value() {
  * @return string|bool
  */
 function clwc_earning_points_customer_registration() {
-    $loyalty_points = get_option( 'clwc_loyalty_points' );
-    $points         = 0;
+    $points       = get_option( 'clwc_loyalty_points' );
+    $registration = 0;
 
-    if ( isset( $loyalty_points['clwc_earning_points_customer_registration'] ) && '' !== $loyalty_points['clwc_earning_points_customer_registration'] ) {
-        $points = $loyalty_points['clwc_earning_points_customer_registration'];
+    if ( isset( $points['clwc_earning_points_customer_registration'] ) && '' !== $points['clwc_earning_points_customer_registration'] ) {
+        $registration = $points['clwc_earning_points_customer_registration'];
     }
 
-	return apply_filters( 'clwc_earning_points_customer_registration', $points );
+	return apply_filters( 'clwc_earning_points_customer_registration', $registration );
 }
 
 /**
@@ -250,14 +250,14 @@ function clwc_earning_points_customer_registration() {
  * @return string|bool
  */
 function clwc_earning_points_order_complete() {
-    $loyalty_points = get_option( 'clwc_loyalty_points' );
-    $points         = 0;
+    $points   = get_option( 'clwc_loyalty_points' );
+    $complete = 0;
 
-    if ( isset( $loyalty_points['clwc_earning_points_order_complete'] ) && '' !== $loyalty_points['clwc_earning_points_order_complete'] ) {
-        $points = $loyalty_points['clwc_earning_points_order_complete'];
+    if ( isset( $points['clwc_earning_points_order_complete'] ) && '' !== $points['clwc_earning_points_order_complete'] ) {
+        $complete = $points['clwc_earning_points_order_complete'];
     }
 
-	return apply_filters( 'clwc_earning_points_order_complete', $points );
+	return apply_filters( 'clwc_earning_points_order_complete', $complete );
 }
 
 /**
@@ -266,12 +266,12 @@ function clwc_earning_points_order_complete() {
  * @return string|bool
  */
 function clwc_earning_points_money_spent() {
-    $loyalty_points = get_option( 'clwc_loyalty_points' );
-    $points         = 0;
+    $points      = get_option( 'clwc_loyalty_points' );
+    $money_spent = 0;
 
-    if ( isset( $loyalty_points['clwc_earning_points_money_spent'] ) && '' !== $loyalty_points['clwc_earning_points_money_spent'] ) {
-        $points = $loyalty_points['clwc_earning_points_money_spent'];
+    if ( isset( $points['clwc_earning_points_money_spent'] ) && '' !== $points['clwc_earning_points_money_spent'] ) {
+        $money_spent = $points['clwc_earning_points_money_spent'];
     }
 
-	return apply_filters( 'clwc_earning_points_money_spent', $points );
+	return apply_filters( 'clwc_earning_points_money_spent', $money_spend );
 }

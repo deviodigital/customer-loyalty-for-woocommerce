@@ -570,7 +570,7 @@ if ( ! class_exists( 'Customer_Loyalty_OSA' ) ) :
 		function callback_wysiwyg( $args ) {
 
 			$value = $this->get_option( $args['id'], $args['section'], $args['std'] );
-			$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : '500px';
+			$size  = isset( $args['size'] ) && ! null === $args['size'] ? $args['size'] : '500px';
 
 			echo '<div style="max-width: ' . esc_attr( $size ) . ';">';
 
@@ -717,8 +717,8 @@ if ( ! class_exists( 'Customer_Loyalty_OSA' ) ) :
 			// add_options_page( $page_title, $menu_title, $capability, $menu_slug, array( $this, $callable ) );
 			add_submenu_page(
 				'woocommerce',
-				__( 'Customer Loyalty for WooCommerce', 'customer-loyalty-for-woocommerce' ),
-				__( 'Customer Loyalty', 'customer-loyalty-for-woocommerce' ),
+				esc_attr__( 'Customer Loyalty for WooCommerce', 'customer-loyalty-for-woocommerce' ),
+				esc_attr__( 'Customer Loyalty', 'customer-loyalty-for-woocommerce' ),
 				'manage_options',
 				'clwc_admin_settings',
 				array( $this, 'plugin_page' )
@@ -727,7 +727,7 @@ if ( ! class_exists( 'Customer_Loyalty_OSA' ) ) :
 
 		public function plugin_page() {
 			echo '<div class="wrap">';
-			echo '<h1>' . esc_attr__( 'Customer Loyalty for WooCommerce', 'customer-loyalty-for-woocommerce' ) . ' <span style="font-size:50%;">v' . CUSTOMER_LOYALTY_VERSION . '</span></h1>';
+			echo '<h1>' . esc_attr__( 'Customer Loyalty for WooCommerce', 'customer-loyalty-for-woocommerce' ) . ' <span style="font-size:50%;">v' . esc_attr( CUSTOMER_LOYALTY_VERSION ) . '</span></h1>';
 			echo '<p>' . esc_attr__( 'Brought to you by', 'customer-loyalty-for-woocommerce' ) . ' <a href="https://deviodigital.com/" target="_blank">Devio Digital</a> | <a href="https://deviodigital.com/documentation/" target="_blank">' . esc_attr__( 'Documentation', 'customer-loyalty-for-woocommerce' ). '</a></p>';
 			$this->show_navigation();
 			$this->show_forms();

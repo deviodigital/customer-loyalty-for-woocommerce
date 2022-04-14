@@ -53,7 +53,7 @@ function clwc_my_account_menu_items( $items ) {
 	// Remove the customer-logout menu item.
 	unset( $items['customer-logout'] );
 	// Insert the customer-loyalty endpoint.
-	$items['customer-loyalty'] = apply_filters( 'clwc_my_account_menu_item_title', __( 'Customer Loyalty', 'customer-loyalty-for-woocommerce' ) );
+	$items['customer-loyalty'] = apply_filters( 'clwc_my_account_menu_item_title', esc_attr__( 'Customer Loyalty', 'customer-loyalty-for-woocommerce' ) );
 	// Insert back the customer-logout item.
 	$items['customer-logout'] = $logout;
 
@@ -75,11 +75,11 @@ add_action( 'woocommerce_account_customer-loyalty_endpoint', 'clwc_endpoint_cont
  * @param string $title
  * @return string
  */
-function clwc_endpoint_page_title( $title, $id ) {
+function clwc_endpoint_page_title( $title ) {
 	// Update 'Customer Loyalty' page title.
 	if ( is_wc_endpoint_url( 'customer-loyalty' ) && in_the_loop() ) {
-		$title = apply_filters( 'clwc_my_account_endpoint_page_title', __( 'Customer Loyalty', 'customer-loyalty-for-woocommerce' ) );
+		$title = apply_filters( 'clwc_my_account_endpoint_page_title', esc_attr__( 'Customer Loyalty', 'customer-loyalty-for-woocommerce' ) );
 	}
 	return $title;
 }
-add_filter( 'the_title', 'clwc_endpoint_page_title', 10, 2 );
+add_filter( 'the_title', 'clwc_endpoint_page_title', 10, 1 );

@@ -59,17 +59,17 @@ function clwc_save_custom_profile_fields( $user_id ) {
     //$user = get_userdata( $user_id );
 
     // Update customer loyalty points.
-    if ( isset( $_POST ) && isset( $_POST['clwc_loyalty_points'] ) ) {
+    if ( isset( $_POST ) && null !== filter_input( INPUT_POST, 'clwc_loyalty_points' ) ) {
         update_user_meta( $user_id, 'clwc_loyalty_points', sanitize_text_field( filter_input( INPUT_POST, 'clwc_loyalty_points' ) ) );
     }
 
     // Update customer rewards card punches.
-    if ( isset( $_POST ) && isset( $_POST['clwc_rewards_card_punches'] ) ) {
+    if ( isset( $_POST ) && null !== filter_input( INPUT_POST, 'clwc_rewards_card_punches' ) ) {
         update_user_meta( $user_id, 'clwc_rewards_card_punches', sanitize_text_field( filter_input( INPUT_POST, 'clwc_rewards_card_punches' ) ) );
     }
 
     // Update customer card punches.
-    if ( isset( $_POST ) && isset( $_POST['clwc_rewards_earned'] ) ) {
+    if ( isset( $_POST ) && null !== filter_input( INPUT_POST, 'clwc_rewards_earned' ) ) {
         update_user_meta( $user_id, 'clwc_rewards_earned', sanitize_text_field( filter_input( INPUT_POST, 'clwc_rewards_earned' ) ) );
     }
 
