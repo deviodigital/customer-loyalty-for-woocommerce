@@ -217,7 +217,7 @@ if ( ! class_exists( 'Customer_Loyalty_OSA' ) ) :
 				/**
 				 * Add a new section to a settings page.
 				 *
-				 * @param string $id
+				 * @param string $the_id
 				 * @param string $title
 				 * @param callable $callback
 				 * @param string $page | Page is same as section ID.
@@ -251,7 +251,7 @@ if ( ! class_exists( 'Customer_Loyalty_OSA' ) ) :
 			foreach ( $this->fields_array as $section => $field_array ) {
 				foreach ( $field_array as $field ) {
 					// ID.
-					$id = isset( $field['id'] ) ? $field['id'] : false;
+					$the_id = isset( $field['id'] ) ? $field['id'] : false;
 
 					// Type.
 					$type = isset( $field['type'] ) ? $field['type'] : 'text';
@@ -281,7 +281,7 @@ if ( ! class_exists( 'Customer_Loyalty_OSA' ) ) :
 					$sanitize_callback = isset( $field['sanitize_callback'] ) ? $field['sanitize_callback'] : '';
 
 					$args = array(
-						'id'                => $id,
+						'id'                => $the_id,
 						'type'              => $type,
 						'name'              => $name,
 						'label_for'         => $label_for,
@@ -297,7 +297,7 @@ if ( ! class_exists( 'Customer_Loyalty_OSA' ) ) :
 					/**
 					 * Add a new field to a section of a settings page.
 					 *
-					 * @param string   $id
+					 * @param string   $the_id
 					 * @param string   $title
 					 * @param callable $callback
 					 * @param string   $page
@@ -306,7 +306,7 @@ if ( ! class_exists( 'Customer_Loyalty_OSA' ) ) :
 					 * @since 1.0.0
 					 */
 
-					// @param string 	$id
+					// @param string 	$the_id
 					$field_id = $section . '[' . $field['id'] . ']';
 
 					add_settings_field(
@@ -600,7 +600,7 @@ if ( ! class_exists( 'Customer_Loyalty_OSA' ) ) :
 
 			$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
-			$id    = $args['section'] . '[' . $args['id'] . ']';
+			$the_id    = $args['section'] . '[' . $args['id'] . ']';
 			$label = isset( $args['options']['button_label'] ) ?
 			$args['options']['button_label'] :
 			__( 'Choose File' );
@@ -621,7 +621,7 @@ if ( ! class_exists( 'Customer_Loyalty_OSA' ) ) :
 
 			$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 			$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
-			$id    = $args['section'] . '[' . $args['id'] . ']';
+			$the_id    = $args['section'] . '[' . $args['id'] . ']';
 			$label = isset( $args['options']['button_label'] ) ?
 			$args['options']['button_label'] :
 			__( 'Choose Image' );

@@ -273,5 +273,5 @@ function clwc_earning_points_money_spent() {
         $money_spent = $points['clwc_earning_points_money_spent'];
     }
 
-	return apply_filters( 'clwc_earning_points_money_spent', $money_spend );
+	return apply_filters( 'clwc_earning_points_money_spent', $money_spent );
 }
