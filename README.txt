@@ -3,7 +3,7 @@ Contributors: deviodigital
 Tags: loyalty, rewards, customer, woocommerce, gift
 Requires at least: 3.0.1
 Tested up to: 5.9.2
-Stable tag: 1.2.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,12 @@ Using a plugin like Customer Loyalty for WooCommerce increases the likelihood of
 5. CLWC user settings - Edit a user's rewards card and loyalty points
 
 == Changelog ==
+
+= 1.3 =
+*   Added new French translation in `languages/customer-loyalty-for-woocommerce-fr_FR.po`
+*   Updated Italian translation in `languages/customer-loyalty-for-woocommerce-it_IT.po`
+*   WordPress Coding Standards code updates based on Codacy report throughout multiple files in the plugin
+*   General code cleanup throughout multiple files in the plugin
 
 = 1.2.2 =
 *   Added new Italian translation in `languages/customer-loyalty-for-woocommerce-it_IT.po`
