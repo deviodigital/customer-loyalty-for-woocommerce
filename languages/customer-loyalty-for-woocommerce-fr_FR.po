@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Customer Loyalty for WooCommerce\n"
-"POT-Creation-Date: 2022-04-08 23:21-0400\n"
-"PO-Revision-Date: 2022-04-08 23:31-0400\n"
+"POT-Creation-Date: 2022-04-15 14:45-0400\n"
+"PO-Revision-Date: 2022-04-15 14:45-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -16,215 +16,213 @@ msgstr ""
 "X-Poedit-WPHeader: customer-loyalty-for-woocommerce.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: admin/class-clwc-osa.php:605
+#: admin/class-clwc-osa.php:606
 msgid "Choose File"
 msgstr "Choisissez un fichier"
 
-#: admin/class-clwc-osa.php:626 admin/clwc-admin-settings.php:111
+#: admin/class-clwc-osa.php:627 admin/clwc-admin-settings.php:112
 msgid "Choose Image"
 msgstr "Choisir une image"
 
 #. Plugin Name of the plugin/theme
-#: admin/class-clwc-osa.php:719 admin/class-clwc-osa.php:729
+#: admin/class-clwc-osa.php:720 admin/class-clwc-osa.php:730
 #: admin/clwc-user-fields.php:23
 msgid "Customer Loyalty for WooCommerce"
 msgstr "Fidélisation des clients pour WooCommerce"
 
-#: admin/class-clwc-osa.php:720 admin/clwc-woocommerce-account-tab.php:56
+#: admin/class-clwc-osa.php:721 admin/clwc-woocommerce-account-tab.php:56
 #: admin/clwc-woocommerce-account-tab.php:81
 msgid "Customer Loyalty"
 msgstr "Fidélité du consommateur"
 
-#: admin/class-clwc-osa.php:730
+#: admin/class-clwc-osa.php:731
 msgid "Brought to you by"
 msgstr "Vous est proposé par"
 
-#: admin/class-clwc-osa.php:730
+#: admin/class-clwc-osa.php:731
 msgid "Documentation"
 msgstr "Documentation"
 
-#: admin/clwc-admin-settings.php:45 admin/clwc-admin-settings.php:63
+#: admin/clwc-admin-settings.php:46 admin/clwc-admin-settings.php:64
 #: admin/clwc-woocommerce-settings.php:157
 msgid "Rewards Card"
 msgstr "Carte de récompenses"
 
-#: admin/clwc-admin-settings.php:53 admin/clwc-admin-settings.php:185
+#: admin/clwc-admin-settings.php:54 admin/clwc-admin-settings.php:186
 #: admin/clwc-woocommerce-endpoint-shortcode.php:158
 msgid "Loyalty Points"
 msgstr "Points de fidélité"
 
-#: admin/clwc-admin-settings.php:73
+#: admin/clwc-admin-settings.php:74
 msgid "Activate Rewards Card"
 msgstr "Activer la carte de récompenses"
 
-#: admin/clwc-admin-settings.php:74
+#: admin/clwc-admin-settings.php:75
 msgid "Check to activate the included customer rewards card features."
 msgstr ""
 "Cochez pour activer les fonctionnalités incluses de la carte de récompenses "
 "client."
 
-#: admin/clwc-admin-settings.php:84
+#: admin/clwc-admin-settings.php:85
 msgid "Rewards Card Title"
 msgstr "Titre de la carte de récompenses"
 
-#: admin/clwc-admin-settings.php:85
+#: admin/clwc-admin-settings.php:86
 msgid "The title displayed in a customer's order when a new reward is earned."
 msgstr ""
-"Le titre affiché dans la commande d’un client lorsqu’une nouvelle "
-"récompense est gagnée."
+"Le titre affiché dans la commande d’un client lorsqu’une nouvelle récompense "
+"est gagnée."
 
-#: admin/clwc-admin-settings.php:96
+#: admin/clwc-admin-settings.php:97
 msgid "Rewards Card Text"
 msgstr "Texte de la carte de récompenses"
 
-#: admin/clwc-admin-settings.php:97
+#: admin/clwc-admin-settings.php:98
 msgid "The text displayed in a customer's order when a new reward is earned."
 msgstr ""
-"Le texte affiché dans la commande d’un client lorsqu’une nouvelle "
-"récompense est gagnée."
+"Le texte affiché dans la commande d’un client lorsqu’une nouvelle récompense "
+"est gagnée."
 
-#: admin/clwc-admin-settings.php:108
+#: admin/clwc-admin-settings.php:109
 msgid "Rewards Card Image"
 msgstr "Image de la carte de récompenses"
 
-#: admin/clwc-admin-settings.php:109
+#: admin/clwc-admin-settings.php:110
 msgid "Display an image in the customer's order when a new reward is earned."
 msgstr ""
-"Afficher une image dans la commande du client lorsqu’une nouvelle "
-"récompense est gagnée."
+"Afficher une image dans la commande du client lorsqu’une nouvelle récompense "
+"est gagnée."
 
-#: admin/clwc-admin-settings.php:122
+#: admin/clwc-admin-settings.php:123
 msgid "Rewards coupon"
 msgstr "Bon de récompense"
 
-#: admin/clwc-admin-settings.php:132
+#: admin/clwc-admin-settings.php:133
 msgid "Required punches"
 msgstr "Poinçons requis"
 
-#: admin/clwc-admin-settings.php:133
+#: admin/clwc-admin-settings.php:134
 msgid ""
 "How many punches are required before a coupon is created for the customer?"
 msgstr ""
 "Combien de poinçons sont nécessaires avant qu’un coupon soit créé pour le "
 "client ?"
 
-#: admin/clwc-admin-settings.php:145
+#: admin/clwc-admin-settings.php:146
 msgid "Coupon amount"
 msgstr "Montant du code"
 
-#: admin/clwc-admin-settings.php:146
+#: admin/clwc-admin-settings.php:147
 msgid "Enter the amount you would like used when creating the coupon."
 msgstr ""
 "Entrez le montant que vous souhaitez utiliser lors de la création du coupon."
 
-#: admin/clwc-admin-settings.php:158
+#: admin/clwc-admin-settings.php:159
 msgid "Coupon type"
 msgstr "Type de coupon"
 
-#: admin/clwc-admin-settings.php:159
+#: admin/clwc-admin-settings.php:160
 msgid "Select the type of coupon that you would like created for the customer"
-msgstr ""
-"Sélectionnez le type de coupon que vous souhaitez créer pour le client"
+msgstr "Sélectionnez le type de coupon que vous souhaitez créer pour le client"
 
-#: admin/clwc-admin-settings.php:161
+#: admin/clwc-admin-settings.php:162
 msgid "Fixed cart"
 msgstr "Panier (Limite)"
 
-#: admin/clwc-admin-settings.php:162
+#: admin/clwc-admin-settings.php:163
 msgid "Percentage"
 msgstr "Pourcentage"
 
-#: admin/clwc-admin-settings.php:173
+#: admin/clwc-admin-settings.php:174
 msgid "Coupon prefix"
 msgstr "Préfixe du coupon"
 
-#: admin/clwc-admin-settings.php:174
+#: admin/clwc-admin-settings.php:175
 msgid "Add the text you would like included before the randomize coupon code"
 msgstr ""
 "Ajoutez le texte que vous souhaitez inclure avant le code de réduction "
 "aléatoire"
 
-#: admin/clwc-admin-settings.php:195
+#: admin/clwc-admin-settings.php:196
 msgid "Activate Loyalty Points"
 msgstr "Activer les points de fidélité"
 
-#: admin/clwc-admin-settings.php:196
+#: admin/clwc-admin-settings.php:197
 msgid "Check to activate the included customer loyalty points features."
 msgstr ""
 "Cochez pour activer les fonctionnalités de points de fidélité client "
 "incluses."
 
-#: admin/clwc-admin-settings.php:206
+#: admin/clwc-admin-settings.php:207
 msgid "Calculation type"
 msgstr "Type de calcul"
 
-#: admin/clwc-admin-settings.php:207
+#: admin/clwc-admin-settings.php:208
 msgid "Should the points be calculated from the order total or subtotal?"
 msgstr ""
 "Les points doivent-ils être calculés à partir du total ou du sous-total de "
 "la commande ?"
 
-#: admin/clwc-admin-settings.php:209
+#: admin/clwc-admin-settings.php:210
 msgid "Order total"
 msgstr "Total commande"
 
-#: admin/clwc-admin-settings.php:210
+#: admin/clwc-admin-settings.php:211
 msgid "Order subtotal"
 msgstr "Sous-total commande"
 
-#: admin/clwc-admin-settings.php:221
+#: admin/clwc-admin-settings.php:222
 msgid "Redeeming Points"
 msgstr "Points Encaissés"
 
-#: admin/clwc-admin-settings.php:231
+#: admin/clwc-admin-settings.php:232
 msgid "Minimum points"
 msgstr "Points minimaux"
 
-#: admin/clwc-admin-settings.php:232
+#: admin/clwc-admin-settings.php:233
 msgid "How many points are required before a customer can redeem points?"
 msgstr ""
 "Combien de points sont nécessaires avant qu’un client puisse échanger des "
 "points ?"
 
-#: admin/clwc-admin-settings.php:244
+#: admin/clwc-admin-settings.php:245
 msgid "Redeemable value"
 msgstr "Valeur remboursable"
 
-#: admin/clwc-admin-settings.php:245
+#: admin/clwc-admin-settings.php:246
 msgid "How much should the redeemed points be worth in actual currency?"
 msgstr "Combien devraient valoir les points échangés en devise réelle ?"
 
-#: admin/clwc-admin-settings.php:257
+#: admin/clwc-admin-settings.php:258
 msgid "Earning Points"
 msgstr "Points gagnés"
 
-#: admin/clwc-admin-settings.php:267
+#: admin/clwc-admin-settings.php:268
 msgid "Customer registration"
 msgstr "Inscription des clients"
 
-#: admin/clwc-admin-settings.php:268
+#: admin/clwc-admin-settings.php:269
 msgid "The amount of points a customer earns when they register an account."
 msgstr "Le nombre de points qu’un client gagne lorsqu’il crée un compte."
 
-#: admin/clwc-admin-settings.php:280
+#: admin/clwc-admin-settings.php:281
 msgid "Order complete"
 msgstr "Commande terminée"
 
-#: admin/clwc-admin-settings.php:281
+#: admin/clwc-admin-settings.php:282
 msgid "The amount of points a customer earns when completing an order."
-msgstr ""
-"Le nombre de points qu’un client gagne lorsqu’il termine une commande."
+msgstr "Le nombre de points qu’un client gagne lorsqu’il termine une commande."
 
-#: admin/clwc-admin-settings.php:293
+#: admin/clwc-admin-settings.php:294
 msgid "Money spent"
 msgstr "Argent dépensé"
 
-#: admin/clwc-admin-settings.php:294
+#: admin/clwc-admin-settings.php:295
 msgid "The amount of points a customer earns per dollar spent."
 msgstr "Le nombre de points qu’un client gagne par dollar dépensé."
 
@@ -240,11 +238,11 @@ msgstr "Poinçons de carte de récompenses"
 msgid "Rewards earned"
 msgstr "Récompenses gagnées"
 
-#: admin/clwc-woocommerce-endpoint-shortcode.php:89
+#: admin/clwc-woocommerce-endpoint-shortcode.php:91
 msgid "Redeem"
 msgstr "Valider"
 
-#: admin/clwc-woocommerce-endpoint-shortcode.php:94
+#: admin/clwc-woocommerce-endpoint-shortcode.php:96
 msgid "Redeem Points"
 msgstr "Échanger vos Points"
 
