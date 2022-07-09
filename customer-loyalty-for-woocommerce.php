@@ -3,26 +3,28 @@
 /**
  * The plugin bootstrap file
  *
- * @link              https://www.deviodigital.com
- * @since             1.0
- * @package           CLWC
+ * @package CLWC
+ * @author  Devio Diital <contact@deviodigital.com>
+ * @license GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link    https://www.deviodigital.com
+ * @since   1.0.0
  *
  * @wordpress-plugin
- * Plugin Name:       Customer Loyalty for WooCommerce
- * Plugin URI:        https://www.deviodigital.com/customer-loyalty-for-woocommerce
- * Description:       Increase customer loyalty by rewarding your customers for their repeat purchase behavior.
- * Version:           1.3.0
- * Author:            Devio Digital
- * Author URI:        https://www.deviodigital.com
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       customer-loyalty-for-woocommerce
- * Domain Path:       /languages
+ * Plugin Name:      Customer Loyalty for WooCommerce
+ * Plugin URI:       https://www.deviodigital.com/customer-loyalty-for-woocommerce
+ * Description:      Increase customer loyalty by rewarding your customers for their repeat purchase behavior.
+ * Version:          1.3.0
+ * Author:           Devio Digital
+ * Author URI:       https://www.deviodigital.com
+ * License:          GPL-2.0+
+ * License URI:      http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:      customer-loyalty-for-woocommerce
+ * Domain Path:      /languages
  */
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-	wp_die();
+    wp_die();
 }
 
 /**
@@ -33,19 +35,23 @@ define( 'CUSTOMER_LOYALTY_VERSION', '1.3.0' );
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-clwc-activator.php
+ * 
+ * @return void
  */
 function activate_clwc() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-clwc-activator.php';
-	Customer_Loyalty_Activator::activate();
+    require_once plugin_dir_path( __FILE__ ) . 'includes/class-clwc-activator.php';
+    Customer_Loyalty_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-clwc-deactivator.php
+ * 
+ * @return void
  */
 function deactivate_clwc() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-clwc-deactivator.php';
-	Customer_Loyalty_Deactivator::deactivate();
+    require_once plugin_dir_path( __FILE__ ) . 'includes/class-clwc-deactivator.php';
+    Customer_Loyalty_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_clwc' );
@@ -64,12 +70,13 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-clwc.php';
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.0
+ * @since  1.0
+ * @return void
  */
 function run_clwc() {
 
-	$plugin = new CLWC();
-	$plugin->run();
+    $plugin = new CLWC();
+    $plugin->run();
 
 }
 run_clwc();
@@ -77,14 +84,15 @@ run_clwc();
 /**
  * Add settings link on plugin page
  *
- * @since 1.0
  * @param array $links an array of links related to the plugin.
- * @return array updatead array of links related to the plugin.
+ * 
+ * @since  1.0.0
+ * @return array
  */
 function clwc_settings_link( $links ) {
-	$settings_link = '<a href="admin.php?page=clwc_admin_settings">' . esc_attr__( 'Settings', 'customer-loyalty-for-woocommerce' ) . '</a>';
-	array_unshift( $links, $settings_link );
-	return $links;
+    $settings_link = '<a href="admin.php?page=clwc_admin_settings">' . esc_attr__( 'Settings', 'customer-loyalty-for-woocommerce' ) . '</a>';
+    array_unshift( $links, $settings_link );
+    return $links;
 }
 
 $pluginname = plugin_basename( __FILE__ );
@@ -94,7 +102,8 @@ add_filter( "plugin_action_links_$pluginname", 'clwc_settings_link' );
 /**
  * Add a check for our plugin before redirecting
  * 
- * @since 1.0
+ * @since  1.0.0
+ * @return void
  */
 function clwc_activate() {
     add_option( 'clwc_do_activation_redirect', true );
@@ -102,9 +111,11 @@ function clwc_activate() {
 register_activation_hook( __FILE__, 'clwc_activate' );
 
 /**
- * Redirect to the Customer Loyalty for WooCommerce Settings page on single plugin activation
+ * Redirect to the Customer Loyalty for WooCommerce Settings page 
+ * on single plugin activation
  * 
- * @since 1.0
+ * @since  1.0
+ * @return void
  */
 function clwc_redirect() {
     if ( get_option( 'clwc_do_activation_redirect', false ) ) {

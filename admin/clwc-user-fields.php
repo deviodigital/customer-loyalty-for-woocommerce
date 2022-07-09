@@ -3,20 +3,23 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://www.deviodigital.com
- * @since      1.0
- *
  * @package    CLWC
  * @subpackage CLWC/admin
+ * @author     Devio Diital <contact@deviodigital.com>
+ * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link       https://www.deviodigital.com
+ * @since      1.0.0
  */
 
 /**
  * Add Customer Loyalty profile options to Edit User screen
  * 
- * @since 1.0
+ * @param [type] $profileuser 
+ * 
+ * @since  1.0.0
+ * @return string
  */
 function clwc_add_customer_loyalty_profile_options( $profileuser ) {
-
     // Get user data.
     //$user = get_userdata( $profileuser->ID );
     ?>
@@ -51,7 +54,10 @@ add_action( 'edit_user_profile', 'clwc_add_customer_loyalty_profile_options' );
 /**
  * Save customer punch card punches.
  * 
- * @since 1.0
+ * @param int $user_id 
+ * 
+ * @since  1.0.0
+ * @return void
  */
 function clwc_save_custom_profile_fields( $user_id ) {
 

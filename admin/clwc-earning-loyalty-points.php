@@ -3,23 +3,26 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://www.deviodigital.com
- * @since      1.0
- *
  * @package    CLWC
  * @subpackage CLWC/admin
+ * @author     Devio Diital <contact@deviodigital.com>
+ * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link       https://www.deviodigital.com
+ * @since      1.0.0
  */
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-	wp_die();
+    wp_die();
 }
 
 /**
  * Add loyalty points on successful customer registration
  *
- * @param int $user_id
- * @since 1.0
+ * @param int $user_id 
+ * 
+ * @since  1.0.0
+ * @return void
  */
 function clwc_customer_registration( $user_id ) {
     // Check settings before adding any points.
@@ -45,7 +48,8 @@ add_action( 'user_register', 'clwc_customer_registration', 10, 1 );
 /**
  * Add loyalty points on order completion
  *
- * @since 1.0
+ * @since  1.0.0
+ * @return void
  */
 function clwc_customer_first_order() {
     // Check settings before adding any points.
@@ -71,7 +75,8 @@ add_action( 'woocommerce_thankyou', 'clwc_customer_first_order', 10 );
 /**
  * Add loyalty points for every dollar spent
  *
- * @since 1.0
+ * @since  1.0.0
+ * @return void
  */
 function clwc_customer_money_spent( $order_id ) {
     // Check settings before adding any points.
@@ -88,7 +93,7 @@ function clwc_customer_money_spent( $order_id ) {
         }
 
         // Get user's loyalty points.
-        $old_points = get_user_meta( get_current_user_id(), 'clwc_loyalty_points', TRUE );
+        $old_points = get_user_meta( get_current_user_id(), 'clwc_loyalty_points', true );
 
         // Set empty variable to zero.
         if ( '' == $old_points ) {

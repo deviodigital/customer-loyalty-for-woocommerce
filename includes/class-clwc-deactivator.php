@@ -3,11 +3,12 @@
 /**
  * Fired during plugin deactivation
  *
- * @link       https://www.deviodigital.com
- * @since      1.0
- *
  * @package    CLWC
  * @subpackage CLWC/includes
+ * @author     Devio Diital <contact@deviodigital.com>
+ * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link       https://www.deviodigital.com
+ * @since      1.0.0
  */
 
 /**
@@ -15,22 +16,23 @@
  *
  * This class defines all code necessary to run during the plugin's deactivation.
  *
- * @since      1.0
  * @package    CLWC
  * @subpackage CLWC/includes
- * @author     Devio Digital <contact@deviodigital.com>
+ * @author     Devio Diital <contact@deviodigital.com>
+ * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link       https://www.deviodigital.com
+ * @since      1.0.0
  */
 class Customer_Loyalty_Deactivator {
 
-	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
-	 *
-	 * @since    1.0
-	 */
-	public static function deactivate() {
+    /**
+     * Deactivate.
+     *
+     * @since  1.0.0
+     * @return void
+     */
+    public static function deactivate() {
 
-	}
+    }
 
 }

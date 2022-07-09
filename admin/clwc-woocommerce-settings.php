@@ -3,22 +3,23 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://www.deviodigital.com
- * @since      1.0
- *
  * @package    CLWC
  * @subpackage CLWC/admin
+ * @author     Devio Diital <contact@deviodigital.com>
+ * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link       https://www.deviodigital.com
+ * @since      1.0.0
  */
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-	wp_die();
+    wp_die();
 }
 
 /**
  * Run specific tasks on payment complete in WooCommerce
  * 
- * @since 1.0
+ * @since  1.0.0
  * @return string
  */
 function clwc_payment_complete( $order_id ) {

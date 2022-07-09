@@ -2,11 +2,12 @@
 /**
  * The Customer Loyalty Dashboard Shortcode.
  *
- * @link       https://www.deviodigital.com
- * @since      1.0.
- *
  * @package    CLWC
  * @subpackage CLWC/admin
+ * @author     Devio Diital <contact@deviodigital.com>
+ * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link       https://www.deviodigital.com
+ * @since      1.0.0
  */
 function clwc_dashboard_shortcode() {
 
@@ -16,16 +17,16 @@ function clwc_dashboard_shortcode() {
     $coupon_codes   = '';
     //$clwc_order_ids = '';
 
-	// Check if user is logged in.
-	if ( is_user_logged_in() ) {
-		// Get the user ID.
-		$user_id = get_current_user_id();
+    // Check if user is logged in.
+    if ( is_user_logged_in() ) {
+        // Get the user ID.
+        $user_id = get_current_user_id();
 
-		// Get the user object.
+        // Get the user object.
         //$user_meta = get_userdata( $user_id );
 
         // Get loyalty points.
-        $loyalty_points = get_user_meta( $user_id, 'clwc_loyalty_points', TRUE );
+        $loyalty_points = get_user_meta( $user_id, 'clwc_loyalty_points', true );
 
         // Set to zero if customer has no points.
         if ( ! $loyalty_points ) {
@@ -88,9 +89,9 @@ function clwc_dashboard_shortcode() {
 
             // Redeem loyalty points.
             $redeem_button = '<form class="clwc-redeem-points" name="clwc_redeem_loyalty_points" method="post">
-			<input type="submit" class="button clwc-button" name="clwc_redeem_points" value="' . esc_attr__( 'Redeem', 'customer-loyalty-for-woocommerce' ) . '" />'
-			. wp_nonce_field( 'clwc-redeem-points' ) . 
-			'</form>';
+            <input type="submit" class="button clwc-button" name="clwc_redeem_points" value="' . esc_attr__( 'Redeem', 'customer-loyalty-for-woocommerce' ) . '" />'
+            . wp_nonce_field( 'clwc-redeem-points' ) . 
+            '</form>';
 
             // Redeem loyalty points.
             $redeem_points = '<tr><td><strong>' . esc_attr__( 'Redeem Points', 'customer-loyalty-for-woocommerce' ) . '</strong></td><td>' . $redeem_button . '</td></tr>';
@@ -133,8 +134,7 @@ function clwc_dashboard_shortcode() {
                 if ( $usage_left > 0 ) {
                     $is_coupon_active = '<span class="clwc-available-coupon">' . esc_attr__( 'Available', 'customer-loyalty-for-woocommerce' ) . '</span>';
                     $coupon_class     = '';
-                } 
-                else {
+                } else {
                     $is_coupon_active = '';
                     $coupon_class     = ' class="clwc-inactive-coupon" ';
                 }
