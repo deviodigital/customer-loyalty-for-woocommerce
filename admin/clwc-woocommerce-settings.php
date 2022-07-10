@@ -38,8 +38,8 @@ function clwc_payment_complete( $order_id ) {
     if ( $user ) {
 
         // Card punches.
-        $card_punches = get_user_meta( $user->ID, 'clwc_rewards_card_punches', TRUE );
-        $old_punches  = get_user_meta( $user->ID, 'clwc_rewards_card_punches', TRUE );
+        $card_punches = get_user_meta( $user->ID, 'clwc_rewards_card_punches', true );
+        $old_punches  = get_user_meta( $user->ID, 'clwc_rewards_card_punches', true );
 
         // Set a default of zero.
         if ( '' == $card_punches ) {
@@ -47,8 +47,8 @@ function clwc_payment_complete( $order_id ) {
         }
 
         // Rewards earned.
-        $rewards_earned = get_user_meta( $user->ID, 'clwc_rewards_earned', TRUE );
-        $old_rewards    = get_user_meta( $user->ID, 'clwc_rewards_earned', TRUE );
+        $rewards_earned = get_user_meta( $user->ID, 'clwc_rewards_earned', true );
+        $old_rewards    = get_user_meta( $user->ID, 'clwc_rewards_earned', true );
 
         // Set a default of zero.
         if ( '' == $rewards_earned ) {
@@ -104,23 +104,21 @@ function clwc_payment_complete( $order_id ) {
 
             // Update user meta - rewards earned number.
             update_user_meta( $user->ID, 'clwc_rewards_earned', $rewards_earned, $old_rewards );
-
         } else {
-
             // Add 1 to punches count.
             $card_punches = $card_punches + 1;
-
         }
 
         // Update user meta - punch card number.
         update_user_meta( $user->ID, 'clwc_rewards_card_punches', $card_punches, $old_punches );
-
     }
 }
 add_action( 'woocommerce_thankyou', 'clwc_payment_complete', 10 );
 
 /**
  * Display Coupon Code for 10 punches to the Punch Card.
+ * 
+ * @param object $order 
  *
  * @return string
  */
@@ -131,7 +129,7 @@ function clwc_order_customer_coupon_code( $order ) {
     $order_id = trim( str_replace( '#', '', $order->get_order_number() ) );
 
     // Get coupon code that was added to the order meta data.
-    $coupon_code = get_post_meta( $order_id, 'clwc_customer_coupon_code', TRUE );
+    $coupon_code = get_post_meta( $order_id, 'clwc_customer_coupon_code', true );
 
     /**
      * Display reward notice
@@ -142,7 +140,7 @@ function clwc_order_customer_coupon_code( $order ) {
      */
     if ( $coupon_code ) {
         // Set rewards card image.
-        if ( FALSE == clwc_rewards_card_image() ) {
+        if ( false == clwc_rewards_card_image() ) {
             // Default rewards card image.
             $rewards_card_image = apply_filters( 'clwc_rewards_card_image_default', plugins_url( '/public/images/rewards-card-image-default.jpg', dirname(__FILE__) ) );
         } else {
