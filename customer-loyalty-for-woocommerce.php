@@ -13,7 +13,7 @@
  * Plugin Name:      Customer Loyalty for WooCommerce
  * Plugin URI:       https://www.deviodigital.com/customer-loyalty-for-woocommerce
  * Description:      Increase customer loyalty by rewarding your customers for their repeat purchase behavior.
- * Version:          1.3.0
+ * Version:          1.3.1
  * Author:           Devio Digital
  * Author URI:       https://www.deviodigital.com
  * License:          GPL-2.0+
@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Current plugin version.
  */
-define( 'CUSTOMER_LOYALTY_VERSION', '1.3.0' );
+define( 'CUSTOMER_LOYALTY_VERSION', '1.3.1' );
 
 /**
  * The code that runs during plugin activation.
@@ -126,3 +126,28 @@ function clwc_redirect() {
     }
 }
 add_action( 'admin_init', 'clwc_redirect' );
+
+/**
+ * Display a custom admin notice to inform users about plugin update issues.
+ *
+ * This function displays a dismissible admin notice warning users about 
+ * restrictions imposed by WordPress® leadership that may impact automatic 
+ * plugin updates. It provides a link to a resource where users can learn how 
+ * to continue receiving updates.
+ *
+ * @since  1.3.1
+ * @return void
+ */
+function custom_update_notice() {
+    // Translating the notice text using WordPress® translation functions.
+    $notice_text = sprintf(
+        esc_html__( 'Important Notice: Due to recent changes initiated by WordPress® leadership, access to the plugin repository is being restricted for certain hosting providers and developers. This may impact automatic updates for your plugins. To ensure you continue receiving updates and to learn about the next steps, please visit %s.', 'dispensary-age-verification' ),
+        '<a href="https://robertdevore.com/wordpress-plugin-updates/" target="_blank">this page</a>'
+    );
+
+    // Display the admin notice.
+    echo '<div class="notice notice-warning is-dismissible">
+        <p>' . $notice_text . '</p>
+    </div>';
+}
+add_action( 'admin_notices', 'custom_update_notice' );
