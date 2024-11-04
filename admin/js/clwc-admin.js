@@ -1,32 +1,42 @@
-(function( $ ) {
-	"use strict";
+jQuery(document).ready(function($) {
+    console.log("Loyalty Points script loaded."); // Debugging line
+    $('.clwc-loyalty-points').on('change', function() {
+        var $input = $(this);
+        var userID = $input.data('user-id');
+        var points = $input.val();
 
-	/**
-	 * All of the code for your admin-facing JavaScript source
-	 * should reside in this file.
-	 *
-	 * Note: It has been assumed you will write jQuery code here, so the
-	 * $ function reference has been prepared for usage within the scope
-	 * of this function.
-	 *
-	 * This enables you to define handlers, for when the DOM is ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * When the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and/or other possibilities.
-	 *
-	 * Ideally, it is not considered best practise to attach more than a
-	 * single DOM-ready or window-load handler for a particular page.
-	 * Although scripts in the WordPress core, Plugins and Themes may be
-	 * practising this, we should strive to set a better example in our own work.
-	 */
+        console.log("User ID:", userID, "Points:", points); // Debugging line
 
-})( jQuery );
+        // Disable the input while processing
+        $input.prop('disabled', true);
+
+        $.ajax({
+            url: clwc_ajax.ajax_url,
+            method: 'POST',
+            data: {
+                action: 'clwc_update_loyalty_points',
+                user_id: userID,
+                points: points,
+                security: clwc_ajax.nonce,
+            },
+            success: function(response) {
+                console.log(response); // Debugging line
+                if (response.success) {
+                    // Optionally, provide visual feedback
+                    $input.css('border-color', 'green');
+                } else {
+                    $input.css('border-color', 'red');
+                    alert(response.data || 'An error occurred');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $input.css('border-color', 'red');
+                alert('An AJAX error occurred: ' + textStatus);
+            },
+            complete: function() {
+                // Re-enable the input
+                $input.prop('disabled', false);
+            }
+        });
+    });
+});

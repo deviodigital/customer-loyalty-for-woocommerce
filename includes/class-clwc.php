@@ -8,7 +8,7 @@
  *
  * @package    CLWC
  * @subpackage CLWC/includes
- * @author     Devio Diital <contact@deviodigital.com>
+ * @author     Devio Digital <contact@deviodigital.com>
  * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
  * @link       https://www.deviodigital.com
  * @since      1.0.0
@@ -25,7 +25,7 @@
  *
  * @package    CLWC
  * @subpackage CLWC/includes
- * @author     Devio Diital <contact@deviodigital.com>
+ * @author     Devio Digital <contact@deviodigital.com>
  * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
  * @link       https://www.deviodigital.com
  * @since      1.0.0
@@ -126,9 +126,14 @@ class CLWC {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/clwc-helper-functions.php';
 
         /**
-         * The class responsible for defining admin settings.
+         * The file responsible for defining the customer loyalty points table.
          */
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-clwc-osa.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-customer-loyalty-table.php';
+
+        /**
+         * The file responsible for defining the loyalty log table.
+         */
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-loyalty-log-table.php';
 
         /**
          * The file responsible for defining admin settings.

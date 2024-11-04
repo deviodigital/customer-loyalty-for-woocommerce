@@ -4,13 +4,13 @@
  * The plugin bootstrap file
  *
  * @package CLWC
- * @author  Devio Diital <contact@deviodigital.com>
+ * @author  Devio Digital <contact@deviodigital.com>
  * @license GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
  * @link    https://www.deviodigital.com
  * @since   1.0.0
  *
  * @wordpress-plugin
- * Plugin Name:      Customer Loyalty for WooCommerce
+ * Plugin Name:      Customer Loyalty for WooCommerce®
  * Plugin URI:       https://www.deviodigital.com/customer-loyalty-for-woocommerce
  * Description:      Increase customer loyalty by rewarding your customers for their repeat purchase behavior.
  * Version:          1.3.1
@@ -150,4 +150,4 @@ function custom_update_notice() {
         <p>' . $notice_text . '</p>
     </div>';
 }
-add_action( 'admin_notices', 'custom_update_notice' );
+//add_action( 'admin_notices', 'custom_update_notice' );
