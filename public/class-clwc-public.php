@@ -31,31 +31,31 @@ class Customer_Loyalty_Public {
      *
      * @since  1.0.0
      * @access private
-     * @var    string  $_plugin_name - The ID of this plugin.
+     * @var    string  $plugin_name - The ID of this plugin.
      */
-    private $_plugin_name;
+    private $plugin_name;
 
     /**
      * The version of this plugin.
      *
      * @since  1.0.0
      * @access private
-     * @var    string  $_version - The current version of this plugin.
+     * @var    string  $version - The current version of this plugin.
      */
-    private $_version;
+    private $version;
 
     /**
      * Initialize the class and set its properties.
      *
-     * @param string $_plugin_name - The name of the plugin.
-     * @param string $_version     - The version of this plugin.
+     * @param string $plugin_name - The name of the plugin.
+     * @param string $version     - The version of this plugin.
      * 
      * @since 1.0.0
      */
-    public function __construct( $_plugin_name, $_version ) {
+    public function __construct( $plugin_name, $version ) {
 
-        $this->plugin_name = $_plugin_name;
-        $this->version     = $_version;
+        $this->plugin_name = $plugin_name;
+        $this->version     = $version;
 
     }
 
@@ -66,7 +66,7 @@ class Customer_Loyalty_Public {
      * @return void
      */
     public function enqueue_styles() {
-        wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/clwc-public.min.css', array(), $this->version, 'all' );
+        wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/clwc-public.min.css', [], $this->version, 'all' );
     }
 
     /**
