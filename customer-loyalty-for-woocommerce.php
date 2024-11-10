@@ -10,7 +10,7 @@
  * @since   1.0.0
  *
  * @wordpress-plugin
- * Plugin Name:      Customer Loyalty for WooCommerce®
+ * Plugin Name:      Loyalty & Rewards for WooCommerce®
  * Plugin URI:       https://www.deviodigital.com/customer-loyalty-for-woocommerce
  * Description:      Increase customer loyalty by rewarding your customers for their repeat purchase behavior.
  * Version:          1.3.1
@@ -31,6 +31,44 @@ if ( ! defined( 'WPINC' ) ) {
  * Current plugin version.
  */
 define( 'CUSTOMER_LOYALTY_VERSION', '1.3.1' );
+
+/**
+ * Create the CLWC Loyalty Log database table.
+ *
+ * This function creates a table for storing loyalty log entries in the database.
+ * It includes fields for storing the customer ID, name, email, points, action details, and date.
+ *
+ * @package    CLWC
+ * @since      2.0.0
+ */
+function clwc_create_loyalty_log_table() {
+    global $wpdb;
+
+    // Define table name with the WordPress table prefix.
+    $table_name = $wpdb->prefix . 'clwc_loyalty_log';
+
+    // Set the database character set and collation for security.
+    $charset_collate = $wpdb->get_charset_collate();
+
+    // SQL statement to create the table if it does not exist.
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+        id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+        user_id BIGINT(20) UNSIGNED NOT NULL,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        points INT(11) NOT NULL,
+        details TEXT NOT NULL,
+        date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+        PRIMARY KEY (id),
+        KEY user_id (user_id),
+        KEY date (date)
+    ) $charset_collate;";
+
+    // Load the dbDelta function, which manages database upgrades and creation.
+    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+    dbDelta( $sql );
+}
+register_activation_hook( __FILE__, 'clwc_create_loyalty_log_table' );
 
 /**
  * The code that runs during plugin activation.
