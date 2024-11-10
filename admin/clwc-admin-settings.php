@@ -20,9 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function clwc_add_loyalty_points_submenu() {
     add_submenu_page(
-        'woocommerce', // Parent slug to add the menu under WooCommerce®.
-        esc_html__( 'Customer Loyalty Settings', 'customer-loyalty-for-woocommerce' ),
-        esc_html__( 'Loyalty Points', 'customer-loyalty-for-woocommerce' ),
+        'woocommerce',
+        esc_html__( 'Customer Loyalty &amp; Rewards Settings', 'customer-loyalty-for-woocommerce' ),
+        esc_html__( 'Loyalty &amp; Rewards', 'customer-loyalty-for-woocommerce' ),
         'manage_options',
         'clwc-customer-loyalty',
         'clwc_render_loyalty_points_page'
@@ -35,10 +35,10 @@ function clwc_render_loyalty_points_page() {
     ?>
     <div class="wrap">
         <h1 style="display: block; align-items: center;">
-            <?php esc_html_e( 'Customer Loyalty Settings', 'customer-loyalty-for-woocommerce' ); ?>
+            <?php esc_html_e( 'Customer Loyalty &amp; Rewards Settings', 'customer-loyalty-for-woocommerce' ); ?>
             <span style="font-size: small; margin-left: 10px; display: inline-block; vertical-align: middle;">
                 <?php if ( defined( 'CUSTOMER_LOYALTY_VERSION' ) ) : ?>
-                    v<?php echo esc_html( CUSTOMER_LOYALTY_VERSION ); ?> &middot; 
+                    v<?php echo esc_html( CUSTOMER_LOYALTY_VERSION ); ?>
                 <?php endif; ?>
             </span>
             <span style="font-size: small; margin-left: 10px; display: inline-block; vertical-align: middle; float:right;">
@@ -51,7 +51,7 @@ function clwc_render_loyalty_points_page() {
             </span>
         </h1>
 
-        <h2 class="nav-tab-wrapper" style="margin-top:18px;">
+        <h2 class="nav-tab-wrapper" style="margin:18px 0;">
             <a href="?page=clwc-customer-loyalty&tab=rewards_card" class="nav-tab <?php echo $active_tab === 'rewards_card' ? 'nav-tab-active' : ''; ?>">
                 <?php esc_html_e( 'Rewards Card', 'customer-loyalty-for-woocommerce' ); ?>
             </a>
