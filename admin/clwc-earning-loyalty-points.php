@@ -27,6 +27,16 @@ if ( ! defined( 'WPINC' ) ) {
 function clwc_customer_registration( $user_id ) {
     // Check settings before adding any points.
     if ( 'on' == clwc_loyalty_points_activate() && 0 != clwc_earning_points_customer_registration() ) {
+        // Get user data.
+        $user_info  = get_userdata( $user_id );
+        $user_name  = '';
+        $user_email = '';
+
+        if ( $user_info ) {
+            $user_email = $user_info->user_email;
+            $user_name  = $user_info->display_name;
+        }
+
         // Get user's loyalty points.
         $old_points = get_user_meta( $user_id, 'clwc_loyalty_points', TRUE );
 
@@ -40,6 +50,15 @@ function clwc_customer_registration( $user_id ) {
 
         // Update customer loyalty points.
         update_user_meta( $user_id, 'clwc_loyalty_points', $new_points, $old_points );
+
+        // Define a descriptive details string for the log entry.
+        $details = sprintf(
+            esc_html__( 'Customer awarded %d loyalty points for registering an account.', 'customer-loyalty-for-woocommerce' ),
+            clwc_earning_points_customer_registration()
+        );
+
+        // Log the usage of customer loyalty points.
+        clwc_insert_loyalty_log_entry( $user_id, $user_name, $user_email, $new_points, $details );
     }
 
 }
