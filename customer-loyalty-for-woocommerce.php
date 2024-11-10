@@ -128,7 +128,7 @@ run_clwc();
  * @return array
  */
 function clwc_settings_link( $links ) {
-    $settings_link = '<a href="admin.php?page=clwc_admin_settings">' . esc_attr__( 'Settings', 'customer-loyalty-for-woocommerce' ) . '</a>';
+    $settings_link = '<a href="admin.php?page=clwc-customer-loyalty">' . esc_attr__( 'Settings', 'customer-loyalty-for-woocommerce' ) . '</a>';
     array_unshift( $links, $settings_link );
     return $links;
 }
@@ -159,7 +159,7 @@ function clwc_redirect() {
     if ( get_option( 'clwc_do_activation_redirect', false ) ) {
         delete_option( 'clwc_do_activation_redirect' );
         if ( null === filter_input( INPUT_GET, 'activate-multi' ) ) {
-            wp_safe_redirect( 'admin.php?page=clwc_admin_settings' );
+            wp_safe_redirect( 'admin.php?page=clwc-customer-loyalty' );
         }
     }
 }
