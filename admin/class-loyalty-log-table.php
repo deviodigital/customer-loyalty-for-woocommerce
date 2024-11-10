@@ -32,7 +32,7 @@ class CLWC_Customer_Loyalty_Log_Table extends WP_List_Table {
     /**
      * CLWC_Customer_Loyalty_Log_Table constructor.
      *
-     * @since 2.0.0
+     * Initializes the table's singular and plural names.
      */
     public function __construct() {
         parent::__construct( [
@@ -43,83 +43,108 @@ class CLWC_Customer_Loyalty_Log_Table extends WP_List_Table {
     }
 
     /**
-     * Define the columns displayed in the table.
+     * Defines the columns displayed in the table.
      *
-     * @since 2.0.0
-     * @return array List of columns.
+     * @return array List of columns with column IDs as keys and column titles as values.
      */
     public function get_columns() {
         return [
-            'name'   => esc_html__( 'Customer Name', 'customer-loyalty-for-woocommerce' ),
-            'email'  => esc_html__( 'Email', 'customer-loyalty-for-woocommerce' ),
-            'points' => esc_html__( 'Points', 'customer-loyalty-for-woocommerce' ),
+            'name'    => esc_html__( 'Customer Name', 'customer-loyalty-for-woocommerce' ),
+            'email'   => esc_html__( 'Email', 'customer-loyalty-for-woocommerce' ),
+            'points'  => esc_html__( 'Points', 'customer-loyalty-for-woocommerce' ),
+            'details' => esc_html__( 'Details', 'customer-loyalty-for-woocommerce' ),
+            'date'    => esc_html__( 'Date', 'customer-loyalty-for-woocommerce' ),
         ];
-    }    
+    }
 
     /**
-     * Prepares the items for display in the table, including pagination.
+     * Defines which columns are sortable.
      *
-     * @since 2.0.0
+     * @return array Associative array with column keys as keys and boolean values indicating sortable status.
+     */
+    public function get_sortable_columns() {
+        return [
+            'name'   => ['name', false],
+            'email'  => ['email', false],
+            'points' => ['points', false],
+            'date'   => ['date', false],
+        ];
+    }
+
+    /**
+     * Prepares items for display, including pagination and sorting.
+     *
+     * Fetches data from the database, processes pagination, and sets column headers.
      */
     public function prepare_items() {
+        global $wpdb;
+
         $per_page     = 10;
         $current_page = $this->get_pagenum();
-    
-        // Fetch log entries and ensure it's an array
-        $all_items   = $this->get_log_entries();
-        $total_items = is_array($all_items) ? count($all_items) : 0;
-    
-        // Slice items for pagination
-        $this->items = is_array($all_items) ? array_slice( $all_items, ( $current_page - 1 ) * $per_page, $per_page ) : [];
-    
-        // Pagination arguments
+        $orderby      = !empty( $_REQUEST['orderby'] ) ? sanitize_sql_orderby( $_REQUEST['orderby'] ) : 'date';
+        $order        = !empty( $_REQUEST['order'] ) && 'asc' === strtolower( $_REQUEST['order'] ) ? 'ASC' : 'DESC';
+
+        // Query to fetch entries from the custom table.
+        $table_name   = $wpdb->prefix . 'clwc_loyalty_log';
+        $offset       = ( $current_page - 1 ) * $per_page;
+
+        // Total item count for pagination.
+        $total_items  = $wpdb->get_var( "SELECT COUNT(*) FROM $table_name" );
+
+        // Fetch the entries with sorting and pagination
+        $this->items = $wpdb->get_results( 
+            $wpdb->prepare(
+                "SELECT * FROM $table_name ORDER BY $orderby $order LIMIT %d OFFSET %d",
+                $per_page,
+                $offset
+            ),
+            ARRAY_A
+        );
+
+        // Set pagination arguments
         $this->set_pagination_args( [
             'total_items' => $total_items,
             'per_page'    => $per_page,
             'total_pages' => ceil( $total_items / $per_page ),
         ] );
+
+        // Set column headers, including sortable columns
+        $columns   = $this->get_columns();
+        $hidden    = [];
+        $sortable  = $this->get_sortable_columns();
+        $this->_column_headers = [ $columns, $hidden, $sortable ];
     }
 
     /**
-     * Retrieve log entries from the database or other source.
+     * Renders default column values.
      *
-     * @since 2.0.0
-     * @return array List of log entries.
-     */
-    private function get_log_entries() {
-        $data = [
-            [ 'ID' => 1, 'name' => 'John Doe', 'email' => 'john@example.com', 'points' => '+50', 'details' => 'Points awarded for registration', 'date' => '2024-11-01' ],
-            [ 'ID' => 2, 'name' => 'Jane Doe', 'email' => 'jane@example.com', 'points' => '-20', 'details' => 'Points redeemed for discount', 'date' => '2024-11-01' ],
-        ];
-    
-        return is_array($data) ? $data : []; // Ensure an array is returned
-    }
-    
-
-    /**
-     * Render the default column values.
+     * Provides values for columns that do not have a custom rendering method.
      *
-     * @since 2.0.0
+     * @param array  $item         The log entry data for a single row.
+     * @param string $column_name  The name of the column being rendered.
      * 
-     * @param array  $item         The log entry data.
-     * @param string $column_name  The name of the column.
-     * 
-     * @return string The column content.
+     * @return string The content to display in the column.
      */
     protected function column_default( $item, $column_name ) {
         switch ( $column_name ) {
             case 'name':
-                return $item['name'];
             case 'email':
-                return $item['email'];
             case 'points':
-                return sprintf(
-                    '<input type="number" class="clwc-loyalty-points" data-user-id="%d" value="%d" />',
-                    esc_attr( $item['ID'] ),
-                    esc_attr( $item['points'] )
-                );
+            case 'details':
+            case 'date':
+                return esc_html( $item[ $column_name ] );
             default:
-                return ''; // Empty for any undefined columns
+                return ''; // Empty for undefined columns
         }
+    }
+
+    /**
+     * Renders and displays the table.
+     *
+     * Calls `prepare_items()` and then `display()` to output the table.
+     */
+    public function display_table() {
+        $this->prepare_items();
+        $this->display();
     }
 }

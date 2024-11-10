@@ -26,9 +26,6 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
  */
 class CLWC_Customer_Loyalty_Table extends WP_List_Table {
 
-    /**
-     * CLWC_Customer_Loyalty_Table constructor.
-     */
     public function __construct() {
         parent::__construct( [
             'singular' => 'clwc_customer',
@@ -36,12 +33,7 @@ class CLWC_Customer_Loyalty_Table extends WP_List_Table {
             'ajax'     => false,
         ] );
     }
-    /**
-     * Define table columns.
-     *
-     * @since 2.0.0
-     * @return array List of columns.
-     */
+
     public function get_columns() {
         return [
             'name'   => esc_html__( 'Customer Name', 'customer-loyalty-for-woocommerce' ),
@@ -49,34 +41,39 @@ class CLWC_Customer_Loyalty_Table extends WP_List_Table {
             'points' => esc_html__( 'Points', 'customer-loyalty-for-woocommerce' ),
         ];
     }
-    
-    public function single_row( $item ) {
-        echo '<tr>';
-        foreach ( $this->get_columns() as $column_name => $column_display_name ) {
-            echo '<td>';
-            // Use column-specific methods or column_default
-            if ( method_exists( $this, 'column_' . $column_name ) ) {
-                echo call_user_func( [ $this, 'column_' . $column_name ], $item );
-            } else {
-                echo $this->column_default( $item, $column_name );
-            }
-            echo '</td>';
-        }
-        echo '</tr>';
-    }    
-    
-    /**
-     * Prepare items for display in the table, including pagination.
-     *
-     * @since 2.0.0
-     * @return void
-     */
+
+    public function get_sortable_columns() {
+        return [
+            'name'   => ['name', true],
+            'email'  => ['email', false],
+            'points' => ['points', false],
+        ];
+    }
+
     public function prepare_items() {
-        $per_page = 10;
+        $per_page     = 10;
         $current_page = $this->get_pagenum();
+        $search       = isset( $_REQUEST['s'] ) ? sanitize_text_field( $_REQUEST['s'] ) : '';
     
-        // Retrieve data and set items
-        $all_items = $this->get_customers_with_points();
+        $all_items = $this->get_customers_with_points( $search );
+    
+        // Sorting
+        $orderby = !empty( $_REQUEST['orderby'] ) ? $_REQUEST['orderby'] : 'name';
+        $order   = !empty( $_REQUEST['order'] ) && $_REQUEST['order'] === 'desc' ? 'desc' : 'asc';
+    
+        usort( $all_items, function ( $a, $b ) use ( $orderby, $order ) {
+            if ( $orderby === 'points' ) {
+                // Sort points as integers
+                $result = (int) $a['points'] <=> (int) $b['points'];
+            } else {
+                // Sort name and email as strings, stripping HTML from name
+                $valA = $orderby === 'name' ? strip_tags( $a['name'] ) : $a[$orderby];
+                $valB = $orderby === 'name' ? strip_tags( $b['name'] ) : $b[$orderby];
+                $result = strcmp( $valA, $valB );
+            }
+            return ( $order === 'asc' ) ? $result : -$result;
+        });
+    
         $this->items = array_slice( $all_items, ( $current_page - 1 ) * $per_page, $per_page );
     
         $total_items = count( $all_items );
@@ -86,26 +83,24 @@ class CLWC_Customer_Loyalty_Table extends WP_List_Table {
             'total_pages' => ceil( $total_items / $per_page ),
         ] );
     
-        // Column headers required for display
-        $columns = $this->get_columns();
-        $hidden = [];
-        $sortable = [];
+        $columns   = $this->get_columns();
+        $hidden    = [];
+        $sortable  = $this->get_sortable_columns();
         $this->_column_headers = [ $columns, $hidden, $sortable ];
     }
     
+    private function get_customers_with_points( $search = '' ) {
+        $args = [
+            'role' => 'customer',
+            'search' => $search ? '*' . esc_attr( $search ) . '*' : '',
+            'search_columns' => ['display_name', 'user_email']
+        ];
 
-    /**
-     * Retrieve customers and their loyalty points.
-     *
-     * @since 2.0.0
-     * @return array List of customers with loyalty points.
-     */
-    private function get_customers_with_points() {
-        $users = get_users( [ 'role' => 'customer' ] ); // Using a simple role query
+        $users = get_users( $args );
         $data  = [];
-    
+
         foreach ( $users as $user ) {
-            $points = (int) get_user_meta( $user->ID, 'clwc_loyalty_points', true ); // Default to 0 if not set
+            $points = (int) get_user_meta( $user->ID, 'clwc_loyalty_points', true );
             $data[] = [
                 'ID'     => $user->ID,
                 'name'   => sprintf(
@@ -117,20 +112,10 @@ class CLWC_Customer_Loyalty_Table extends WP_List_Table {
                 'points' => $points,
             ];
         }
-        
-        error_log( print_r( $data, true ) );
 
         return $data;
-     }
+    }
 
-    /**
-     * Render default column values.
-     *
-     * @since 2.0.0
-     * @param array  $item         The customer data.
-     * @param string $column_name  The name of the column.
-     * @return string The column content.
-     */
     protected function column_default( $item, $column_name ) {
         switch ( $column_name ) {
             case 'name':
@@ -144,6 +129,12 @@ class CLWC_Customer_Loyalty_Table extends WP_List_Table {
                 );
             default:
                 return 'N/A';
+        }
+    }
+
+    public function extra_tablenav( $which ) {
+        if ( 'top' === $which ) {
+            $this->search_box( __( 'Search Customers', 'customer-loyalty-for-woocommerce' ), 'clwc_search' );
         }
     }
 }
