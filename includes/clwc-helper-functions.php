@@ -45,243 +45,451 @@ function clwc_get_random_string( $length = 6 ) {
 }
 
 /**
- * Check to see if the Rewards Card is activated.
+ * Check if the Rewards Card is activated.
  *
- * @return string|bool
+ * Determines whether the rewards card feature is enabled based on plugin settings.
+ *
+ * @since 1.0.0
+ * @return bool True if the rewards card is activated, false otherwise.
  */
 function clwc_rewards_card_activate() {
-    $card   = get_option( 'clwc_rewards_card' );
-    $active = false;
+    // Retrieve the rewards card settings option.
+    $settings = get_option( 'clwc_rewards_card_settings' );
 
-    if ( isset( $card['clwc_rewards_card_activate'] ) && '' !== $card['clwc_rewards_card_activate'] ) {
-        $active = $card['clwc_rewards_card_activate'];
+    // Default to false if the rewards card activation setting is not configured.
+    $is_active = false;
+
+    // Check if the rewards card activation setting is defined and true.
+    if ( isset( $settings['activate_rewards_card'] ) && '1' === $settings['activate_rewards_card'] ) {
+        $is_active = true;
     }
 
-    return apply_filters( 'clwc_rewards_card_activate', $active );
+    error_log( 'Rewards Card Activation Status: ' . ($is_active ? 'Active' : 'Inactive') );
+
+    /**
+     * Filter the rewards card activation status.
+     *
+     * @param bool $is_active True if the rewards card is activated, false otherwise.
+     */
+    return apply_filters( 'clwc_rewards_card_activate', $is_active );
 }
 
 /**
- * Get the rewards card title
+ * Get the rewards card title.
  *
- * @return string|bool
+ * Retrieves the title displayed on the rewards card, with a default fallback if not set.
+ *
+ * @since 1.0.0
+ * @return string Rewards card title.
  */
 function clwc_rewards_card_title() {
-    $card  = get_option( 'clwc_rewards_card' );
+    // Retrieve the rewards card settings option.
+    $settings = get_option( 'clwc_rewards_card_settings' );
+
+    // Default title.
     $title = esc_attr__( 'You earned a reward', 'customer-loyalty-for-woocommerce' );
 
-    if ( isset( $card['clwc_rewards_card_title'] ) && '' !== $card['clwc_rewards_card_title'] ) {
-        $title = $card['clwc_rewards_card_title'];
+    // Check if the rewards card title setting is defined and not empty.
+    if ( isset( $settings['rewards_card_title'] ) && '' !== $settings['rewards_card_title'] ) {
+        $title = sanitize_text_field( $settings['rewards_card_title'] );
     }
 
-    return apply_filters( 'clwc_helper_rewards_card_title', $title );
+    error_log( 'Rewards Card Title: ' . $title );
+
+    /**
+     * Filter the rewards card title.
+     *
+     * @param string $title Rewards card title.
+     */
+    return apply_filters( 'clwc_rewards_card_title', $title );
 }
 
 /**
- * Get the rewards card text
+ * Get the rewards card text.
  *
- * @return string|bool
+ * Retrieves the main text or message displayed on the rewards card.
+ *
+ * @since 1.0.0
+ * @return string|bool Rewards card text, or false if not set.
  */
 function clwc_rewards_card_text() {
-    $card = get_option( 'clwc_rewards_card' );
+    // Retrieve the rewards card settings option.
+    $settings = get_option( 'clwc_rewards_card_settings' );
+
+    // Default to false if the rewards card text setting is not configured.
     $text = false;
 
-    if ( isset( $card['clwc_rewards_card_text'] ) && '' !== $card['clwc_rewards_card_text'] ) {
-        $text = $card['clwc_rewards_card_text'];
+    // Check if the rewards card text setting is defined and not empty.
+    if ( isset( $settings['rewards_card_text'] ) && '' !== $settings['rewards_card_text'] ) {
+        $text = wp_kses_post( $settings['rewards_card_text'] );
     }
 
-    return apply_filters( 'clwc_helper_rewards_card_text', $text );
+    error_log( 'Rewards Card Text: ' . $text );
+
+    /**
+     * Filter the rewards card text.
+     *
+     * @param string|bool $text Rewards card text, or false if not set.
+     */
+    return apply_filters( 'clwc_rewards_card_text', $text );
 }
 
 /**
- * Get the rewards card image
+ * Get the rewards card image.
  *
- * @return string|bool
+ * Retrieves the URL or ID of the image displayed on the rewards card.
+ *
+ * @since 1.0.0
+ * @return string|bool Rewards card image URL or ID, or false if not set.
  */
 function clwc_rewards_card_image() {
-    $card  = get_option( 'clwc_rewards_card' );
+    // Retrieve the rewards card settings option.
+    $settings = get_option( 'clwc_rewards_card_settings' );
+
+    // Default to false if the rewards card image setting is not configured.
     $image = false;
 
-    if ( isset( $card['clwc_rewards_card_image'] ) && '' !== $card['clwc_rewards_card_image'] ) {
-        $image = $card['clwc_rewards_card_image'];
+    // Check if the rewards card image setting is defined and not empty.
+    if ( isset( $settings['rewards_card_image'] ) && '' !== $settings['rewards_card_image'] ) {
+        $image = esc_url( $settings['rewards_card_image'] );
     }
 
-    return apply_filters( 'clwc_helper_rewards_card_image', $image );
+    error_log( 'Rewards Card Image: ' . $image );
+
+    /**
+     * Filter the rewards card image.
+     *
+     * @param string|bool $image Rewards card image URL or ID, or false if not set.
+     */
+    return apply_filters( 'clwc_rewards_card_image', $image );
 }
 
 /**
- * Get the rewards card required punches
+ * Get the rewards card required punches.
  *
- * @return string|bool
+ * Retrieves the number of punches required to redeem a rewards card coupon.
+ *
+ * @since 1.0.0
+ * @return int|bool Number of punches required, or false if not set.
  */
 function clwc_rewards_card_required_punches() {
-    $card    = get_option( 'clwc_rewards_card' );
-    $punches = false;
+    // Retrieve the rewards card settings option.
+    $settings = get_option( 'clwc_rewards_card_settings' );
 
-    if ( isset( $card['clwc_rewards_card_required_punches'] ) && '' !== $card['clwc_rewards_card_required_punches'] ) {
-        $punches = $card['clwc_rewards_card_required_punches'];
+    // Default to false if required punches setting is not configured.
+    $required_punches = false;
+
+    // Check if the required punches setting is defined and not empty.
+    if ( isset( $settings['required_punches'] ) && '' !== $settings['required_punches'] ) {
+        $required_punches = (int) $settings['required_punches'];
     }
 
-    return apply_filters( 'clwc_rewards_card_required_punches', $punches );
+    error_log( 'Required Punches for Rewards Card: ' . $required_punches );
+
+    /**
+     * Filter the rewards card required punches.
+     *
+     * @param int|bool $required_punches Number of punches required.
+     */
+    return apply_filters( 'clwc_rewards_card_required_punches', $required_punches );
 }
 
 /**
- * Get the rewards card coupon amount
+ * Get the rewards card coupon amount.
  *
- * @return string|bool
+ * Retrieves the coupon amount that is awarded after the required punches are met.
+ *
+ * @since 1.0.0
+ * @return float|bool Coupon amount, or false if not set.
  */
 function clwc_rewards_card_coupon_amount() {
-    $card   = get_option( 'clwc_rewards_card' );
-    $amount = false;
+    // Retrieve the rewards card settings option.
+    $settings = get_option( 'clwc_rewards_card_settings' );
 
-    if ( isset( $card['clwc_rewards_card_coupon_amount'] ) && '' !== $card['clwc_rewards_card_coupon_amount'] ) {
-        $amount = $card['clwc_rewards_card_coupon_amount'];
+    // Default to false if coupon amount setting is not configured.
+    $coupon_amount = false;
+
+    // Check if the coupon amount setting is defined and not empty.
+    if ( isset( $settings['coupon_amount'] ) && '' !== $settings['coupon_amount'] ) {
+        $coupon_amount = (float) $settings['coupon_amount'];
     }
 
-    return apply_filters( 'clwc_rewards_card_coupon_amount', $amount );
+    error_log( 'Coupon Amount for Rewards Card: ' . $coupon_amount );
+
+    /**
+     * Filter the rewards card coupon amount.
+     *
+     * @param float|bool $coupon_amount Coupon amount.
+     */
+    return apply_filters( 'clwc_rewards_card_coupon_amount', $coupon_amount );
 }
 
 /**
- * Get the rewards card coupon type
+ * Get the rewards card coupon type.
  *
- * @return string|bool
+ * Retrieves the type of coupon awarded, such as fixed cart discount or percentage discount.
+ *
+ * @since 1.0.0
+ * @return string|bool Coupon type (e.g., 'fixed_cart' or 'percentage'), or false if not set.
  */
 function clwc_rewards_card_coupon_type() {
-    $card        = get_option( 'clwc_rewards_card' );
+    // Retrieve the rewards card settings option.
+    $settings = get_option( 'clwc_rewards_card_settings' );
+
+    // Default to false if coupon type setting is not configured.
     $coupon_type = false;
 
-    if ( isset( $card['clwc_rewards_card_coupon_type'] ) && '' !== $card['clwc_rewards_card_coupon_type'] ) {
-        $coupon_type = $card['clwc_rewards_card_coupon_type'];
+    // Check if the coupon type setting is defined and not empty.
+    if ( isset( $settings['coupon_type'] ) && '' !== $settings['coupon_type'] ) {
+        $coupon_type = sanitize_text_field( $settings['coupon_type'] );
     }
 
+    error_log( 'Rewards Card Coupon Type: ' . $coupon_type );
+
+    /**
+     * Filter the rewards card coupon type.
+     *
+     * @param string|bool $coupon_type Coupon type.
+     */
     return apply_filters( 'clwc_rewards_card_coupon_type', $coupon_type );
 }
 
 /**
- * Get the rewards card coupon prefix
+ * Get the rewards card coupon prefix.
  *
- * @return string|bool
+ * Retrieves the prefix applied to the coupon code for rewards card redemptions.
+ *
+ * @since 1.0.0
+ * @return string|bool Coupon prefix, or false if not set.
  */
 function clwc_rewards_card_coupon_prefix() {
-    $card   = get_option( 'clwc_rewards_card' );
-    $prefix = false;
+    // Retrieve the rewards card settings option.
+    $settings = get_option( 'clwc_rewards_card_settings' );
 
-    if ( isset( $card['clwc_rewards_card_coupon_prefix'] ) && '' !== $card['clwc_rewards_card_coupon_prefix'] ) {
-        $prefix = $card['clwc_rewards_card_coupon_prefix'];
+    // Default to false if coupon prefix setting is not configured.
+    $coupon_prefix = false;
+
+    // Check if the coupon prefix setting is defined and not empty.
+    if ( isset( $settings['coupon_prefix'] ) && '' !== $settings['coupon_prefix'] ) {
+        $coupon_prefix = sanitize_text_field( $settings['coupon_prefix'] );
     }
 
-    return apply_filters( 'clwc_rewards_card_coupon_prefix', $prefix );
+    error_log( 'Rewards Card Coupon Prefix: ' . $coupon_prefix );
+
+    /**
+     * Filter the rewards card coupon prefix.
+     *
+     * @param string|bool $coupon_prefix Coupon prefix.
+     */
+    return apply_filters( 'clwc_rewards_card_coupon_prefix', $coupon_prefix );
 }
 
 /**
- * Check to see if Loyalty Points is activated.
+ * Check if Loyalty Points is activated.
  *
- * @return string|bool
+ * Determines whether the loyalty points system is enabled based on the plugin settings.
+ *
+ * @since 1.0.0
+ * @return bool True if loyalty points is activated, false otherwise.
  */
 function clwc_loyalty_points_activate() {
-    $points = get_option( 'clwc_loyalty_points' );
-    $active = false;
+    // Retrieve the loyalty points settings option.
+    $settings = get_option( 'clwc_loyalty_points_settings' );
 
-    if ( isset( $points['clwc_loyalty_points_activate'] ) && '' !== $points['clwc_loyalty_points_activate'] ) {
-        $active = $points['clwc_loyalty_points_activate'];
+    // Log the retrieved settings array for debugging
+    error_log( 'Loyalty Points Settings Array: ' . print_r( $settings, true ) );
+
+    // Default to false if the loyalty points activation setting is not configured.
+    $is_active = false;
+
+    // Check if the loyalty points activation setting is defined and is set to '1'.
+    if ( isset( $settings['activate_loyalty_points'] ) && '1' === (string) $settings['activate_loyalty_points'] ) {
+        $is_active = true;
     }
 
-    return apply_filters( 'clwc_loyalty_points_activate', $active );
-}
+    // Log the activation status for debugging
+    error_log( 'Loyalty Points Activation Status After Check: ' . ($is_active ? 'Active' : 'Inactive') );
 
+    return apply_filters( 'clwc_loyalty_points_activate', $is_active );
+}
 /**
  * Get the loyalty points redeem points calculation type.
  *
- * @return string|bool
+ * Retrieves the type of calculation to use for loyalty points redemption (e.g., order subtotal or order total).
+ *
+ * @since 1.0.0
+ * @return string|bool Calculation type for points redemption, or false if not set.
  */
 function clwc_loyalty_points_redeem_points_calculation_type() {
-    $points = get_option( 'clwc_loyalty_points' );
-    $type   = false;
+    // Retrieve the loyalty points settings option.
+    $settings = get_option( 'clwc_loyalty_points_settings' );
 
-    if ( isset( $points['clwc_loyalty_points_redeem_points_calculation_type'] ) && '' !== $points['clwc_loyalty_points_redeem_points_calculation_type'] ) {
-        $type = $points['clwc_loyalty_points_redeem_points_calculation_type'];
+    // Default to false if the calculation type setting is not configured.
+    $calculation_type = false;
+
+    // Check if the calculation type setting is defined and not empty.
+    if ( isset( $settings['calculation_type'] ) && '' !== $settings['calculation_type'] ) {
+        $calculation_type = sanitize_text_field( $settings['calculation_type'] );
     }
 
-    return apply_filters( 'clwc_loyalty_points_redeem_points_calculation_type', $type );
+    error_log( 'Calculation Type: ' . $calculation_type );
+
+    /**
+     * Filter the loyalty points redeem points calculation type.
+     *
+     * @param string|bool $calculation_type Calculation type for points redemption.
+     */
+    return apply_filters( 'clwc_loyalty_points_redeem_points_calculation_type', $calculation_type );
 }
 
 /**
  * Get the loyalty points redeem points minimum.
  *
- * @return string|bool
+ * Retrieves the minimum number of points required to redeem, based on plugin settings.
+ *
+ * @since 1.0.0
+ * @return int|bool Minimum number of points required for redemption, or false if not set.
  */
 function clwc_loyalty_points_redeem_points_minimum() {
-    $points  = get_option( 'clwc_loyalty_points' );
-    $minimum = false;
+    // Retrieve the loyalty points settings option.
+    $settings = get_option( 'clwc_loyalty_points_settings' );
 
-    if ( isset( $points['clwc_loyalty_points_redeem_points_minimum'] ) && '' !== $points['clwc_loyalty_points_redeem_points_minimum'] ) {
-        $minimum = $points['clwc_loyalty_points_redeem_points_minimum'];
+    // Default to false if the minimum points setting is not configured.
+    $redeem_points_minimum = false;
+
+    // Check if the redeem points minimum setting is defined and not empty.
+    if ( isset( $settings['minimum_points'] ) && '' !== $settings['minimum_points'] ) {
+        $redeem_points_minimum = (int) $settings['minimum_points'];
     }
 
-    return apply_filters( 'clwc_loyalty_points_redeem_points_minimum', $minimum );
+    error_log( 'Redeem Points Minimum: ' . $redeem_points_minimum );
+
+    /**
+     * Filter the loyalty points redeem points minimum.
+     *
+     * @param int|bool $redeem_points_minimum Minimum number of points required for redemption.
+     */
+    return apply_filters( 'clwc_loyalty_points_redeem_points_minimum', $redeem_points_minimum );
 }
 
 /**
  * Get the loyalty points redeem points value.
  *
- * @return string|bool
+ * Retrieves the value set for redeeming loyalty points, based on plugin settings.
+ *
+ * @since 1.0.0
+ * @return int|bool Number of points needed for redemption, or false if not set.
  */
 function clwc_loyalty_points_redeem_points_value() {
-    $points = get_option( 'clwc_loyalty_points' );
-    $value  = false;
+    // Retrieve the loyalty points settings option.
+    $settings = get_option( 'clwc_loyalty_points_settings' );
 
-    if ( isset( $points['clwc_loyalty_points_redeem_points_value'] ) && '' !== $points['clwc_loyalty_points_redeem_points_value'] ) {
-        $value = $points['clwc_loyalty_points_redeem_points_value'];
+    // Default to false if the redeem points setting is not configured.
+    $redeem_points_value = false;
+
+    // Check if the redeem points value setting is defined and not empty.
+    if ( isset( $settings['redeemable_value'] ) && '' !== $settings['redeemable_value'] ) {
+        $redeem_points_value = (int) $settings['redeemable_value'];
     }
 
-    return apply_filters( 'clwc_loyalty_points_redeem_points_value', $value );
+    error_log( 'Redeem Points Value: ' . $redeem_points_value );
+
+    /**
+     * Filter the loyalty points redeem points value.
+     *
+     * @param int|bool $redeem_points_value The number of points needed for redemption.
+     */
+    return apply_filters( 'clwc_loyalty_points_redeem_points_value', $redeem_points_value );
 }
 
 /**
- * Get the earning points customer registration.
+ * Get the earning points for customer registration.
  *
- * @return string|bool
+ * Retrieves the number of loyalty points awarded upon customer registration, based on plugin settings.
+ *
+ * @since 1.0.0
+ * @return int Number of points to award on customer registration.
  */
 function clwc_earning_points_customer_registration() {
-    $points       = get_option( 'clwc_loyalty_points' );
-    $registration = 0;
+    // Retrieve the loyalty points settings option.
+    $settings = get_option( 'clwc_loyalty_points_settings' );
 
-    if ( isset( $points['clwc_earning_points_customer_registration'] ) && '' !== $points['clwc_earning_points_customer_registration'] ) {
-        $registration = $points['clwc_earning_points_customer_registration'];
+    // Default to 0 points if setting is not configured.
+    $registration_points = 0;
+
+    // Check if the customer registration points setting is defined and not empty.
+    if ( isset( $settings['customer_registration'] ) && '' !== $settings['customer_registration'] ) {
+        $registration_points = (int) $settings['customer_registration'];
     }
 
-    return apply_filters( 'clwc_earning_points_customer_registration', $registration );
+    error_log( 'Customer Registration Points: ' . $registration_points );
+
+    /**
+     * Filter the number of points awarded on customer registration.
+     *
+     * @param int $registration_points Number of points for customer registration.
+     */
+    return apply_filters( 'clwc_earning_points_customer_registration', $registration_points );
 }
 
 /**
- * Get the earning points order complete.
+ * Get the earning points for order completion.
  *
- * @return string|bool
+ * Retrieves the number of loyalty points awarded upon completing an order, based on plugin settings.
+ *
+ * @since 1.0.0
+ * @return int Points awarded on order completion.
  */
 function clwc_earning_points_order_complete() {
-    $points   = get_option( 'clwc_loyalty_points' );
-    $complete = 0;
+    // Retrieve the loyalty points settings option.
+    $settings = get_option( 'clwc_loyalty_points_settings' );
 
-    if ( isset( $points['clwc_earning_points_order_complete'] ) && '' !== $points['clwc_earning_points_order_complete'] ) {
-        $complete = $points['clwc_earning_points_order_complete'];
+    // Default to 0 points if the order complete setting is not configured.
+    $complete_points = 0;
+
+    // Check if the order complete points setting is defined and not empty.
+    if ( isset( $settings['order_complete'] ) && '' !== $settings['order_complete'] ) {
+        $complete_points = (int) $settings['order_complete'];
     }
 
-    return apply_filters( 'clwc_earning_points_order_complete', $complete );
+    error_log( 'Order Completion Points: ' . $complete_points );
+
+    /**
+     * Filter the points awarded for order completion.
+     *
+     * @param int $complete_points Points awarded for completing an order.
+     */
+    return apply_filters( 'clwc_earning_points_order_complete', $complete_points );
 }
 
 /**
- * Get the earning points money spent.
+ * Get the earning points for money spent.
  *
- * @return string|bool
+ * Retrieves the number of loyalty points awarded based on the amount of money spent, as set in the plugin settings.
+ *
+ * @since 1.0.0
+ * @return int Points awarded per amount spent.
  */
 function clwc_earning_points_money_spent() {
-    $points      = get_option( 'clwc_loyalty_points' );
-    $money_spent = 0;
+    // Retrieve the loyalty points settings option.
+    $settings = get_option( 'clwc_loyalty_points_settings' );
 
-    if ( isset( $points['clwc_earning_points_money_spent'] ) && '' !== $points['clwc_earning_points_money_spent'] ) {
-        $money_spent = $points['clwc_earning_points_money_spent'];
+    // Default to 0 if the money spent setting is not configured.
+    $points_per_money_spent = 0;
+
+    // Check if the money spent points setting is defined and not empty.
+    if ( isset( $settings['money_spent'] ) && '' !== $settings['money_spent'] ) {
+        $points_per_money_spent = (int) $settings['money_spent'];
     }
 
-    return apply_filters( 'clwc_earning_points_money_spent', $money_spent );
+    error_log( 'Points Per Money Spent: ' . $points_per_money_spent );
+
+    /**
+     * Filter the points awarded per amount of money spent.
+     *
+     * @param int $points_per_money_spent Points awarded per amount spent.
+     */
+    return apply_filters( 'clwc_earning_points_money_spent', $points_per_money_spent );
 }
 
 /**
