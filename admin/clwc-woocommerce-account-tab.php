@@ -60,7 +60,7 @@ function clwc_my_account_menu_items( $items ) {
     // Remove the customer-logout menu item.
     unset( $items['customer-logout'] );
     // Insert the customer-loyalty endpoint.
-    $items['customer-loyalty'] = apply_filters( 'clwc_my_account_menu_item_title', esc_attr__( 'Loyalty &amp; Rewards', 'customer-loyalty-for-woocommerce' ) );
+    $items['customer-loyalty'] = apply_filters( 'clwc_my_account_menu_item_title', esc_attr__( 'Rewards', 'customer-loyalty-for-woocommerce' ) );
     // Insert back the customer-logout item.
     $items['customer-logout'] = $logout;
 

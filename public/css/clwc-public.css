@@ -51,3 +51,16 @@ h4.clwc-loyalty-points,
 h4.clwc-rewards-card {
   margin-top: 0;
 }
+
+/* Font Awesome 5 Money Icon */
+body .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--customer-loyalty a::before {
+    content: "\f0d6";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+/* Dashicon Money Icon (fallback if Font Awesome isn't loaded) */
+body:not([class*="theme-storefront"]) .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--customer-loyalty a::before {
+    content: "\f18e";
+    font-family: "Dashicons";
+}
