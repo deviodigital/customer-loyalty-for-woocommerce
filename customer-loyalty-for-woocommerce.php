@@ -44,7 +44,7 @@ define( 'CUSTOMER_LOYALTY_VERSION', '1.3.1' );
 function clwc_create_loyalty_log_table() {
     global $wpdb;
 
-    // Define table name with the WordPress table prefix.
+    // Define table name with the WordPress® table prefix.
     $table_name = $wpdb->prefix . 'clwc_loyalty_log';
 
     // Set the database character set and collation for security.

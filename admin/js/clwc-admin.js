@@ -39,4 +39,36 @@ jQuery(document).ready(function($) {
             }
         });
     });
+
+    var file_frame;
+
+    $(document).on('click', '.clwc-upload-image-button', function(e) {
+        e.preventDefault();
+
+        // If the media frame already exists, reopen it
+        if (file_frame) {
+            file_frame.open();
+            return;
+        }
+
+        // Create a new media frame
+        file_frame = wp.media.frames.file_frame = wp.media({
+            title: 'Select or Upload an Image',
+            button: {
+                text: 'Use this image',
+            },
+            multiple: false // Set to true if you want multiple files
+        });
+
+        // When an image is selected, run a callback
+        file_frame.on('select', function() {
+            var attachment = file_frame.state().get('selection').first().toJSON();
+            $('.clwc-upload-image-button').prev('input[type="hidden"]').val(attachment.id);
+            $('.clwc-upload-image-button').prev().prev('img').attr('src', attachment.url).show();
+        });
+
+        // Finally, open the modal
+        file_frame.open();
+    });
+
 });

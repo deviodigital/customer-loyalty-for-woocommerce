@@ -81,6 +81,8 @@ class Customer_Loyalty_Admin {
             return;
         }
 
+        wp_enqueue_media();
+
         wp_enqueue_script(
             'clwc-loyalty-ajax',
             plugin_dir_url( __FILE__ ) . 'js/clwc-admin.js',

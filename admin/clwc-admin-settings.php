@@ -282,19 +282,38 @@ function clwc_wysiwyg_field( $args ) {
  * @return void
  */
 function clwc_image_upload_field( $args ) {
-    $image = wp_get_attachment_url( intval( $args['value'] ) );
+    $image_id = intval( $args['value'] );
+    $image_url = $image_id ? wp_get_attachment_url( $image_id ) : '';
+
+    // Hidden field to store the image ID.
     printf(
-        '<input type="hidden" name="%1$s" value="%2$s" />',
+        '<input type="hidden" name="%1$s" value="%2$s" class="clwc-image-id" />',
         esc_attr( $args['name'] ),
-        esc_attr( $args['value'] )
+        esc_attr( $image_id )
     );
-    printf(
-        '<img src="%s" style="max-width:150px;display:block;margin-top:10px;" /><br />',
-        esc_url( $image )
-    );
+
+    // Image preview (only displayed if an image is set).
+    if ( $image_url ) {
+        printf(
+            '<img src="%s" style="max-width:150px;display:block;margin-top:10px;" class="clwc-image-preview" />',
+            esc_url( $image_url )
+        );
+    } else {
+        // Placeholder (or hidden image preview if no image is set).
+        echo '<img src="" style="max-width:150px;display:none;margin-top:10px;" class="clwc-image-preview" />';
+    }
+
+    // Button to open media uploader.
     printf(
         '<button type="button" class="button clwc-upload-image-button">%s</button>',
         esc_html__( 'Upload Image', 'customer-loyalty-for-woocommerce' )
+    );
+
+    // Button to remove image.
+    printf(
+        '<button type="button" class="button clwc-remove-image-button" style="display:%s;">%s</button>',
+        $image_url ? 'inline-block' : 'none',
+        esc_html__( 'Remove Image', 'customer-loyalty-for-woocommerce' )
     );
 }
 
