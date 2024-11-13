@@ -189,3 +189,71 @@ function custom_update_notice() {
     </div>';
 }
 //add_action( 'admin_notices', 'custom_update_notice' );
+
+/**
+ * AJAX handler to redeem points and return a new coupon.
+ * 
+ * @since  2.0.0
+ * @return void
+ */
+function clwc_redeem_points_callback() {
+    // Verify the nonce for security.
+    if ( ! check_ajax_referer( 'clwc_redeem_nonce', 'nonce', false)) {
+        wp_send_json_error( ['message' => __( 'Nonce verification failed', 'customer-loyalty-for-woocommerce' )] );
+        return;
+    }
+
+    $user_id = get_current_user_id();
+
+    // Check if the user is authenticated.
+    if ( ! $user_id ) {
+        wp_send_json_error( ['message' => __( 'User not authenticated', 'customer-loyalty-for-woocommerce' )] );
+        return;
+    }
+
+    // Fetch loyalty points and minimum redeemable points.
+    $loyalty_points    = get_user_meta( $user_id, 'clwc_loyalty_points', true ) ?: 0;
+    $redeem_points_min = clwc_loyalty_points_redeem_points_minimum();
+
+    // Check if the user has enough points
+    if ( $loyalty_points < $redeem_points_min ) {
+        wp_send_json_error( ['message' => __( 'Insufficient points to redeem.', 'customer-loyalty-for-woocommerce' )] );
+        return;
+    }
+
+    // Generate a new coupon code.
+    $coupon_code   = clwc_get_random_string();
+    $coupon_amount = clwc_loyalty_points_redeem_points_value();
+
+    // Create the coupon post.
+    $coupon_id = wp_insert_post( [
+        'post_title'  => $coupon_code,
+        'post_status' => 'publish',
+        'post_type'   => 'shop_coupon',
+        'post_author' => $user_id,
+    ] );
+
+    if (is_wp_error( $coupon_id ) ) {
+        wp_send_json_error( ['message' => __( 'Failed to create coupon.', 'customer-loyalty-for-woocommerce' )] );
+        return;
+    }
+
+    // Add meta data to the new coupon.
+    update_post_meta( $coupon_id, 'discount_type', 'fixed_cart' );
+    update_post_meta( $coupon_id, 'coupon_amount', $coupon_amount );
+    update_post_meta( $coupon_id, 'usage_limit', '1' );
+
+    // Deduct points and get updated points.
+    $updated_points = $loyalty_points - $redeem_points_min;
+    update_user_meta( $user_id, 'clwc_loyalty_points', $updated_points );
+
+    // Generate HTML for the new coupon row.
+    $new_coupon_html = sprintf(
+        '<tr style="font-weight: bold; color: green;"><td><strong>%s</strong> - %s</td><td><span class="clwc-available-coupon">Available</span></td></tr>',
+        esc_html( $coupon_code ),
+        wc_price( $coupon_amount )
+    );
+
+    wp_send_json_success( ['html' => $new_coupon_html, 'updated_points' => $updated_points] );
+}
+add_action( 'wp_ajax_clwc_redeem_points', 'clwc_redeem_points_callback' );
