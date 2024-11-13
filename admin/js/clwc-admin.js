@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+jQuery(function($) {
     $('.clwc-loyalty-points').on('change', function() {
         var $input = $(this);
         var userID = $input.data('user-id');
@@ -22,7 +22,7 @@ jQuery(document).ready(function($) {
                     $input.css('border-color', 'green');
                 } else {
                     $input.css('border-color', 'red');
-                    alert(response.data || 'An error occurred');
+                    alert(response.data.message || 'An error occurred');
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {

@@ -493,32 +493,45 @@ function clwc_earning_points_money_spent() {
 }
 
 /**
- * Insert a loyalty log entry into the database.
+ * Insert a loyalty log entry.
  *
- * @since 2.0.0
+ * @param int    $user_id User ID.
+ * @param string $name    User display name.
+ * @param string $email   User email.
+ * @param int    $points  Points awarded or redeemed.
+ * @param string $details Action details.
  *
- * @param int    $user_id  The user ID.
- * @param string $name     The customer's name.
- * @param string $email    The customer's email.
- * @param int    $points   The number of points for the action.
- * @param string $details  Details about the action (e.g., "Points redeemed for discount").
- * @return bool|int        The inserted row ID on success, or false on failure.
+ * @return void
  */
 function clwc_insert_loyalty_log_entry( $user_id, $name, $email, $points, $details ) {
     global $wpdb;
-
     $table_name = $wpdb->prefix . 'clwc_loyalty_log';
 
-    // Prepare data and sanitize for database insertion.
-    $data = [
-        'user_id'  => absint( $user_id ),
-        'name'     => sanitize_text_field( $name ),
-        'email'    => sanitize_email( $email ),
-        'points'   => intval( $points ),
-        'details'  => sanitize_textarea_field( $details ),
-        'date'     => current_time( 'mysql' ),
-    ];
+    // Attempt to insert the log entry.
+    $result = $wpdb->insert(
+        $table_name,
+        [
+            'user_id' => $user_id,
+            'name'    => $name,
+            'email'   => $email,
+            'points'  => $points,
+            'details' => $details,
+            'date'    => current_time( 'mysql' ),
+        ],
+        [
+            '%d',
+            '%s',
+            '%s',
+            '%d',
+            '%s',
+            '%s',
+        ]
+    );
 
-    // Insert the data into the table.
-    return $wpdb->insert( $table_name, $data );
+    // Log any database errors for debugging.
+    if ( false === $result ) {
+        error_log( 'Failed to insert log entry: ' . $wpdb->last_error );
+    } else {
+        error_log( 'Log entry added for user ID ' . $user_id );
+    }
 }

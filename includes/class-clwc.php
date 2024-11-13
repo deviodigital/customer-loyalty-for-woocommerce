@@ -14,6 +14,19 @@
  * @since      1.0.0
  */
 
+// Add the Plugin Update Checker.
+require 'vendor/plugin-update-checker/plugin-update-checker.php';
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
+$myUpdateChecker = PucFactory::buildUpdateChecker(
+    'https://github.com/deviodigital/customer-loyalty-fort-woocommerce/',
+    __FILE__,
+    'customer-loyalty-for-woocommerce'
+);
+
+// Set the branch that contains the stable release.
+$myUpdateChecker->setBranch( 'main' );
+
 /**
  * The core plugin class.
  *

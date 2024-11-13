@@ -20,6 +20,7 @@
  * License URI:      http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:      customer-loyalty-for-woocommerce
  * Domain Path:      /languages
+ * Update URI:       https://github.com/deviodigital/customer-loyalty-for-woocommerce/
  */
 
 // If this file is called directly, abort.
@@ -279,3 +280,53 @@ function clwc_redeem_points_callback() {
     wp_send_json_success( ['html' => $new_coupon_html, 'updated_points' => $updated_points] );
 }
 add_action( 'wp_ajax_clwc_redeem_points', 'clwc_redeem_points_callback' );
+
+/**
+ * AJAX handler to update loyalty points for a specific user.
+ *
+ * @since 2.0.0
+ * @return void
+ */
+function clwc_update_loyalty_points_callback() {
+    // Verify the nonce for security.
+    if ( ! check_ajax_referer( 'clwc_nonce', 'security', false ) ) {
+        wp_send_json_error( [ 'message' => __( 'Nonce verification failed', 'customer-loyalty-for-woocommerce' ) ] );
+        return;
+    }
+
+    // Retrieve and sanitize data from the AJAX request.
+    $user_id = isset( $_POST['user_id'] ) ? absint( $_POST['user_id'] ) : 0;
+    $new_points = isset( $_POST['points'] ) ? intval( $_POST['points'] ) : 0;
+
+    if ( ! $user_id ) {
+        wp_send_json_error( [ 'message' => __( 'Invalid user ID.', 'customer-loyalty-for-woocommerce' ) ] );
+        return;
+    }
+
+    // Get current points and calculate the change.
+    $current_points = (int) get_user_meta( $user_id, 'clwc_loyalty_points', true );
+    $points_change = $new_points - $current_points;
+
+    // Update the user's points.
+    update_user_meta( $user_id, 'clwc_loyalty_points', $new_points );
+
+    // Get the admin username who made the change.
+    $admin_user = wp_get_current_user();
+    $admin_name = $admin_user->display_name;
+
+    // Log the change in the loyalty log table.
+    $user_info  = get_userdata( $user_id );
+    $user_name  = $user_info->display_name;
+    $user_email = $user_info->user_email;
+    $details    = sprintf(
+        esc_html__( '%s adjusted points for %s by %s%d.', 'customer-loyalty-for-woocommerce' ),
+        $admin_name,
+        $user_name,
+        $points_change > 0 ? '+' : '',
+        $points_change
+    );
+    clwc_insert_loyalty_log_entry( $user_id, $user_name, $user_email, $points_change, $details );
+
+    wp_send_json_success( [ 'message' => __( 'Points updated successfully.', 'customer-loyalty-for-woocommerce' ) ] );
+}
+add_action( 'wp_ajax_clwc_update_loyalty_points', 'clwc_update_loyalty_points_callback' );
