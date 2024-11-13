@@ -198,7 +198,7 @@ function custom_update_notice() {
  */
 function clwc_redeem_points_callback() {
     // Verify the nonce for security.
-    if ( ! check_ajax_referer( 'clwc_redeem_nonce', 'nonce', false)) {
+    if ( ! check_ajax_referer( 'clwc_redeem_nonce', 'nonce', false ) ) {
         wp_send_json_error( ['message' => __( 'Nonce verification failed', 'customer-loyalty-for-woocommerce' )] );
         return;
     }
@@ -215,7 +215,7 @@ function clwc_redeem_points_callback() {
     $loyalty_points    = get_user_meta( $user_id, 'clwc_loyalty_points', true ) ?: 0;
     $redeem_points_min = clwc_loyalty_points_redeem_points_minimum();
 
-    // Check if the user has enough points
+    // Check if the user has enough points.
     if ( $loyalty_points < $redeem_points_min ) {
         wp_send_json_error( ['message' => __( 'Insufficient points to redeem.', 'customer-loyalty-for-woocommerce' )] );
         return;
@@ -233,19 +233,40 @@ function clwc_redeem_points_callback() {
         'post_author' => $user_id,
     ] );
 
-    if (is_wp_error( $coupon_id ) ) {
+    if ( is_wp_error( $coupon_id ) ) {
         wp_send_json_error( ['message' => __( 'Failed to create coupon.', 'customer-loyalty-for-woocommerce' )] );
         return;
     }
 
-    // Add meta data to the new coupon.
+    // Add metadata to the coupon.
     update_post_meta( $coupon_id, 'discount_type', 'fixed_cart' );
     update_post_meta( $coupon_id, 'coupon_amount', $coupon_amount );
     update_post_meta( $coupon_id, 'usage_limit', '1' );
 
-    // Deduct points and get updated points.
+    // Deduct points and update the user's points.
     $updated_points = $loyalty_points - $redeem_points_min;
     update_user_meta( $user_id, 'clwc_loyalty_points', $updated_points );
+
+    // Log the redemption in the loyalty log table.
+    $user_info  = get_userdata( $user_id );
+    $user_name  = $user_info ? $user_info->display_name : '';
+    $user_email = $user_info ? $user_info->user_email : '';
+    // Generate the WooCommerce Orders link for the specific user.
+    $orders_link = admin_url( 'edit.php?post_type=shop_order&s=' . urlencode( $user_email ) );
+
+    // Create a linked customer name for the details message.
+    $details = sprintf(
+        wp_kses(
+            /* Translators: %1$s is the linked customer name, %2$d is points, %3$s is the coupon amount. */
+            __( '<a href="%1$s" target="_blank">%2$s</a> redeemed %3$d points for a coupon worth %4$s.', 'customer-loyalty-for-woocommerce' ),
+            [ 'a' => [ 'href' => [], 'target' => [] ] ]
+        ),
+        esc_url( $orders_link ),
+        esc_html( $user_name ),
+        $redeem_points_min,
+        wc_price( $coupon_amount )
+    );
+    clwc_insert_loyalty_log_entry( $user_id, $user_name, $user_email, $redeem_points_min, $details );
 
     // Generate HTML for the new coupon row.
     $new_coupon_html = sprintf(
@@ -254,6 +275,7 @@ function clwc_redeem_points_callback() {
         wc_price( $coupon_amount )
     );
 
+    // Send success response.
     wp_send_json_success( ['html' => $new_coupon_html, 'updated_points' => $updated_points] );
 }
 add_action( 'wp_ajax_clwc_redeem_points', 'clwc_redeem_points_callback' );

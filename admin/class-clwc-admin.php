@@ -65,8 +65,13 @@ class Customer_Loyalty_Admin {
      * @since  1.0.0
      * @return void
      */
-    public function enqueue_styles() {
-        //wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/clwc-admin.css', array(), $this->version, 'all' );
+    public function enqueue_styles( $hook_suffix ) {
+        // Only enqueue on your specific admin page.
+        if ( 'woocommerce_page_clwc-customer-loyalty' !== $hook_suffix ) {
+            return;
+        }
+
+        wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/clwc-admin.css', [], $this->version, 'all' );
     }
 
     /**
@@ -96,7 +101,6 @@ class Customer_Loyalty_Admin {
             'nonce'    => wp_create_nonce( 'clwc_update_points_nonce' ),
         ] );
     }
-
 
 }
 

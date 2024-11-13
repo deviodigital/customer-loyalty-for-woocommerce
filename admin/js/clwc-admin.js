@@ -1,13 +1,10 @@
 jQuery(document).ready(function($) {
-    console.log("Loyalty Points script loaded."); // Debugging line
     $('.clwc-loyalty-points').on('change', function() {
         var $input = $(this);
         var userID = $input.data('user-id');
         var points = $input.val();
 
-        console.log("User ID:", userID, "Points:", points); // Debugging line
-
-        // Disable the input while processing
+        // Disable the input while processing.
         $input.prop('disabled', true);
 
         $.ajax({
@@ -20,9 +17,8 @@ jQuery(document).ready(function($) {
                 security: clwc_ajax.nonce,
             },
             success: function(response) {
-                console.log(response); // Debugging line
                 if (response.success) {
-                    // Optionally, provide visual feedback
+                    // Optionally, provide visual feedback.
                     $input.css('border-color', 'green');
                 } else {
                     $input.css('border-color', 'red');
@@ -34,7 +30,7 @@ jQuery(document).ready(function($) {
                 alert('An AJAX error occurred: ' + textStatus);
             },
             complete: function() {
-                // Re-enable the input
+                // Re-enable the input.
                 $input.prop('disabled', false);
             }
         });
@@ -42,33 +38,47 @@ jQuery(document).ready(function($) {
 
     var file_frame;
 
+    // Handle the Upload Image button click.
     $(document).on('click', '.clwc-upload-image-button', function(e) {
         e.preventDefault();
 
-        // If the media frame already exists, reopen it
+        var $button = $(this);
+
+        // If the media frame already exists, reopen it.
         if (file_frame) {
             file_frame.open();
             return;
         }
 
-        // Create a new media frame
+        // Create a new media frame.
         file_frame = wp.media.frames.file_frame = wp.media({
             title: 'Select or Upload an Image',
             button: {
                 text: 'Use this image',
             },
-            multiple: false // Set to true if you want multiple files
+            multiple: false
         });
 
         // When an image is selected, run a callback
         file_frame.on('select', function() {
             var attachment = file_frame.state().get('selection').first().toJSON();
-            $('.clwc-upload-image-button').prev('input[type="hidden"]').val(attachment.id);
-            $('.clwc-upload-image-button').prev().prev('img').attr('src', attachment.url).show();
+            $button.siblings('.clwc-image-id').val(attachment.id);
+            $button.siblings('.clwc-image-preview').attr('src', attachment.url).show();
+            $button.siblings('.clwc-remove-image-button').show();
         });
 
-        // Finally, open the modal
+        // Open the modal.
         file_frame.open();
     });
 
+    // Handle the Remove Image button click.
+    $(document).on('click', '.clwc-remove-image-button', function(e) {
+        e.preventDefault();
+        var $button = $(this);
+
+        // Clear the hidden field and hide the preview image.
+        $button.siblings('.clwc-image-id').val('');
+        $button.siblings('.clwc-image-preview').attr('src', '').hide();
+        $button.hide();
+    });
 });
