@@ -75,8 +75,25 @@ class Customer_Loyalty_Public {
      * @since  1.0.0
      * @return void
      */
-    public function enqueue_scripts() {
-        //wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/clwc-public.js', array( 'jquery' ), $this->version, false );
+    public function enqueue_scripts($hook_suffix) {
+        // Ensure this is only enqueued on the relevant page or template
+        if (is_account_page()) { // Modify condition as per your requirements
+            $user_id = get_current_user_id();
+    
+            wp_enqueue_script(
+                'clwc-redeem-script',
+                plugin_dir_url(__FILE__) . 'js/clwc-redeem.js',
+                ['jquery'],
+                time(),
+                true
+            );
+    
+            wp_localize_script('clwc-redeem-script', 'clwc_ajax', [
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'user_id'  => $user_id,
+                'nonce'    => wp_create_nonce('clwc_redeem_nonce')
+            ]);
+        }
     }
-
+    
 }
