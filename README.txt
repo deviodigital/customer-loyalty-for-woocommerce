@@ -57,6 +57,10 @@ Using a plugin like Customer Loyalty for WooCommerce increases the likelihood of
 
 == Changelog ==
 
+= 2.0.2 =
+
+* [🐛 BUG: Fixed is_wc_endpoint_url causing a fatal error when not within a WooCommerce context](https://github.com/deviodigital/customer-loyalty-for-woocommerce/commit/44966ec6ceff814929a0d72b324a0450911b59ae)
+
 = 2.0.1 =
 
 * [📦 NEW: Added plugin usage restrictions for websites hosted on wordpress.com](https://github.com/deviodigital/customer-loyalty-for-woocommerce/commit/3bbb277ce7d1eed782f50f7cfefefe193092ada8)
