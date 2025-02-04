@@ -71,7 +71,7 @@ add_filter( 'woocommerce_account_menu_items', 'clwc_my_account_menu_items' );
 /**
  * Endpoint HTML content.
  * 
- * @return string
+ * @return void
  */
 function clwc_endpoint_content() {
     echo do_shortcode( '[clwc_dashboard]' );
@@ -87,7 +87,7 @@ add_action( 'woocommerce_account_customer-loyalty_endpoint', 'clwc_endpoint_cont
  */
 function clwc_endpoint_page_title( $title ) {
     // Update 'Customer Loyalty' page title.
-    if ( is_wc_endpoint_url( 'customer-loyalty' ) && in_the_loop() ) {
+    if ( function_exists( 'is_wc_endpoint_url' ) && is_wc_endpoint_url( 'customer-loyalty' ) && in_the_loop() ) {
         $title = apply_filters( 'clwc_my_account_endpoint_page_title', esc_attr__( 'Customer Loyalty', 'customer-loyalty-for-woocommerce' ) );
     }
     return $title;
