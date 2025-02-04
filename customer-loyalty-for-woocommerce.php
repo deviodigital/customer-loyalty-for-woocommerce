@@ -31,6 +31,18 @@ if ( ! defined( 'WPINC' ) ) {
 // Current plugin version.
 define( 'CUSTOMER_LOYALTY_VERSION', '2.0.0' );
 
+require 'vendor/plugin-update-checker/plugin-update-checker.php';
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
+$myUpdateChecker = PucFactory::buildUpdateChecker(
+    'https://github.com/robertdevore/customer-loyalty-for-woocommerce/',
+    __FILE__,
+    'customer-loyalty-for-woocommerce'
+);
+
+// Set the branch that contains the stable release.
+$myUpdateChecker->setBranch( 'main' );
+
 // Check if Composer's autoloader is already registered globally.
 if ( ! class_exists( 'RobertDevore\WPComCheck\WPComPluginHandler' ) ) {
     require_once __DIR__ . '/vendor/autoload.php';
@@ -46,8 +58,8 @@ new WPComPluginHandler( plugin_basename( __FILE__ ), 'https://robertdevore.com/w
  * This function creates a table for storing loyalty log entries in the database.
  * It includes fields for storing the customer ID, name, email, points, action details, and date.
  *
- * @package    CLWC
- * @since      2.0.0
+ * @package CLWC
+ * @since   2.0.0
  */
 function clwc_create_loyalty_log_table() {
     global $wpdb;
@@ -82,6 +94,7 @@ register_activation_hook( __FILE__, 'clwc_create_loyalty_log_table' );
  * The code that runs during plugin activation.
  * This action is documented in includes/class-clwc-activator.php
  * 
+ * @since  1.0.0
  * @return void
  */
 function activate_clwc() {
@@ -93,6 +106,7 @@ function activate_clwc() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-clwc-deactivator.php
  * 
+ * @since  1.0.0
  * @return void
  */
 function deactivate_clwc() {
@@ -116,7 +130,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-clwc.php';
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since  1.0
+ * @since  1.0.0
  * @return void
  */
 function run_clwc() {
@@ -160,7 +174,7 @@ register_activation_hook( __FILE__, 'clwc_activate' );
  * Redirect to the Customer Loyalty for WooCommerce Settings page 
  * on single plugin activation
  * 
- * @since  1.0
+ * @since  1.0.0
  * @return void
  */
 function clwc_redirect() {
@@ -259,6 +273,7 @@ function clwc_redeem_points_callback() {
     $user_info  = get_userdata( $user_id );
     $user_name  = $user_info ? $user_info->display_name : '';
     $user_email = $user_info ? $user_info->user_email : '';
+
     // Generate the WooCommerce Orders link for the specific user.
     $orders_link = admin_url( 'edit.php?post_type=shop_order&s=' . urlencode( $user_email ) );
 
@@ -291,7 +306,7 @@ add_action( 'wp_ajax_clwc_redeem_points', 'clwc_redeem_points_callback' );
 /**
  * AJAX handler to update loyalty points for a specific user.
  *
- * @since 2.0.0
+ * @since  2.0.0
  * @return void
  */
 function clwc_update_loyalty_points_callback() {
