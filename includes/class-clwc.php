@@ -71,7 +71,7 @@ class CLWC {
      */
     public function __construct() {
         $this->plugin_name = 'customer-loyalty-for-woocommerce';
-        $this->version     = '2.0.0';
+        $this->version     = '2.0.1';
 
         if ( defined( 'CUSTOMER_LOYALTY_VERSION' ) ) {
             $this->version = CUSTOMER_LOYALTY_VERSION;

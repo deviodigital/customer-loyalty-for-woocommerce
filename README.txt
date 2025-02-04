@@ -2,8 +2,8 @@
 Contributors: deviodigital
 Tags: loyalty, rewards, customer, woocommerce, gift
 Requires at least: 3.0.1
-Tested up to: 6.6.2
-Stable tag: 2.0.0
+Tested up to: 6.7.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,14 @@ Using a plugin like Customer Loyalty for WooCommerce increases the likelihood of
 5. CLWC user settings - Edit a user's rewards card and loyalty points
 
 == Changelog ==
+
+= 2.0.1 =
+
+* [📦 NEW: Added plugin usage restrictions for websites hosted on wordpress.com](https://github.com/deviodigital/customer-loyalty-for-woocommerce/commit/3bbb277ce7d1eed782f50f7cfefefe193092ada8)
+* [👌 IMPROVE: General code cleanup](https://github.com/deviodigital/customer-loyalty-for-woocommerce/commit/4c8fe2b53eb3466f6a5fec6043f6d97ec8af92f8)
+* [👌 IMPROVE: General code cleanup](https://github.com/deviodigital/customer-loyalty-for-woocommerce/commit/42bc1b8d1a112051a84602a421aa79d1307e01ea)
+* [👌 IMPROVE: Updated the WPCom Check composer script to restrict plugin usage on wordpress.com](https://github.com/deviodigital/customer-loyalty-for-woocommerce/commit/363199a2746fa9c9f9096225ca5f14c00855b546)
+* [👌 IMPROVE: Updated language translations files](https://github.com/deviodigital/customer-loyalty-for-woocommerce/commit/f78fec7c3d7163cfcba019513869d1069caf44ea)
 
 = 2.0.0 =
 * [👌 IMPROVE: Updated plugin serve updates from GitHub instead of wp.org](https://github.com/deviodigital/customer-loyalty-for-woocommerce/commit/5c222fabc637e0aa27658ee77ae821e516bf72cf)
