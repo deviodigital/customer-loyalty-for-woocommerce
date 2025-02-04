@@ -53,6 +53,21 @@ use RobertDevore\WPComCheck\WPComPluginHandler;
 new WPComPluginHandler( plugin_basename( __FILE__ ), 'https://robertdevore.com/why-this-plugin-doesnt-support-wordpress-com-hosting/' );
 
 /**
+ * Load plugin text domain for translations
+ * 
+ * @since  2.0.1
+ * @return void
+ */
+function clwc_load_textdomain() {
+    load_plugin_textdomain( 
+        'customer-loyalty-for-woocommerce',
+        false,
+        dirname( plugin_basename( __FILE__ ) ) . '/languages/'
+    );
+}
+add_action( 'plugins_loaded', 'clwc_load_textdomain' );
+
+/**
  * Create the CLWC Loyalty Log database table.
  *
  * This function creates a table for storing loyalty log entries in the database.

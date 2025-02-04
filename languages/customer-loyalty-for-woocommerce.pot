@@ -1,16 +1,16 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"Project-Id-Version: Customer Loyalty for WooCommerce\n"
-"POT-Creation-Date: 2021-09-09 18:37-0400\n"
-"PO-Revision-Date: 2021-09-09 18:37-0400\n"
+"Project-Id-Version: Loyalty & Rewards for WooCommerce®\n"
+"POT-Creation-Date: 2025-02-04 14:54-0500\n"
+"PO-Revision-Date: 2025-02-04 14:54-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: customer-loyalty-for-woocommerce.php\n"
@@ -20,252 +20,272 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
 
-#: admin/class-clwc-osa.php:605
-msgid "Choose File"
+#: admin/class-customer-loyalty-table.php:39
+#: admin/class-loyalty-log-table.php:52
+msgid "Customer Name"
 msgstr ""
 
-#: admin/class-clwc-osa.php:626 admin/clwc-admin-settings.php:111
-msgid "Choose Image"
+#: admin/class-customer-loyalty-table.php:40
+#: admin/class-loyalty-log-table.php:53
+msgid "Email"
 msgstr ""
 
-#. Plugin Name of the plugin/theme
-#: admin/class-clwc-osa.php:719 admin/class-clwc-osa.php:729
-#: admin/clwc-user-fields.php:23
-msgid "Customer Loyalty for WooCommerce"
+#: admin/class-customer-loyalty-table.php:41
+#: admin/class-loyalty-log-table.php:54
+msgid "Points"
 msgstr ""
 
-#: admin/class-clwc-osa.php:720 admin/clwc-woocommerce-account-tab.php:56
-#: admin/clwc-woocommerce-account-tab.php:81
-msgid "Customer Loyalty"
+#: admin/class-customer-loyalty-table.php:137
+msgid "Search Customers"
 msgstr ""
 
-#: admin/class-clwc-osa.php:730
-msgid "Brought to you by"
+#: admin/class-loyalty-log-table.php:55
+msgid "Details"
 msgstr ""
 
-#: admin/class-clwc-osa.php:730
+#: admin/class-loyalty-log-table.php:56
+msgid "Date"
+msgstr ""
+
+#: admin/clwc-admin-settings.php:24 admin/clwc-admin-settings.php:38
+msgid "Customer Loyalty &amp; Rewards Settings"
+msgstr ""
+
+#: admin/clwc-admin-settings.php:25
+msgid "Loyalty &amp; Rewards"
+msgstr ""
+
+#: admin/clwc-admin-settings.php:46
 msgid "Documentation"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:45 admin/clwc-admin-settings.php:63
-#: admin/clwc-woocommerce-settings.php:157
+#: admin/clwc-admin-settings.php:49
+msgid "More Plugins"
+msgstr ""
+
+#: admin/clwc-admin-settings.php:56 admin/clwc-woocommerce-settings.php:117
 msgid "Rewards Card"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:53 admin/clwc-admin-settings.php:185
-#: admin/clwc-woocommerce-endpoint-shortcode.php:158
+#: admin/clwc-admin-settings.php:59
+#: admin/clwc-woocommerce-endpoint-shortcode.php:19
 msgid "Loyalty Points"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:73
+#: admin/clwc-admin-settings.php:62
+msgid "Manage Points"
+msgstr ""
+
+#: admin/clwc-admin-settings.php:65
+msgid "Log"
+msgstr ""
+
+#: admin/clwc-admin-settings.php:121
 msgid "Activate Rewards Card"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:74
-msgid "Check to activate the included customer rewards card features."
-msgstr ""
-
-#: admin/clwc-admin-settings.php:84
+#: admin/clwc-admin-settings.php:134
 msgid "Rewards Card Title"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:85
-msgid "The title displayed in a customer's order when a new reward is earned."
-msgstr ""
-
-#: admin/clwc-admin-settings.php:96
+#: admin/clwc-admin-settings.php:147
 msgid "Rewards Card Text"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:97
-msgid "The text displayed in a customer's order when a new reward is earned."
-msgstr ""
-
-#: admin/clwc-admin-settings.php:108
+#: admin/clwc-admin-settings.php:159
 msgid "Rewards Card Image"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:109
-msgid "Display an image in the customer's order when a new reward is earned."
+#: admin/clwc-admin-settings.php:172
+msgid "Required Punches"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:122
-msgid "Rewards coupon"
+#: admin/clwc-admin-settings.php:185
+msgid "Coupon Amount"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:132
-msgid "Required punches"
-msgstr ""
-
-#: admin/clwc-admin-settings.php:133
-msgid ""
-"How many punches are required before a coupon is created for the customer?"
-msgstr ""
-
-#: admin/clwc-admin-settings.php:145
-msgid "Coupon amount"
-msgstr ""
-
-#: admin/clwc-admin-settings.php:146
-msgid "Enter the amount you would like used when creating the coupon."
-msgstr ""
-
-#: admin/clwc-admin-settings.php:158
-msgid "Coupon type"
-msgstr ""
-
-#: admin/clwc-admin-settings.php:159
-msgid "Select the type of coupon that you would like created for the customer"
-msgstr ""
-
-#: admin/clwc-admin-settings.php:161
-msgid "Fixed cart"
-msgstr ""
-
-#: admin/clwc-admin-settings.php:162
-msgid "Percentage"
-msgstr ""
-
-#: admin/clwc-admin-settings.php:173
-msgid "Coupon prefix"
-msgstr ""
-
-#: admin/clwc-admin-settings.php:174
-msgid "Add the text you would like included before the randomize coupon code"
-msgstr ""
-
-#: admin/clwc-admin-settings.php:195
-msgid "Activate Loyalty Points"
-msgstr ""
-
-#: admin/clwc-admin-settings.php:196
-msgid "Check to activate the included customer loyalty points features."
+#: admin/clwc-admin-settings.php:198
+msgid "Coupon Type"
 msgstr ""
 
 #: admin/clwc-admin-settings.php:206
-msgid "Calculation type"
+msgid "Fixed Cart"
 msgstr ""
 
 #: admin/clwc-admin-settings.php:207
-msgid "Should the points be calculated from the order total or subtotal?"
+msgid "Percentage"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:209
-msgid "Order total"
+#: admin/clwc-admin-settings.php:215
+msgid "Coupon Prefix"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:210
-msgid "Order subtotal"
+#: admin/clwc-admin-settings.php:318
+msgid "Upload Image"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:221
-msgid "Redeeming Points"
+#: admin/clwc-admin-settings.php:325
+msgid "Remove Image"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:231
-msgid "Minimum points"
+#: admin/clwc-admin-settings.php:410
+msgid "Activate Loyalty Points"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:232
-msgid "How many points are required before a customer can redeem points?"
+#: admin/clwc-admin-settings.php:424
+msgid "Calculation Type"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:244
-msgid "Redeemable value"
+#: admin/clwc-admin-settings.php:432
+msgid "Order Subtotal"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:245
-msgid "How much should the redeemed points be worth in actual currency?"
+#: admin/clwc-admin-settings.php:433
+msgid "Order Total"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:257
-msgid "Earning Points"
+#: admin/clwc-admin-settings.php:442
+msgid "Minimum Points"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:267
-msgid "Customer registration"
+#: admin/clwc-admin-settings.php:455
+msgid "Redeemable Value"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:268
-msgid "The amount of points a customer earns when they register an account."
+#: admin/clwc-admin-settings.php:469
+msgid "Customer Registration"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:280
-msgid "Order complete"
+#: admin/clwc-admin-settings.php:482
+msgid "Order Complete"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:281
-msgid "The amount of points a customer earns when completing an order."
+#: admin/clwc-admin-settings.php:495
+msgid "Money Spent"
 msgstr ""
 
-#: admin/clwc-admin-settings.php:293
-msgid "Money spent"
+#: admin/clwc-earning-loyalty-points.php:44
+#, php-format
+msgid "Customer awarded %d loyalty points for registering an account."
 msgstr ""
 
-#: admin/clwc-admin-settings.php:294
-msgid "The amount of points a customer earns per dollar spent."
+#: admin/clwc-earning-loyalty-points.php:82
+#, php-format
+msgid "Customer awarded %d loyalty points for completing an order."
 msgstr ""
 
-#: admin/clwc-user-fields.php:27
+#: admin/clwc-earning-loyalty-points.php:126
+#, php-format
+msgid "Customer awarded %d loyalty points for spending $%s."
+msgstr ""
+
+#: admin/clwc-user-fields.php:26
+msgid "Customer Loyalty for WooCommerce"
+msgstr ""
+
+#: admin/clwc-user-fields.php:30
 msgid "Loyalty points"
 msgstr ""
 
-#: admin/clwc-user-fields.php:33
+#: admin/clwc-user-fields.php:36
 msgid "Rewards card punches"
 msgstr ""
 
-#: admin/clwc-user-fields.php:39
+#: admin/clwc-user-fields.php:42
 msgid "Rewards earned"
 msgstr ""
 
-#: admin/clwc-woocommerce-endpoint-shortcode.php:89
-msgid "Redeem"
+#: admin/clwc-woocommerce-account-tab.php:63
+msgid "Rewards"
 msgstr ""
 
-#: admin/clwc-woocommerce-endpoint-shortcode.php:94
-msgid "Redeem Points"
+#: admin/clwc-woocommerce-account-tab.php:91
+msgid "Customer Loyalty"
 msgstr ""
 
-#: admin/clwc-woocommerce-endpoint-shortcode.php:134
-#: admin/clwc-woocommerce-endpoint-shortcode.php:208
-msgid "Available"
-msgstr ""
-
-#: admin/clwc-woocommerce-endpoint-shortcode.php:149
+#: admin/clwc-woocommerce-endpoint-shortcode.php:17
 msgid "My Loyalty Points"
 msgstr ""
 
-#: admin/clwc-woocommerce-endpoint-shortcode.php:221
-msgid "You do not have any coupons available"
+#: admin/clwc-woocommerce-endpoint-shortcode.php:21
+msgid "Redeem Points"
 msgstr ""
 
-#: admin/clwc-woocommerce-endpoint-shortcode.php:243
-msgid "My Rewards Card"
+#: admin/clwc-woocommerce-endpoint-shortcode.php:22
+msgid "Redeem"
 msgstr ""
 
-#: admin/clwc-woocommerce-endpoint-shortcode.php:252
-msgid "Rewards Card Punches"
-msgstr ""
-
-#: admin/clwc-woocommerce-endpoint-shortcode.php:253
-msgid "Rewards Earned"
-msgstr ""
-
-#: admin/clwc-woocommerce-endpoint-shortcode.php:267
+#: admin/clwc-woocommerce-endpoint-shortcode.php:28
 msgid "My Coupons"
 msgstr ""
 
-#: admin/clwc-woocommerce-settings.php:160
+#: admin/clwc-woocommerce-endpoint-shortcode.php:66
+msgid "You do not have any coupons available"
+msgstr ""
+
+#: admin/clwc-woocommerce-settings.php:120
 msgid "Coupon"
 msgstr ""
 
-#: customer-loyalty-for-woocommerce.php:85
+#: customer-loyalty-for-woocommerce.php:168
 msgid "Settings"
 msgstr ""
 
-#: includes/clwc-helper-functions.php:62
+#: customer-loyalty-for-woocommerce.php:219
+#, php-format
+msgid ""
+"Important Notice: Due to recent changes initiated by WordPress® leadership, "
+"access to the plugin repository is being restricted for certain hosting "
+"providers and developers. This may impact automatic updates for your "
+"plugins. To ensure you continue receiving updates and to learn about the "
+"next steps, please visit %s."
+msgstr ""
+
+#: customer-loyalty-for-woocommerce.php:239
+#: customer-loyalty-for-woocommerce.php:330
+msgid "Nonce verification failed"
+msgstr ""
+
+#: customer-loyalty-for-woocommerce.php:247
+msgid "User not authenticated"
+msgstr ""
+
+#: customer-loyalty-for-woocommerce.php:257
+msgid "Insufficient points to redeem."
+msgstr ""
+
+#: customer-loyalty-for-woocommerce.php:274
+msgid "Failed to create coupon."
+msgstr ""
+
+#: customer-loyalty-for-woocommerce.php:299
+#, php-format
+msgid ""
+"<a href=\"%1$s\" target=\"_blank\">%2$s</a> redeemed %3$d points for a "
+"coupon worth %4$s."
+msgstr ""
+
+#: customer-loyalty-for-woocommerce.php:339
+msgid "Invalid user ID."
+msgstr ""
+
+#: customer-loyalty-for-woocommerce.php:359
+#, php-format
+msgid "%s adjusted points for %s by %s%d."
+msgstr ""
+
+#: customer-loyalty-for-woocommerce.php:367
+msgid "Points updated successfully."
+msgstr ""
+
+#: includes/clwc-helper-functions.php:88
 msgid "You earned a reward"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Loyalty & Rewards for WooCommerce®"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
